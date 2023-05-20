@@ -8,5 +8,6 @@
       <Button layoutX="159.0" layoutY="336.0" mnemonicParsing="false" text="Energy Generation and Consumption" />
       <Button fx:id="exit" layoutX="531.0" layoutY="336.0" mnemonicParsing="false" onAction="#onClick" text="Exit" />
       <Button fx:id="solarPanel" layoutX="47.0" layoutY="336.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="84.0" text="Solar Panels" />
+      <Button fx:id="productionChooseParameters" layoutX="334.0" layoutY="289.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="197.0" text="Production Choose Parameters" />
    </children>
 </AnchorPane>

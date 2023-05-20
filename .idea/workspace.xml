@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/Insert_page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

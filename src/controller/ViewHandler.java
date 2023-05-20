@@ -13,16 +13,21 @@ import java.io.IOException;
     private Scene chooseProductionParameters;
     private Scene showData;
     private Scene modifySolarPanel;
+    private Scene insertPage;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
     private ShowDataController showDataController;
     private ModifySolarPanelController modifySolarPanelController;
+    private InsertPageController insertPageController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
     public static final String SHOW_DATA = "SHOW_DATA";
     public static final String MODIFY_SOLAR_PANEL = "MODIFY_SOLAR_PANEL";
+
+    public static final String INSERT_PAGE_CONTROLLER = "INSERT_PAGE_CONTROLLER";
+
 
     public ViewHandler(Stage primaryStage)
     {
@@ -102,6 +107,21 @@ import java.io.IOException;
         System.exit(1);
       }
 
+      //
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Martin/InsertPage.fxml"));
+      try
+      {
+        insertPage = new Scene(loader.load());
+        insertPageController = loader.getController();
+        insertPageController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load InsertPage.fxml");
+        System.exit(1);
+      }
+
 
       changeScene(MAIN_SCENE);
     }
@@ -138,6 +158,12 @@ import java.io.IOException;
         {
           primaryStage.setTitle("Modify Page");
           primaryStage.setScene(modifySolarPanel);
+          primaryStage.show();
+        }
+        else if (INSERT_PAGE_CONTROLLER.equals(sceneName))
+        {
+          primaryStage.setTitle("Insert Solar Panel and Manufacturer data");
+          primaryStage.setScene(insertPage);
           primaryStage.show();
         }
       }

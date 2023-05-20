@@ -41,8 +41,8 @@ public class ModifySolarPanelController
       String sql = "INSERT INTO solarpanels (serial_no, model_type, roof_position, date_installed, manufacturer) VALUES (?, ?, ?, ?, ?)";
 
       try (PreparedStatement statement = connection.prepareStatement(sql)) {
-        statement.setString(1, serialNoText);
-        statement.setString(2, modelType);
+        //statement.setString(1, serialNoText);
+        //statement.setString(2, modelType);
 
         int rowsInserted = statement.executeUpdate();
         if (rowsInserted > 0) {

@@ -44,11 +44,4 @@ public class ProductionChooseParametersController
     }
   }
 
-  public void showData(MouseEvent mouseEvent)
-  {
-  }
-
-  public void backToMenu(MouseEvent mouseEvent)
-  {
-  }
 }

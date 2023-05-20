@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductionChooseParametersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductionChooseParametersController">
    <children>
       <HBox layoutX="2.0" layoutY="2.0" prefHeight="118.0" prefWidth="594.0">
          <children>
@@ -32,8 +32,8 @@
             <DatePicker fx:id="startDate" />
          </children>
       </VBox>
-      <Button fx:id="showButton" layoutX="476.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#showData" prefHeight="26.0" prefWidth="70.0" text="Show" />
-      <Button fx:id="backButton" layoutX="38.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#backToMenu" text="Back" />
+      <Button fx:id="showButton" layoutX="476.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="70.0" text="Show" />
+      <Button fx:id="backButton" layoutX="38.0" layoutY="347.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <VBox layoutX="71.0" layoutY="283.0" prefHeight="43.0" prefWidth="446.0">
          <children>
             <Label text="Period:" />

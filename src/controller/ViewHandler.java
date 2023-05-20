@@ -12,19 +12,19 @@ import java.io.IOException;
     private Scene solar_panels;
     private Scene chooseProductionParameters;
     private Scene showData;
-    private Scene modifySolarPanel;
+    private Scene insertModifySolarPanel;
     private Scene insertPage;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
     private ShowDataController showDataController;
-    private ModifySolarPanelController modifySolarPanelController;
+    private InsertModifySolarPanelController insertModifySolarPanelController;
     private InsertPageController insertPageController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
     public static final String SHOW_DATA = "SHOW_DATA";
-    public static final String MODIFY_SOLAR_PANEL = "MODIFY_SOLAR_PANEL";
+    public static final String INSERT_MODIFY_SOLAR_PANEL = "INSERT_MODIFY_SOLAR_PANEL";
 
     public static final String INSERT_PAGE_CONTROLLER = "INSERT_PAGE_CONTROLLER";
 
@@ -92,18 +92,18 @@ import java.io.IOException;
         System.exit(1);
       }
 
-      // Loading ModifyPage.fxml into modifySolarPanel
+      // Loading InsertModifySolarPanel.fxml into modifySolarPanel
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/ModifyPage.fxml"));
+      loader.setLocation(getClass().getResource("../view/Martin/InsertModifySolarPanel.fxml"));
       try
       {
-        modifySolarPanel = new Scene(loader.load());
-        modifySolarPanelController = loader.getController();
-        modifySolarPanelController.init(this);
+        insertModifySolarPanel = new Scene(loader.load());
+        insertModifySolarPanelController = loader.getController();
+        insertModifySolarPanelController.init(this);
       }
       catch(IOException e)
       {
-        System.out.println("Failed to load ModifyPage.fxml");
+        System.out.println("Failed to load InsertModifySolarPanel.fxml");
         System.exit(1);
       }
 
@@ -154,10 +154,10 @@ import java.io.IOException;
           primaryStage.setScene(showData);
           primaryStage.show();
         }
-        else if (MODIFY_SOLAR_PANEL.equals(sceneName))
+        else if (INSERT_MODIFY_SOLAR_PANEL.equals(sceneName))
         {
           primaryStage.setTitle("Modify Page");
-          primaryStage.setScene(modifySolarPanel);
+          primaryStage.setScene(insertModifySolarPanel);
           primaryStage.show();
         }
         else if (INSERT_PAGE_CONTROLLER.equals(sceneName))

@@ -3,6 +3,7 @@ package controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnection implements AutoCloseable
 {
@@ -10,8 +11,13 @@ public class DatabaseConnection implements AutoCloseable
   public static Connection getConnection() {
     if (connection == null) {
       try {
+        String url = "jdbc:postgresql://snuffleupagus.db.elephantsql.com:5432/icgiivdi";
+        Properties props = new Properties();
+        props.setProperty("user", "icgiivdi");
+        props.setProperty("password", "5JBbbzO0mgAwhwoUtAkf3QH8zaL4Lo-n");
+        Connection conn = DriverManager.getConnection(url, props);
         // Create the connection
-        connection = DriverManager.getConnection("jdbc:postgresql://snuffleupagus.db.elephantsql.com:5432/icgiivdi", "icgiivdi", "5JBbbzO0mgAwhwoUtAkf3QH8zaL4Lo-n");
+        connection = DriverManager.getConnection(url,props);
       } catch (SQLException e) {
         e.printStackTrace();
       }

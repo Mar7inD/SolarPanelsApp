@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 
 public class SolarPanelsSceneController
 {
-  @FXML private Button insert;
   @FXML private Button back;
   @FXML private Button modify;
   @FXML private TableView<String> solarPanelsTable;
@@ -40,10 +39,6 @@ public class SolarPanelsSceneController
     else if (event.getSource() == back)
     {
       viewHandler.changeScene(ViewHandler.MAIN_SCENE);
-    }
-    else if (event.getSource() == insert)
-    {
-      viewHandler.changeScene(ViewHandler.INSERT_PAGE_CONTROLLER);
     }
   }
 }

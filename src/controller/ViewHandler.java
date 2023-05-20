@@ -13,19 +13,21 @@ import java.io.IOException;
     private Scene chooseProductionParameters;
     private Scene showData;
     private Scene modifySolarPanel;
-    private Scene insertPage;
+    private Scene manufacturerInformation;
+    private Scene insertManufacturerPage;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
     private ShowDataController showDataController;
     private ModifySolarPanelController modifySolarPanelController;
-    private InsertPageController insertPageController;
+    private ManufacturerInformationController manufacturerInformationController;
+    private InsertManufacturerPageController insertManufacturerPageController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
     public static final String SHOW_DATA = "SHOW_DATA";
     public static final String MODIFY_SOLAR_PANEL = "MODIFY_SOLAR_PANEL";
-
+    public static final String MANUFACTURER_INFORMATION = "MANUFACTURER_INFORMATION";
     public static final String INSERT_PAGE_CONTROLLER = "INSERT_PAGE_CONTROLLER";
 
 
@@ -107,18 +109,33 @@ import java.io.IOException;
         System.exit(1);
       }
 
-      //
+      // Loading ModifyPage.fxml into modifySolarPanel
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/InsertPage.fxml"));
+      loader.setLocation(getClass().getResource("../view/Martin/ManufacturerInformation.fxml"));
       try
       {
-        insertPage = new Scene(loader.load());
-        insertPageController = loader.getController();
-        insertPageController.init(this);
+        manufacturerInformation = new Scene(loader.load());
+        manufacturerInformationController = loader.getController();
+        manufacturerInformationController.init(this);
       }
       catch(IOException e)
       {
-        System.out.println("Failed to load InsertPage.fxml");
+        System.out.println("Failed to load ManufacturerInformation.fxml");
+        System.exit(1);
+      }
+
+      //
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Martin/InsertManufacturerPage.fxml"));
+      try
+      {
+        insertManufacturerPage = new Scene(loader.load());
+        insertManufacturerPageController = loader.getController();
+        insertManufacturerPageController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load InsertManufacturerPage.fxml");
         System.exit(1);
       }
 
@@ -163,7 +180,13 @@ import java.io.IOException;
         else if (INSERT_PAGE_CONTROLLER.equals(sceneName))
         {
           primaryStage.setTitle("Insert Solar Panel and Manufacturer data");
-          primaryStage.setScene(insertPage);
+          primaryStage.setScene(insertManufacturerPage);
+          primaryStage.show();
+        }
+        else if (MANUFACTURER_INFORMATION.equals(sceneName))
+        {
+          primaryStage.setTitle("");
+          primaryStage.setScene(manufacturerInformation);
           primaryStage.show();
         }
       }

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertPageController
+public class InsertManufacturerPageController
 {
   @FXML
   private TextField nameField;
@@ -30,23 +30,17 @@ public class InsertPageController
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
-
-
   }
 
 
   // SQL statements to insert
   private final String insertManufacturerSql = "INSERT INTO Manufacturer (name, address, email, phone_number) " +
       "VALUES (?, ?, ?, ?)";
-  private final String insertSolarPanelSql = "INSERT INTO SolarPanels (serial_No, model_type, roof_position, " +
-      "date_installed, manufacturer) " +
-      "VALUES (?, ?, ?, ?, (SELECT id FROM Manufacturer WHERE name = ?), ?)";
   
 
   private void addDataToDatabase() {
     try (Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql);
-        PreparedStatement insertSolarPanelStmt = connection.prepareStatement(insertSolarPanelSql)) {
+        PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql)) {
 
       // Insert data into Manufacturer table
       insertManufacturerStmt.setString(1, nameField.getText());
@@ -54,17 +48,6 @@ public class InsertPageController
       insertManufacturerStmt.setString(3, emailField.getText());
       insertManufacturerStmt.setString(4, phoneNumberField.getText());
       insertManufacturerStmt.executeUpdate();
-
-      // Insert data into SolarPanels table
-      insertSolarPanelStmt.setString(1, serialNoField.getText());
-      String modelType = modelTypeField.getSelectionModel().getSelectedItem();
-      insertSolarPanelStmt.setString(2, modelType);
-      int roofPosition = Integer.parseInt(
-          roofPositionField.getSelectionModel().getSelectedItem());
-      insertSolarPanelStmt.setInt(3, roofPosition);
-      insertSolarPanelStmt.setDate(4, java.sql.Date.valueOf(dateInstalledPicker.getValue()));
-      insertSolarPanelStmt.setString(5, nameField.getText());
-      insertSolarPanelStmt.executeUpdate();
 
       // Clear input fields after successful insertion
       clearInputFields();
@@ -82,10 +65,6 @@ public class InsertPageController
     addressField.clear();
     emailField.clear();
     phoneNumberField.clear();
-    serialNoField.clear();
-    modelTypeField.setValue(null);
-    roofPositionField.setValue(null);
-    dateInstalledPicker.setValue(null);
   }
 }
 

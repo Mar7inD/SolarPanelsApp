@@ -35,11 +35,11 @@ public class SolarPanelsSceneController
     try (Connection connection = DatabaseConnection.getConnection())
     {
       Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT * FROM solarpanel";
+      String sqlQuery = "SELECT * FROM solar_panels.solarpanels";
       ResultSet resultSet = statement.executeQuery(sqlQuery);
       while (resultSet.next()) {
         //serialNo = resultSet.getInt("serial_no");
-        int column2Value = resultSet.getInt("column2");
+        //int column2Value = resultSet.getInt("column2");
         // Process the retrieved data
       }
     }

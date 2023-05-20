@@ -94,9 +94,9 @@ import java.io.IOException;
         System.exit(1);
       }
 
-      // Loading ModifyPage.fxml into modifySolarPanel
+      // Loading InsertModifySolarPanel.fxml into insertModifySolarPanel
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/ModifyPage.fxml"));
+      loader.setLocation(getClass().getResource("../view/Martin/InsertModifySolarPanel.fxml"));
       try
       {
         insertModifySolarPanel = new Scene(loader.load());
@@ -105,7 +105,7 @@ import java.io.IOException;
       }
       catch(IOException e)
       {
-        System.out.println("Failed to load ModifyPage.fxml");
+        System.out.println("Failed to load InsertModifySolarPanel.fxml");
         System.exit(1);
       }
 

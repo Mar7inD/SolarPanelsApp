@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on ManufacturerInformation.fxml" />
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on ManufacturerInformation.fxml">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684591791664</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Worked on ManufacturerInformation.fxml">
+      <created>1684601646731</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684601646731</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,6 +107,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Worked on ProductionChooseParametersController" />
     <MESSAGE value="Worked a little on modify page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked a little on modify page" />
+    <MESSAGE value="Worked on ManufacturerInformation.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on ManufacturerInformation.fxml" />
   </component>
 </project>

@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/MainScene.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/SolarPanelsSceneController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Aleks/ModelInfo.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Aleks/ProductionDate.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Aleks/interface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/GenerateConsumePage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/Insert_page.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/ModifyPage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

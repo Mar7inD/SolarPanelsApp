@@ -4,6 +4,7 @@ import javafx.scene.control.*;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 
 public class ProductionChooseParametersController
 {
@@ -41,5 +42,13 @@ public class ProductionChooseParametersController
     {
 
     }
+  }
+
+  public void showData(MouseEvent mouseEvent)
+  {
+  }
+
+  public void backToMenu(MouseEvent mouseEvent)
+  {
   }
 }

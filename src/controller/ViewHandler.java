@@ -28,7 +28,7 @@ import java.io.IOException;
     public static final String SHOW_DATA = "SHOW_DATA";
     public static final String INSERT_MODIFY_SOLAR_PANEL = "INSERT_MODIFY_SOLAR_PANEL";
     public static final String MANUFACTURER_INFORMATION = "MANUFACTURER_INFORMATION";
-    public static final String INSERT_PAGE_CONTROLLER = "INSERT_PAGE_CONTROLLER";
+    public static final String INSERT_MANUFACTURER_PAGE = "INSERT_MANUFACTURER_PAGE";
 
 
     public ViewHandler(Stage primaryStage)
@@ -177,15 +177,15 @@ import java.io.IOException;
           primaryStage.setScene(insertModifySolarPanel);
           primaryStage.show();
         }
-        else if (INSERT_PAGE_CONTROLLER.equals(sceneName))
+        else if (INSERT_MANUFACTURER_PAGE.equals(sceneName))
         {
-          primaryStage.setTitle("Insert Solar Panel and Manufacturer data");
+          primaryStage.setTitle("Insert Manufacturer data");
           primaryStage.setScene(insertManufacturerPage);
           primaryStage.show();
         }
         else if (MANUFACTURER_INFORMATION.equals(sceneName))
         {
-          primaryStage.setTitle("");
+          primaryStage.setTitle("Show Manufacturer data");
           primaryStage.setScene(manufacturerInformation);
           primaryStage.show();
         }

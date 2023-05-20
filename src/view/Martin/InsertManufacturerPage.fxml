@@ -7,8 +7,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertManufacturerPageController">
    <children>
-      <Button layoutX="201.0" layoutY="285.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="361.0" layoutY="285.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="saveButton" layoutX="201.0" layoutY="285.0" mnemonicParsing="false" onAction="#onClick" text="Save" />
+      <Button fx:id="backButton" layoutX="361.0" layoutY="285.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <Label layoutX="201.0" layoutY="33.0" text="Manufacturer" />
       <Label layoutX="199.0" layoutY="81.0" text="Name" />
       <Label layoutX="199.0" layoutY="126.0" text="Address" />

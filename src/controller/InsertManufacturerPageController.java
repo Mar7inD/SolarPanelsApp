@@ -1,13 +1,17 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.scene.control.Button;
 
 public class InsertManufacturerPageController
 {
+  @FXML private Button backButton;
+  @FXML private Button saveButton;
   @FXML
   private TextField nameField;
   @FXML
@@ -25,6 +29,7 @@ public class InsertManufacturerPageController
   @FXML
   private DatePicker dateInstalledPicker;
 
+
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
@@ -32,11 +37,23 @@ public class InsertManufacturerPageController
     this.viewHandler = viewHandler;
   }
 
+  public void onClick(ActionEvent event)
+  {
+    if (event.getSource() == backButton)
+    {
+      viewHandler.changeScene(viewHandler.MAIN_SCENE);
+    }
+    if (event.getSource() == saveButton)
+    {
+      addDataToDatabase();
+    }
+  }
+
 
   // SQL statements to insert
   private final String insertManufacturerSql = "INSERT INTO Manufacturer (name, address, email, phone_number) " +
       "VALUES (?, ?, ?, ?)";
-  
+
 
   private void addDataToDatabase() {
     try (Connection connection = DatabaseConnection.getConnection();

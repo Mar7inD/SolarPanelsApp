@@ -11,23 +11,16 @@
    <children>
       <Button fx:id="save" layoutX="163.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Save" />
       <Button fx:id="back" layoutX="349.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
-      <Label layoutX="27.0" layoutY="108.0" text="Type" />
-      <ComboBox fx:id="typeCombo" layoutX="143.0" layoutY="104.0" prefWidth="150.0" visibleRowCount="2" />
-      <Label layoutX="29.0" layoutY="158.0" text="Roof position" />
-      <Label layoutX="27.0" layoutY="14.0" text="Solar panel" />
-      <ComboBox fx:id="roofCombo" layoutX="143.0" layoutY="153.0" prefWidth="150.0" visibleRowCount="2" />
-      <Label layoutX="341.0" layoutY="14.0" text="Manufacturer" />
-      <Label layoutX="339.0" layoutY="62.0" text="Name" />
-      <Label layoutX="339.0" layoutY="107.0" text="Address" />
-      <Label layoutX="343.0" layoutY="156.0" text="Email" />
-      <TextField fx:id="nameText" layoutX="392.0" layoutY="58.0" />
-      <TextField fx:id="addressText" layoutX="392.0" layoutY="103.0" />
-      <TextField fx:id="phoneText" layoutX="392.0" layoutY="202.0" />
-      <DatePicker fx:id="installationDatePicker" layoutX="143.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" />
-      <Label layoutX="28.0" layoutY="207.0" text="Date installed" />
-      <Label contentDisplay="RIGHT" layoutX="339.0" layoutY="195.0" prefHeight="41.0" prefWidth="45.0" text="Phone number" wrapText="true" />
-      <TextField fx:id="emailText" layoutX="392.0" layoutY="152.0" />
-      <Label layoutX="27.0" layoutY="62.0" text="Serial number" />
-      <TextField fx:id="serialNoText" layoutX="143.0" layoutY="58.0" />
+      <Label layoutX="143.0" layoutY="108.0" text="Type" />
+      <ComboBox fx:id="typeCombo" layoutX="259.0" layoutY="104.0" prefWidth="150.0" visibleRowCount="2" />
+      <Label layoutX="145.0" layoutY="158.0" text="Roof position" />
+      <Label layoutX="155.0" layoutY="14.0" text="Solar panel" />
+      <ComboBox fx:id="roofCombo" layoutX="259.0" layoutY="153.0" prefWidth="150.0" visibleRowCount="2" />
+      <Label layoutX="144.0" layoutY="250.0" text="Manufacturer" />
+      <DatePicker fx:id="installationDatePicker" layoutX="259.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" />
+      <Label layoutX="144.0" layoutY="207.0" text="Date installed" />
+      <Label layoutX="143.0" layoutY="62.0" text="Serial number" />
+      <TextField fx:id="serialNoText" layoutX="259.0" layoutY="58.0" />
+      <ComboBox fx:id="roofCombo1" layoutX="259.0" layoutY="245.0" prefWidth="150.0" visibleRowCount="2" />
    </children>
 </AnchorPane>

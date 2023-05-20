@@ -12,7 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ModifySolarPanelController
+public class InsertModifySolarPanelController
 {
   private final String insertManufacturerSql = "INSERT INTO Manufacturer (name, address, email, phone_number) " +
       "VALUES (?, ?, ?, ?)";

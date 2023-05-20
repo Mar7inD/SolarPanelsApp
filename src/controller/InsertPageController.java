@@ -35,7 +35,7 @@ public class InsertPageController
   }
 
 
-  // SQL statements to insert data
+  // SQL statements to insert
   private final String insertManufacturerSql = "INSERT INTO Manufacturer (name, address, email, phone_number) " +
       "VALUES (?, ?, ?, ?)";
   private final String insertSolarPanelSql = "INSERT INTO SolarPanels (serial_No, model_type, roof_position, " +

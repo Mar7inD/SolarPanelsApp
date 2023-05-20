@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked a little on modify page">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on InsertManufacturerPageController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolarPanelApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InsertManufacturerPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ManufacturerInformationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +16,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -28,6 +26,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2PxK807uigdHTz6UnmrPz4tkbiZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -103,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684601147650</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Worked on InsertManufacturerPageController">
+      <created>1684611298185</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684611298185</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,17 +129,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Worked on ProductionChooseParametersController" />
     <MESSAGE value="Worked a little on modify page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked a little on modify page" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/DatabaseConnection.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Worked on InsertManufacturerPageController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on InsertManufacturerPageController" />
   </component>
 </project>

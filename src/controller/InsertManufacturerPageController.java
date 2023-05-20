@@ -41,7 +41,7 @@ public class InsertManufacturerPageController
   {
     if (event.getSource() == backButton)
     {
-      viewHandler.changeScene(viewHandler.MAIN_SCENE);
+      viewHandler.changeScene(viewHandler.MANUFACTURER_INFORMATION);
     }
     if (event.getSource() == saveButton)
     {
@@ -72,7 +72,8 @@ public class InsertManufacturerPageController
       // Show a success message or perform any desired action
       System.out.println("Data inserted successfully!");
     } catch (SQLException e) {
-      // Handle any exceptions or display an error message
+      // Failed data insert
+      System.err.println("Failed to insert data into the database: " + e.getMessage());
       e.printStackTrace();
     }
   }

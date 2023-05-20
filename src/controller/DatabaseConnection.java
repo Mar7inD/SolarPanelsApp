@@ -19,6 +19,8 @@ public class DatabaseConnection implements AutoCloseable
         // Create the connection
         connection = DriverManager.getConnection(url,props);
       } catch (SQLException e) {
+        System.err.println("Failed to connect to the database: " + e.getMessage());
+
         e.printStackTrace();
       }
     }

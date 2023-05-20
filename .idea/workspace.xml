@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked a little on modify page">
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/ModifyManufacturerPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModifySolarPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModifySolarPanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/ModifyPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ModifyPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on ManufacturerInformation.fxml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

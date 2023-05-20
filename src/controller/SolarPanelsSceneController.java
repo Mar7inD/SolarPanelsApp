@@ -13,7 +13,7 @@ import javafx.event.ActionEvent;
 public class SolarPanelsSceneController
 {
   @FXML private Button back;
-  @FXML private Button cancel;
+  @FXML private Button modify;
   @FXML private TableView<String> solarPanelsTable;
   @FXML private TableColumn<String, Integer> serialNo;
   @FXML private TableColumn<String, String> panelType;
@@ -32,7 +32,11 @@ public class SolarPanelsSceneController
 
   public void onClick(ActionEvent event)
   {
-    if (event.getSource() == back)
+    if (event.getSource() == modify)
+    {
+      viewHandler.changeScene(ViewHandler.MODIFY_SOLAR_PANEL);
+    }
+    else if (event.getSource() == back)
     {
       viewHandler.changeScene(ViewHandler.MAIN_SCENE);
     }

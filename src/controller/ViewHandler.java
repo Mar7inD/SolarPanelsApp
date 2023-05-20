@@ -12,14 +12,17 @@ import java.io.IOException;
     private Scene solar_panels;
     private Scene chooseProductionParameters;
     private Scene showData;
+    private Scene modifySolarPanel;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
     private ShowDataController showDataController;
+    private ModifySolarPanelController modifySolarPanelController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
     public static final String SHOW_DATA = "SHOW_DATA";
+    public static final String MODIFY_SOLAR_PANEL = "MODIFY_SOLAR_PANEL";
 
     public ViewHandler(Stage primaryStage)
     {
@@ -84,6 +87,21 @@ import java.io.IOException;
         System.exit(1);
       }
 
+      // Loading ModifyPage.fxml into modifySolarPanel
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Martin/ModifyPage.fxml"));
+      try
+      {
+        modifySolarPanel = new Scene(loader.load());
+        modifySolarPanelController = loader.getController();
+        modifySolarPanelController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load ModifyPage.fxml");
+        System.exit(1);
+      }
+
 
       changeScene(MAIN_SCENE);
     }
@@ -114,6 +132,12 @@ import java.io.IOException;
         {
           primaryStage.setTitle("Data");
           primaryStage.setScene(showData);
+          primaryStage.show();
+        }
+        else if (MODIFY_SOLAR_PANEL.equals(sceneName))
+        {
+          primaryStage.setTitle("Modify Page");
+          primaryStage.setScene(modifySolarPanel);
           primaryStage.show();
         }
       }

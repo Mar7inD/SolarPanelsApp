@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on ProductionChooseParametersController">
+      <change afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/ModifySolarPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/Insert_page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/SolarPanelsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SolarPanelsSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/ModifyPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ModifyPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +75,14 @@
       <option name="presentableId" value="Default" />
       <updated>1684393129659</updated>
     </task>
+    <task id="LOCAL-00001" summary="Worked on ProductionChooseParametersController">
+      <created>1684587906178</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684587906178</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,5 +98,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Worked on ProductionChooseParametersController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on ProductionChooseParametersController" />
   </component>
 </project>

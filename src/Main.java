@@ -1,8 +1,7 @@
+import controller.DatabaseConnection;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import controller.ViewHandler;
-
-import java.sql.SQLException;
 
 public class Main extends Application
 {
@@ -14,12 +13,6 @@ public class Main extends Application
   public static void main(String[] args)
   {
     Application.launch(Main.class);
-
-    try (DatabaseConnection dbConnection = new DatabaseConnection()) {
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
   }
 
 }

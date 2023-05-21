@@ -1,45 +1,83 @@
 package controller.manufacturer;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.DatabaseConnection;
 import controller.ViewHandler;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import javafx.util.Callback;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.ResultSet;
-import javafx.collections.FXCollections;
-
+import model.Manufacturer;
 
 public class ManufacturerInformationController
 {
   @FXML private Button backButton;
   @FXML private Button insertButton;
+  @FXML
+  private TableView<Manufacturer> manufacturerTableView;
+  @FXML
+  private TableColumn<Manufacturer, Integer> idColumn;
+  @FXML
+  private TableColumn<Manufacturer, String> nameColumn;
+  @FXML
+  private TableColumn<Manufacturer, String> addressColumn;
+  @FXML
+  private TableColumn<Manufacturer, String> emailColumn;
+  @FXML
+  private TableColumn<Manufacturer, String> phoneNumberColumn;
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
+
+    // Initialize table columns
+    idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+    nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+    addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+    emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+    phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+    // Retrieve data from the database
+    try {
+      List<Manufacturer> manufacturers = getAllManufacturers();
+
+      // Populate the TableView with the retrieved data
+      manufacturerTableView.getItems().addAll(manufacturers);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
+
+  // Retrieve the manufacturer data and populate the TableView accordingly
+  private List<Manufacturer> getAllManufacturers() throws SQLException {
+    List<Manufacturer> manufacturers = new ArrayList<>();
+
+    try (Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"solar_panels\".\"manufacturer\" LIMIT 100");
+        ResultSet resultSet = statement.executeQuery()) {
+      while (resultSet.next()) {
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        String address = resultSet.getString("address");
+        String email = resultSet.getString("email");
+        String phoneNumber = resultSet.getString("phone_number");
+
+        Manufacturer manufacturer = new Manufacturer(id, name, address, email, phoneNumber);
+        manufacturers.add(manufacturer);
+      }
+    }
+
+    return manufacturers;
+  }
+
+
 
   public void onClick(ActionEvent event)
   {
@@ -53,87 +91,6 @@ public class ManufacturerInformationController
     }
   }
 
-  public class DynamicTable extends Application {
 
-    // TABLE VIEW AND DATA
-    private ObservableList<ObservableList<String>> data;
-    private TableView<ObservableList<String>> tableview;
-
-    // MAIN EXECUTOR
-    public static void main(String[] args) {
-      launch(args);
-    }
-
-    // CONNECTION DATABASE
-    public void buildData() {
-      data = FXCollections.observableArrayList();
-      try {
-        Connection connection = DatabaseConnection.getConnection();
-        // SQL FOR SELECTING ALL OF CUSTOMER
-        String SQL = "SELECT * from Manufacturer";
-        // ResultSet
-        ResultSet rs = connection.createStatement().executeQuery(SQL);
-
-        /**
-         * ********************************
-         * TABLE COLUMN ADDED DYNAMICALLY *
-         *********************************
-         */
-        for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
-          final int j = i;
-          TableColumn<ObservableList<String>, String> col = new TableColumn<>(rs.getMetaData().getColumnName(i + 1));
-          col.setCellValueFactory(
-              new Callback<CellDataFeatures<ObservableList<String>, String>, ObservableValue<String>>() {
-                public ObservableValue<String> call(CellDataFeatures<ObservableList<String>, String> param) {
-                  return new SimpleStringProperty(param.getValue().get(j));
-                }
-              });
-
-          tableview.getColumns().add(col);
-          System.out.println("Column [" + i + "] ");
-        }
-
-        /**
-         * ******************************
-         * Data added to ObservableList *
-         *******************************
-         */
-        while (rs.next()) {
-          List<String> row = new ArrayList<>();
-          for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-            row.add(rs.getString(i));
-          }
-          System.out.println("Row added: " + row);
-          data.add(FXCollections.observableArrayList(row));
-        }
-
-        // FINALLY ADDED TO TableView
-        tableview.setItems(data);
-      } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Error on Building Data");
-      }
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-      // TableView
-      tableview = new TableView<>();
-      buildData();
-
-      // Main Scene
-      Scene scene = new Scene(tableview);
-
-      stage.setScene(scene);
-      stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-        @Override
-        public void handle(WindowEvent event) {
-          Platform.exit();
-          System.exit(0);
-        }
-      });
-      stage.show();
-    }
-  }
 
 }

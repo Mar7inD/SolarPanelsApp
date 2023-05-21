@@ -194,5 +194,10 @@ import java.io.IOException;
           primaryStage.show();
         }
       }
+
+      public InsertModifySolarPanelController getInsertModifySolarPanelController()
+      {
+        return insertModifySolarPanelController;
+      }
     }
 

@@ -40,7 +40,7 @@ public class SolarPanelsSceneController
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
-    for (int i = 0; i < 220; i++)
+    for (int i = 1; i < 220; i++)
         { String position = "" + i;
           this.solarPanelPosition.getItems().add(position); }
 
@@ -111,7 +111,6 @@ public class SolarPanelsSceneController
     {
       e.printStackTrace();
     }
-
     DatabaseConnection.closeConnection();
     return solarPanels;
   }
@@ -122,8 +121,8 @@ public class SolarPanelsSceneController
     if (selectedItems != null)
     {
       viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
-      InsertModifySolarPanelController modifying = new InsertModifySolarPanelController();
-      modifying.setSerialNo(selectedItems.get(0).getSerialNo());
+
+      viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
       Stage currentStage = (Stage) closeButton.getScene().getWindow();
       currentStage.close();
     }

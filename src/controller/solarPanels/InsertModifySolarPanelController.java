@@ -34,7 +34,7 @@ public class InsertModifySolarPanelController
     this.viewHandler = viewHandler;
     serialNoText.setText("");
     this.typeCombo.getItems().addAll("PV", "TC");
-    for (int i = 0; i < 220; i++)
+    for (int i = 1; i < 220; i++)
     { String position = "" + i;
       this.roofCombo.getItems().add(position); }
   }
@@ -50,8 +50,8 @@ public class InsertModifySolarPanelController
       while (resultSet.next()) {
         typeCombo.setValue(resultSet.getString("model_type"));
         roofCombo.setValue(resultSet.getString("roof_position"));
-        installationDatePicker.setValue(LocalDate.of(resultSet.getDate("date_installed").getYear(),
-            resultSet.getDate("date_installed").getMonth(),resultSet.getDate("date_installed").getDay()));
+        installationDatePicker.setValue(Date.valueOf(
+            resultSet.getDate("date_installed").toLocalDate()).toLocalDate());
         manufacturer.setValue(resultSet.getString("manufacturer"));
       }
     }
@@ -59,6 +59,7 @@ public class InsertModifySolarPanelController
     {
       e.printStackTrace();
     }
+    DatabaseConnection.closeConnection();
   }
   public void onClick(ActionEvent event)
   {

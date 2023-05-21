@@ -9,10 +9,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class InsertModifySolarPanelController
 {
@@ -21,24 +20,45 @@ public class InsertModifySolarPanelController
   private final String insertSolarPanelSql = "INSERT INTO SolarPanels (serial_No, model_type, roof_position, " +
       "date_installed, manufacturer, is_active) VALUES (?, ?, ?, ?, ?, ?)";
   private ViewHandler viewHandler;
-  @FXML private TextField serialNoText;
-  @FXML private TextField nameText;
-  @FXML private TextField addressText;
-  @FXML private TextField emailText;
-  @FXML private TextField phoneText;
-  @FXML private ComboBox<String> typeCombo;
-  @FXML private ComboBox<String> roofCombo;
-  @FXML private DatePicker installationDatePicker;
+  private String serialNo;
+  @FXML private TextField serialNoText = new TextField();
+  @FXML private ComboBox typeCombo = new ComboBox<String>();
+  @FXML private ComboBox roofCombo = new ComboBox<String>();
+  @FXML private ComboBox manufacturer = new ComboBox<String>();
+  @FXML private DatePicker installationDatePicker = new DatePicker();
   @FXML private Button save;
   @FXML private Button back;
 
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
+    serialNoText.setText("");
     this.typeCombo.getItems().addAll("PV", "TC");
     for (int i = 0; i < 220; i++)
     { String position = "" + i;
       this.roofCombo.getItems().add(position); }
+  }
+
+  public void setSerialNo(String serialNo)
+  {
+    serialNoText.setText(serialNo);
+    try (Connection connection = DatabaseConnection.getConnection())
+    {
+      Statement statement = connection.createStatement();
+      String sqlQuery = "SELECT * FROM solar_panels.solarpanels WHERE solarpanels.serial_no = ";
+      ResultSet resultSet = statement.executeQuery(sqlQuery + serialNo);
+      while (resultSet.next()) {
+        typeCombo.setValue(resultSet.getString("model_type"));
+        roofCombo.setValue(resultSet.getString("roof_position"));
+        installationDatePicker.setValue(LocalDate.of(resultSet.getDate("date_installed").getYear(),
+            resultSet.getDate("date_installed").getMonth(),resultSet.getDate("date_installed").getDay()));
+        manufacturer.setValue(resultSet.getString("manufacturer"));
+      }
+    }
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
   public void onClick(ActionEvent event)
   {
@@ -50,28 +70,11 @@ public class InsertModifySolarPanelController
       String manufacturer = "INSERT INTO solarpanels (name, address , email, phone) VALUES (?, ?, ?, ?)";
       String solarPanel = "INSERT INTO solarpanels (serial_no, model_type, roof_position, date_installed, manufacturer) VALUES (?, ?, ?, ?, SELECT id FROM manufacturer WHERE name = ?)";
 
-      try (PreparedStatement statementSP = connection.prepareStatement(solarPanel)) {
-        statementSP.setInt(1, Integer.parseInt(serialNoText.getText()));
-        statementSP.setString(2, typeCombo.getValue());
-        statementSP.setString(3, roofCombo.getValue());
-        statementSP.setDate(4, Date.valueOf(installationDatePicker.getValue()));
-        statementSP.setString(5, nameText.getText());
-
-        int rowsInserted = statementSP.executeUpdate();
-        if (rowsInserted > 0) {
-          System.out.println("Insert successful");
-        } else {
-          System.out.println("Insert failed");
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-
-      DatabaseConnection.closeConnection();
     }
     else if(event.getSource() == back)
     {
       viewHandler.changeScene(viewHandler.SOLAR_PANELS);
+      serialNo = null;
     }
   }
 }

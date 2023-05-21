@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on InsertManufacturerPageController">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Created packages so it the files look cleaner.">
+      <change afterPath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InsertManufacturerPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ManufacturerInformationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -111,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684611298185</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created packages so it the files look cleaner.">
+      <created>1684646596204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684646596204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +138,7 @@
     <MESSAGE value="Worked on ProductionChooseParametersController" />
     <MESSAGE value="Worked a little on modify page" />
     <MESSAGE value="Worked on InsertManufacturerPageController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on InsertManufacturerPageController" />
+    <MESSAGE value="Created packages so it the files look cleaner." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created packages so it the files look cleaner." />
   </component>
 </project>

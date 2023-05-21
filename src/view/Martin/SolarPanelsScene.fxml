@@ -2,26 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.solarPanels.SolarPanelsSceneController">
    <children>
-      <ComboBox fx:id="solarPanlePosition" layoutX="44.0" layoutY="273.0" prefHeight="26.0" prefWidth="165.0" promptText="Select Panel Position" visibleRowCount="120" />
-      <Label layoutX="44.0" layoutY="24.0" text="Solar panel info" />
       <Button fx:id="back" layoutX="460.0" layoutY="335.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
-      <Button fx:id="insertModifySolarPanel" layoutX="257.0" layoutY="335.0" mnemonicParsing="false" onAction="#onClick" text="Insert / Modify Solar Panel" />
-      <TableView fx:id="SolarPanelsTable" layoutX="44.0" layoutY="51.0" prefHeight="200.0" prefWidth="513.0">
-        <columns>
-          <TableColumn fx:id="serialNo" prefWidth="75.0" text="Serial No" />
-          <TableColumn fx:id="panelType" prefWidth="75.0" text="Panel type" />
-            <TableColumn fx:id="roofPosition" prefWidth="83.0" text="Roof position" />
-            <TableColumn fx:id="installationDate" prefWidth="109.0" text="Instalation Date" />
-            <TableColumn fx:id="manufacturer" prefWidth="90.0" text="Manufacturer" />
-            <TableColumn fx:id="activity" prefWidth="79.0" text="Activity" />
-        </columns>
-      </TableView>
+      <Button fx:id="insertModifySolarPanel" layoutX="257.0" layoutY="335.0" mnemonicParsing="false" onAction="#onClick" text="Insert Solar Panel" />
+      <Button fx:id="showSolarPanels" layoutX="48.0" layoutY="98.0" mnemonicParsing="false" onAction="#onShow" text="Show Solar Panels" />
+      <ComboBox fx:id="solarPanelPosition" layoutX="40.0" layoutY="43.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

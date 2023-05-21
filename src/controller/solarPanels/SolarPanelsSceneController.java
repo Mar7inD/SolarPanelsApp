@@ -1,5 +1,7 @@
-package controller;
+package controller.solarPanels;
 
+import controller.DatabaseConnection;
+import controller.ViewHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;

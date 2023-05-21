@@ -1,8 +1,11 @@
-package controller;
+package controller.manufacturer;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import controller.DatabaseConnection;
+import controller.ViewHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;

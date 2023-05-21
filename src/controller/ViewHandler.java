@@ -1,5 +1,9 @@
 package controller;
 
+import controller.manufacturer.InsertManufacturerPageController;
+import controller.manufacturer.ManufacturerInformationController;
+import controller.solarPanels.InsertModifySolarPanelController;
+import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

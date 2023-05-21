@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InsertModifySolarPanelController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.solarPanels.InsertModifySolarPanelController">
    <children>
       <Button fx:id="save" layoutX="163.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Save" />
       <Button fx:id="back" layoutX="349.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Back" />

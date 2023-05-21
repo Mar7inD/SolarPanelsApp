@@ -1,5 +1,7 @@
-package controller;
+package controller.solarPanels;
 
+import controller.DatabaseConnection;
+import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -22,14 +22,6 @@ public class InsertManufacturerPageController
   private TextField emailField;
   @FXML
   private TextField phoneNumberField;
-  @FXML
-  private TextField serialNoField;
-  @FXML
-  private ComboBox<String> modelTypeField;
-  @FXML
-  private ComboBox<String> roofPositionField;
-  @FXML
-  private DatePicker dateInstalledPicker;
 
 
   private ViewHandler viewHandler;
@@ -37,6 +29,49 @@ public class InsertManufacturerPageController
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
+  }
+
+
+  // SQL statements to insert
+  // ========= private final String insertManufacturerSql = "INSERT INTO solar_panels.manufacturer (name, address, email, phone_number) VALUES (?, ?, ?, ?) LIMIT 100";
+  // CanadianSolar
+  // Radlkoferstraße 2, 81373 München, Germany
+  // canadian@solar.com
+  // +498951996890
+
+  private void addDataToDatabase() {
+    try (Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement insertManufacturerStmt = connection.prepareStatement("INSERT INTO manufacturer (name, address, email, phone_number) VALUES (?, ?, ?, ?)")) {
+
+      // Insert data into Manufacturer table
+      insertManufacturerStmt.setString(1, nameField.getText());
+      insertManufacturerStmt.setString(2, addressField.getText());
+      insertManufacturerStmt.setString(3, emailField.getText());
+      insertManufacturerStmt.setString(4, phoneNumberField.getText());
+      int rowsAffected = insertManufacturerStmt.executeUpdate();
+
+      // Clear input fields after successful insertion
+      clearInputFields();
+
+      if (rowsAffected > 0) {
+        // Show a success message or perform any desired action
+        System.out.println("Data inserted successfully!");
+      } else {
+        // Show an error message or perform appropriate error handling
+        System.out.println("Failed to insert data into the database.");
+      }
+    } catch (SQLException e) {
+      // Failed data insert
+      System.err.println("Failed to insert data into the database: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
+
+  private void clearInputFields() {
+    nameField.clear();
+    addressField.clear();
+    emailField.clear();
+    phoneNumberField.clear();
   }
 
   public void onClick(ActionEvent event)
@@ -51,40 +86,5 @@ public class InsertManufacturerPageController
     }
   }
 
-
-  // SQL statements to insert
-  private final String insertManufacturerSql = "INSERT INTO Manufacturer (name, address, email, phone_number) " +
-      "VALUES (?, ?, ?, ?)";
-
-
-  private void addDataToDatabase() {
-    try (Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql)) {
-
-      // Insert data into Manufacturer table
-      insertManufacturerStmt.setString(1, nameField.getText());
-      insertManufacturerStmt.setString(2, addressField.getText());
-      insertManufacturerStmt.setString(3, emailField.getText());
-      insertManufacturerStmt.setString(4, phoneNumberField.getText());
-      insertManufacturerStmt.executeUpdate();
-
-      // Clear input fields after successful insertion
-      clearInputFields();
-
-      // Show a success message or perform any desired action
-      System.out.println("Data inserted successfully!");
-    } catch (SQLException e) {
-      // Failed data insert
-      System.err.println("Failed to insert data into the database: " + e.getMessage());
-      e.printStackTrace();
-    }
-  }
-
-  private void clearInputFields() {
-    nameField.clear();
-    addressField.clear();
-    emailField.clear();
-    phoneNumberField.clear();
-  }
 }
 

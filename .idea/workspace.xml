@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Worked on the modify option.">
-      <change afterPath="$PROJECT_DIR$/src/model/Manufacturer.java" afterDir="false" />
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Edited the ManufacturerInformationController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684664740876</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Edited the ManufacturerInformationController">
+      <created>1684683393458</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1684683393458</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +151,17 @@
     <MESSAGE value="Worked on InsertManufacturerPageController" />
     <MESSAGE value="Created packages so it the files look cleaner." />
     <MESSAGE value="Worked on the modify option." />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on the modify option." />
+    <MESSAGE value="Edited the ManufacturerInformationController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited the ManufacturerInformationController" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.postgresql.util.PSQLException" package="org.postgresql.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

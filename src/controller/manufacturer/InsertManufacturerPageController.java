@@ -33,15 +33,15 @@ public class InsertManufacturerPageController
 
 
   // SQL statements to insert
-  // ========= private final String insertManufacturerSql = "INSERT INTO solar_panels.manufacturer (name, address, email, phone_number) VALUES (?, ?, ?, ?) LIMIT 100";
+  private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number) VALUES (?, ?, ?, ?)";
   // CanadianSolar
-  // Radlkoferstraße 2, 81373 München, Germany
+  // Radlkoferstrasse 2, 81373 München, Germany
   // canadian@solar.com
   // +498951996890
 
   private void addDataToDatabase() {
     try (Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement insertManufacturerStmt = connection.prepareStatement("INSERT INTO manufacturer (name, address, email, phone_number) VALUES (?, ?, ?, ?)")) {
+        PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql)) {
 
       // Insert data into Manufacturer table
       insertManufacturerStmt.setString(1, nameField.getText());

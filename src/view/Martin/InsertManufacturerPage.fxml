@@ -13,10 +13,10 @@
       <Label layoutX="199.0" layoutY="81.0" text="Name" />
       <Label layoutX="199.0" layoutY="126.0" text="Address" />
       <Label layoutX="200.0" layoutY="175.0" text="Email" />
-      <TextField layoutX="252.0" layoutY="77.0" />
-      <TextField layoutX="252.0" layoutY="122.0" />
-      <TextField layoutX="252.0" layoutY="221.0" />
+      <TextField fx:id="nameField" layoutX="252.0" layoutY="77.0" />
+      <TextField fx:id="addressField" layoutX="252.0" layoutY="122.0" />
+      <TextField fx:id="phoneNumberField" layoutX="252.0" layoutY="221.0" />
       <Label contentDisplay="RIGHT" layoutX="199.0" layoutY="214.0" prefHeight="41.0" prefWidth="45.0" text="Phone number" wrapText="true" />
-      <TextField layoutX="252.0" layoutY="171.0" />
+      <TextField fx:id="emailField" layoutX="252.0" layoutY="171.0" />
    </children>
 </AnchorPane>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Edited the ManufacturerInformationController">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684683393458</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
+      <created>1684690299610</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684690299610</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,7 +159,8 @@
     <MESSAGE value="Created packages so it the files look cleaner." />
     <MESSAGE value="Worked on the modify option." />
     <MESSAGE value="Edited the ManufacturerInformationController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited the ManufacturerInformationController" />
+    <MESSAGE value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

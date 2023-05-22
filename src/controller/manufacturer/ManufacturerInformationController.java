@@ -1,4 +1,5 @@
 package controller.manufacturer;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,28 +16,22 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import model.Manufacturer;
 
-public class ManufacturerInformationController
-{
+public class ManufacturerInformationController {
   @FXML private Button backButton;
   @FXML private Button insertButton;
-  @FXML private Button modifyButton;
+  @FXML private Button deleteButton;
   @FXML private Button refreshButton;
-  @FXML
-  private TableView<Manufacturer> manufacturerTableView;
-  @FXML
-  private TableColumn<Manufacturer, Integer> idColumn;
-  @FXML
-  private TableColumn<Manufacturer, String> nameColumn;
-  @FXML
-  private TableColumn<Manufacturer, String> addressColumn;
-  @FXML
-  private TableColumn<Manufacturer, String> emailColumn;
-  @FXML
-  private TableColumn<Manufacturer, String> phoneNumberColumn;
+  @FXML private TableView<Manufacturer> manufacturerTableView;
+  @FXML private TableColumn<Manufacturer, Integer> idColumn;
+  @FXML private TableColumn<Manufacturer, String> nameColumn;
+  @FXML private TableColumn<Manufacturer, String> addressColumn;
+  @FXML private TableColumn<Manufacturer, String> emailColumn;
+  @FXML private TableColumn<Manufacturer, String> phoneNumberColumn;
+
+  private Manufacturer selectedManufacturer; // Store the selected manufacturer
   private ViewHandler viewHandler;
 
-  public void init(ViewHandler viewHandler)
-  {
+  public void init(ViewHandler viewHandler) {
     this.viewHandler = viewHandler;
 
     // Initialize table columns
@@ -62,20 +57,21 @@ public class ManufacturerInformationController
       }
     }
 
-    // Disable the modify button initially
-    modifyButton.setDisable(true);
+    // Disable the delete button initially
+    deleteButton.setDisable(true);
 
     // Add a listener to track row selection in the TableView
     manufacturerTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
       if (newSelection != null) {
-        // Enable the modify button when a row is selected
-        modifyButton.setDisable(false);
+        // Enable the delete button when a row is selected
+        deleteButton.setDisable(false);
+        selectedManufacturer = newSelection; // Store the selected manufacturer
       } else {
-        // Disable the modify button when no row is selected
-        modifyButton.setDisable(true);
+        // Disable the delete button when no row is selected
+        deleteButton.setDisable(true);
+        selectedManufacturer = null; // Reset the selected manufacturer
       }
     });
-
   }
 
   // Retrieve the manufacturer data and populate the TableView accordingly
@@ -95,7 +91,7 @@ public class ManufacturerInformationController
         manufacturers.add(manufacturer);
       }
     }
-
+    DatabaseConnection.closeConnection();
     return manufacturers;
   }
 
@@ -118,23 +114,46 @@ public class ManufacturerInformationController
     }
   }
 
+  private void deleteManufacturer() {
+    if (selectedManufacturer != null) {
+      // Delete the selected manufacturer from the database
+      Connection connection = null;
+      try {
+        connection = DatabaseConnection.getConnection();
+        deleteManufacturerFromDatabase(connection, selectedManufacturer);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (connection != null) {
+          DatabaseConnection.closeConnection();
+        }
+      }
 
-  public void onClick(ActionEvent event)
-  {
-    if (event.getSource() == backButton)
-    {
-      viewHandler.changeScene(viewHandler.MAIN_SCENE);
-    }
-    if (event.getSource() == insertButton)
-    {
-      viewHandler.changeScene(viewHandler.INSERT_MANUFACTURER_PAGE);
-    }
-    if (event.getSource() == refreshButton)
-    {
+      // Refresh the table view after deletion
       refreshTableView();
     }
   }
 
+  private void deleteManufacturerFromDatabase(Connection connection, Manufacturer manufacturer) throws SQLException {
+    String deleteQuery = "DELETE FROM \"solar_panels\".\"manufacturer\" WHERE id = ?";
+    try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+      statement.setInt(1, manufacturer.getId());
+      statement.executeUpdate();
+    }
+  }
 
-
+  public void onClick(ActionEvent event) {
+    if (event.getSource() == backButton) {
+      viewHandler.changeScene(viewHandler.MAIN_SCENE);
+    }
+    if (event.getSource() == insertButton) {
+      viewHandler.changeScene(viewHandler.INSERT_MANUFACTURER_PAGE);
+    }
+    if (event.getSource() == refreshButton) {
+      refreshTableView();
+    }
+    if (event.getSource() == deleteButton) {
+      deleteManufacturer();
+    }
+  }
 }

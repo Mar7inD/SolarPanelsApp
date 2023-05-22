@@ -17,6 +17,7 @@ public class DatabaseConnection //implements AutoCloseable
         Properties props = new Properties();
         props.setProperty("user", "icgiivdi");
         props.setProperty("password", "5JBbbzO0mgAwhwoUtAkf3QH8zaL4Lo-n");
+        Connection conn = DriverManager.getConnection(url, props);
         // Create the connection
         connection = DriverManager.getConnection(url,props);
       } catch (SQLException e) {
@@ -30,8 +31,6 @@ public class DatabaseConnection //implements AutoCloseable
 
   public static void closeConnection()
   {
-    System.out.println("connection before closing: ");
-    System.out.println(connection);
     if (connection != null) {
       try {
         // Close the connection
@@ -42,6 +41,7 @@ public class DatabaseConnection //implements AutoCloseable
       }
     }
   }
+
   public static ObservableList<SolarPanel> getSolarPanels()
       throws SQLException
   {

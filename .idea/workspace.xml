@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added delete button in ManufacturerInformationController">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Test push">
+      <change afterPath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -145,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684778533306</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Test push">
+      <created>1684779989835</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684779989835</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -180,7 +187,8 @@
     <MESSAGE value="Edited the ManufacturerInformationController" />
     <MESSAGE value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
     <MESSAGE value="Added delete button in ManufacturerInformationController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added delete button in ManufacturerInformationController" />
+    <MESSAGE value="Test push" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

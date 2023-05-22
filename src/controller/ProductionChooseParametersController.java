@@ -1,39 +1,60 @@
 package controller;
 import controller.solarPanels.SolarPanel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import controller.DatabaseConnection;
 import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXML;
+
+import java.net.URL;
 import java.sql.Connection;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ProductionChooseParametersController
+public class ProductionChooseParametersController implements Initializable
 {
   @FXML private Button backButton;
   @FXML private Button showButton;
   @FXML private Button chooseButton;
   @FXML private Button removeButton;
+  @FXML private Button refreshButton;
   @FXML private CheckBox liveData;
   @FXML private Slider period;
   @FXML private DatePicker startDate;
   @FXML private ListView<String> modelList;
   @FXML private ListView<String> chosenList;
-  @FXML private DatePicker datePicker;
   private ViewHandler viewHandler;
-  private static Connection connection;
-  private SolarPanelsSceneController solarPanelsController;
   private ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
-  public void init(ViewHandler viewHandler)
+  private ArrayList<String> solarPanelsId = new ArrayList<>();
+  public void init(ViewHandler viewHandler) throws SQLException
   {
 
-    this.solarPanels = solarPanelsController.getSolarPanels();
     this.viewHandler = viewHandler;
+  }
+
+  @Override public void initialize(URL location, ResourceBundle resources)
+  {
+    Platform.runLater(() -> {
+      try
+      {
+        this.solarPanels = DatabaseConnection.getSolarPanels();
+      }
+      catch (SQLException e)
+      {
+        throw new RuntimeException(e);
+      }
+      this.solarPanelsId = identifySolarPanels();
+      modelList.getItems().addAll(this.solarPanelsId);
+
+    });
   }
 
   public ArrayList<String> identifySolarPanels()
@@ -59,11 +80,48 @@ public class ProductionChooseParametersController
     }
     else if (event.getSource() == chooseButton)
     {
-
+      String chosenItem = modelList.getSelectionModel().getSelectedItem();
+      if (chosenItem != null)
+      {
+        modelList.getItems().remove(chosenItem);
+        chosenList.getItems().add(chosenItem);
+      }
     }
     else if (event.getSource() == removeButton)
     {
-
+      String chosenItem = chosenList.getSelectionModel().getSelectedItem();
+      if (chosenItem != null) {
+      chosenList.getItems().remove(chosenItem);
+      modelList.getItems().add(chosenItem);
+      }
+    }
+    else if (event.getSource() == refreshButton)
+    {
+      chosenList.getItems().removeAll();
+      modelList.getItems().removeAll();
+      try
+      {
+        this.solarPanels = DatabaseConnection.getSolarPanels();
+      }
+      catch (SQLException e)
+      {
+        throw new RuntimeException(e);
+      }
+      this.solarPanelsId = identifySolarPanels();
+      modelList.getItems().addAll(this.solarPanelsId);
+    }
+    else if (event.getSource() == liveData)
+    {
+      if (liveData.isSelected())
+      {
+        startDate.setDisable(true);
+        period.setDisable(true);
+      }
+      else
+      {
+        startDate.setDisable(false);
+        period.setDisable(false);
+      }
     }
   }
 

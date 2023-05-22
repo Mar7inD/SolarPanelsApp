@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="">
+    <list default="true" id="5a586a26-7cb7-4d70-8898-6fb940aee956" name="Changes" comment="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolarPanelApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,19 +39,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Content Art/VIA books/4th Semester/SEP4/Code/Code/postgresql-42.2.5.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/aleks/OneDrive/Desktop/via/sep4/Code/postgresql-42.2.5.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pathVariables"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/controller" />

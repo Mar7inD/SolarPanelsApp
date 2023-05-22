@@ -28,5 +28,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="JavaFX" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Desktop/via/sep4/Code/postgresql-42.2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

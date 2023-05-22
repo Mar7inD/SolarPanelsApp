@@ -11,14 +11,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductionChooseParametersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductionChooseParametersController">
    <children>
-      <HBox layoutX="2.0" layoutY="2.0" prefHeight="118.0" prefWidth="594.0">
+      <HBox layoutX="2.0" layoutY="27.0" prefHeight="20.0" prefWidth="594.0">
          <children>
             <Label alignment="CENTER" text="Choose Parameters to display production capacity" textAlignment="CENTER">
                <HBox.margin>
-                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                  <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font size="22.0" />
@@ -37,13 +38,15 @@
       <VBox layoutX="71.0" layoutY="283.0" prefHeight="43.0" prefWidth="446.0">
          <children>
             <Label text="Period:" />
-            <Slider fx:id="period" blockIncrement="1.0" max="30.0" min="1.0" prefHeight="14.0" prefWidth="436.0" value="1.0" />
+            <Slider fx:id="period" blockIncrement="1.0" max="30.0" min="1.0" prefHeight="14.0" prefWidth="436.0" showTickLabels="true" value="1.0" />
          </children>
       </VBox>
       <ListView fx:id="modelList" layoutX="43.0" layoutY="100.0" prefHeight="123.0" prefWidth="206.0" />
       <ListView fx:id="chosenList" layoutX="344.0" layoutY="100.0" prefHeight="123.0" prefWidth="206.0" />
-      <Button fx:id="chooseButton" layoutX="261.0" layoutY="135.0" mnemonicParsing="false" onAction="#onClick" text="Choose -&gt;" />
-      <Button fx:id="removeButton" layoutX="259.0" layoutY="174.0" mnemonicParsing="false" onAction="#onClick" text="&lt;- Remove" />
+      <Button fx:id="chooseButton" layoutX="261.0" layoutY="148.0" mnemonicParsing="false" onAction="#onClick" text="Choose -&gt;" />
+      <Button fx:id="removeButton" layoutX="259.0" layoutY="185.0" mnemonicParsing="false" onAction="#onClick" text="&lt;- Remove" />
       <CheckBox fx:id="liveData" layoutX="364.0" layoutY="259.0" mnemonicParsing="false" text="Live data" />
+      <Button fx:id="refreshButton" layoutX="284.0" layoutY="109.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
+      <Text fx:id="daysNum" layoutX="281.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

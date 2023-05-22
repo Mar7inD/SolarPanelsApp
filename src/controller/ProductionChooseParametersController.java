@@ -38,10 +38,17 @@ public class ProductionChooseParametersController implements Initializable
   {
 
     this.viewHandler = viewHandler;
+
+
   }
 
   @Override public void initialize(URL location, ResourceBundle resources)
   {
+    liveData.setOnAction(event -> {
+      boolean selected = liveData.isSelected();
+      period.setDisable(selected);
+      startDate.setDisable(selected);
+    });
     Platform.runLater(() -> {
       try
       {
@@ -97,8 +104,9 @@ public class ProductionChooseParametersController implements Initializable
     }
     else if (event.getSource() == refreshButton)
     {
-      chosenList.getItems().removeAll();
-      modelList.getItems().removeAll();
+      chosenList.getItems().clear();
+      modelList.getItems().clear();
+
       try
       {
         this.solarPanels = DatabaseConnection.getSolarPanels();

@@ -144,7 +144,6 @@ import java.io.IOException;
         System.exit(1);
       }
 
-
       changeScene(MAIN_SCENE);
     }
 

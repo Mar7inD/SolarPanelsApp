@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="484.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manufacturer.ManufacturerInformationController">
+   <children>
+       <TableView fx:id="manufacturerTableView" layoutX="23.0" layoutY="126.0" prefHeight="200.0" prefWidth="687.5">
+           <columns>
+               <TableColumn fx:id="idColumn" prefWidth="30.5" text="ID" />
+               <TableColumn fx:id="nameColumn" prefWidth="135.0" text="Name" />
+               <TableColumn fx:id="addressColumn" prefWidth="190.0" text="Address" />
+               <TableColumn fx:id="emailColumn" prefWidth="200.0" text="Email" />
+               <TableColumn fx:id="phoneNumberColumn" prefWidth="130.0" text="Phone number" />
+           </columns>
+       </TableView>
+      <Label layoutX="240.0" layoutY="72.0" text="Manufacturer Information">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Button fx:id="insertButton" layoutX="261.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Insert" />
+      <Button layoutX="339.0" layoutY="350.0" mnemonicParsing="false" text="Modify" />
+      <Button fx:id="backButton" layoutX="423.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
+   </children>
+</AnchorPane>

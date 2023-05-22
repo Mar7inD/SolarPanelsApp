@@ -66,7 +66,8 @@ import java.io.IOException;
       }
       catch(IOException e)
       {
-        System.out.println("Failed to load ProductionChooseParameters.fxml");
+        System.out.println(e);
+        // System.out.println("Failed to load ProductionChooseParameters.fxml");
         System.exit(1);
       }
       // Loading ShowData.fxml into showData

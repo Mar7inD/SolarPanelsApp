@@ -9,6 +9,7 @@ public class MainSceneController
 {
   private ViewHandler viewHandler;
   @FXML private Button solarPanel;
+  @FXML private Button productionScene;
   @FXML private Button exit;
 
   public void init(ViewHandler viewHandler)
@@ -22,10 +23,15 @@ public class MainSceneController
     {
       viewHandler.changeScene(ViewHandler.SOLAR_PANELS);
     }
+    else if(event.getSource() == productionScene)
+    {
+      viewHandler.changeScene(ViewHandler.CHOOSE_PRODUCTION_PARAMETERS);
+    }
     else if(event.getSource() == exit)
     {
       System.exit(1);
     }
+
   }
 
 }

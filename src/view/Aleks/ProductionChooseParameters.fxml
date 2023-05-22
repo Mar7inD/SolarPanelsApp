@@ -32,8 +32,8 @@
             <DatePicker fx:id="startDate" />
          </children>
       </VBox>
-      <Button fx:id="showButton" layoutX="476.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#showData" prefHeight="26.0" prefWidth="70.0" text="Show" />
-      <Button fx:id="backButton" layoutX="38.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#backToMenu" text="Back" />
+      <Button fx:id="showButton" layoutX="476.0" layoutY="346.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="70.0" text="Show" />
+      <Button fx:id="backButton" layoutX="38.0" layoutY="347.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <VBox layoutX="71.0" layoutY="283.0" prefHeight="43.0" prefWidth="446.0">
          <children>
             <Label text="Period:" />
@@ -42,8 +42,8 @@
       </VBox>
       <ListView fx:id="modelList" layoutX="43.0" layoutY="100.0" prefHeight="123.0" prefWidth="206.0" />
       <ListView fx:id="chosenList" layoutX="344.0" layoutY="100.0" prefHeight="123.0" prefWidth="206.0" />
-      <Button fx:id="chooseButton" layoutX="261.0" layoutY="135.0" mnemonicParsing="false" text="Choose -&gt;" />
-      <Button fx:id="removeButton" layoutX="259.0" layoutY="174.0" mnemonicParsing="false" text="&lt;- Remove" />
+      <Button fx:id="chooseButton" layoutX="261.0" layoutY="135.0" mnemonicParsing="false" onAction="#onClick" text="Choose -&gt;" />
+      <Button fx:id="removeButton" layoutX="259.0" layoutY="174.0" mnemonicParsing="false" onAction="#onClick" text="&lt;- Remove" />
       <CheckBox fx:id="liveData" layoutX="364.0" layoutY="259.0" mnemonicParsing="false" text="Live data" />
    </children>
 </AnchorPane>

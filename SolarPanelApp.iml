@@ -28,5 +28,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="JavaFX" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Content Art/VIA books/4th Semester/SEP4/c3p0-0.9.5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

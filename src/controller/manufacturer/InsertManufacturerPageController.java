@@ -35,6 +35,10 @@ public class InsertManufacturerPageController
 
   // SQL statements to insert
   private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number)" + "VALUES (?, ?, ?, ?)";
+  // 'CanadianSolar'
+  // 'Radlkoferstrasse 2, 81373 München, Germany'
+  // 'canadian@solar.com'
+  // '+498951996890'
 
   private void addDataToDatabase() {
     Connection connection = null;

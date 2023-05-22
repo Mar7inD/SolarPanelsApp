@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-  public class ViewHandler
+import java.sql.SQLException;
+
+public class ViewHandler
   {
     private final Stage primaryStage;
     private Scene main;
@@ -84,6 +86,10 @@ import java.io.IOException;
         // System.out.println("Failed to load ProductionChooseParameters.fxml");
         System.exit(1);
       }
+      catch (SQLException e)
+      {
+        throw new RuntimeException(e);
+      }
       // Loading ShowData.fxml into showData
       loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("../view/Aleks/ShowData.fxml"));
@@ -143,6 +149,7 @@ import java.io.IOException;
         System.out.println("Failed to load InsertManufacturerPage.fxml");
         System.exit(1);
       }
+
 
       changeScene(MAIN_SCENE);
     }

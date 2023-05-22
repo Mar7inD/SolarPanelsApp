@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added delete button in ManufacturerInformationController">
+    <list default="true" id="5a586a26-7cb7-4d70-8898-6fb940aee956" name="Changes" comment="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolarPanelApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Content Art/VIA books/4th Semester/SEP4/c3p0-0.9.5.5.jar",
+    "last_opened_file_path": "C:/Users/aleks/OneDrive/Desktop/via/sep4/Code/postgresql-42.2.5.jar",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -136,21 +140,7 @@
       <option name="project" value="LOCAL" />
       <updated>1684690299610</updated>
     </task>
-    <task id="LOCAL-00010" summary="Just some changes">
-      <created>1684765229331</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1684765229331</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added delete button in ManufacturerInformationController">
-      <created>1684776170589</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1684776170589</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -184,9 +174,7 @@
     <MESSAGE value="Worked on the modify option." />
     <MESSAGE value="Edited the ManufacturerInformationController" />
     <MESSAGE value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
-    <MESSAGE value="Just some changes" />
-    <MESSAGE value="Added delete button in ManufacturerInformationController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added delete button in ManufacturerInformationController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

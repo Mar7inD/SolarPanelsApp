@@ -23,7 +23,7 @@
             <Font size="22.0" />
          </font></Label>
       <Button fx:id="insertButton" layoutX="261.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Insert" />
-      <Button fx:id="deleteButton" layoutX="342.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />
+      <Button fx:id="modifyButton" layoutX="339.0" layoutY="350.0" mnemonicParsing="false" text="Modify" />
       <Button fx:id="backButton" layoutX="423.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <Button fx:id="refreshButton" layoutX="23.0" layoutY="88.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
    </children>

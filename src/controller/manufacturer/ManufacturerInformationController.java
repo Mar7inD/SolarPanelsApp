@@ -19,6 +19,8 @@ public class ManufacturerInformationController
 {
   @FXML private Button backButton;
   @FXML private Button insertButton;
+  @FXML private Button modifyButton;
+  @FXML private Button refreshButton;
   @FXML
   private TableView<Manufacturer> manufacturerTableView;
   @FXML
@@ -45,22 +47,42 @@ public class ManufacturerInformationController
     phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
     // Retrieve data from the database
+    Connection connection = null;
     try {
-      List<Manufacturer> manufacturers = getAllManufacturers();
+      connection = DatabaseConnection.getConnection();
+      List<Manufacturer> manufacturers = getAllManufacturers(connection);
 
       // Populate the TableView with the retrieved data
       manufacturerTableView.getItems().addAll(manufacturers);
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      if (connection != null) {
+        DatabaseConnection.closeConnection();
+      }
     }
+
+    // Disable the modify button initially
+    modifyButton.setDisable(true);
+
+    // Add a listener to track row selection in the TableView
+    manufacturerTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+      if (newSelection != null) {
+        // Enable the modify button when a row is selected
+        modifyButton.setDisable(false);
+      } else {
+        // Disable the modify button when no row is selected
+        modifyButton.setDisable(true);
+      }
+    });
+
   }
 
   // Retrieve the manufacturer data and populate the TableView accordingly
-  private List<Manufacturer> getAllManufacturers() throws SQLException {
+  private List<Manufacturer> getAllManufacturers(Connection connection) throws SQLException {
     List<Manufacturer> manufacturers = new ArrayList<>();
 
-    try (Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"solar_panels\".\"manufacturer\" LIMIT 100");
+    try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"solar_panels\".\"manufacturer\" LIMIT 100");
         ResultSet resultSet = statement.executeQuery()) {
       while (resultSet.next()) {
         int id = resultSet.getInt("id");
@@ -77,6 +99,24 @@ public class ManufacturerInformationController
     return manufacturers;
   }
 
+  public void refreshTableView() {
+    manufacturerTableView.getItems().clear(); // Clear the existing items
+
+    Connection connection = null;
+    try {
+      connection = DatabaseConnection.getConnection();
+      List<Manufacturer> manufacturers = getAllManufacturers(connection);
+
+      // Populate the TableView with the retrieved data
+      manufacturerTableView.getItems().addAll(manufacturers);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (connection != null) {
+        DatabaseConnection.closeConnection();
+      }
+    }
+  }
 
 
   public void onClick(ActionEvent event)
@@ -88,6 +128,10 @@ public class ManufacturerInformationController
     if (event.getSource() == insertButton)
     {
       viewHandler.changeScene(viewHandler.INSERT_MANUFACTURER_PAGE);
+    }
+    if (event.getSource() == refreshButton)
+    {
+      refreshTableView();
     }
   }
 

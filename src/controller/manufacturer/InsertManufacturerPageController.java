@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javafx.scene.control.Button;
 
+
 public class InsertManufacturerPageController
 {
   @FXML private Button backButton;
@@ -33,15 +34,17 @@ public class InsertManufacturerPageController
 
 
   // SQL statements to insert
-  private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number) VALUES (?, ?, ?, ?)";
-  // CanadianSolar
-  // Radlkoferstrasse 2, 81373 München, Germany
-  // canadian@solar.com
-  // +498951996890
+  private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number)" + "VALUES (?, ?, ?, ?)";
+  // 'CanadianSolar'
+  // 'Radlkoferstrasse 2, 81373 München, Germany'
+  // 'canadian@solar.com'
+  // '+498951996890'
 
   private void addDataToDatabase() {
-    try (Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql)) {
+    Connection connection = null;
+    try {
+      connection = DatabaseConnection.getConnection();
+      PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql);
 
       // Insert data into Manufacturer table
       insertManufacturerStmt.setString(1, nameField.getText());
@@ -64,8 +67,17 @@ public class InsertManufacturerPageController
       // Failed data insert
       System.err.println("Failed to insert data into the database: " + e.getMessage());
       e.printStackTrace();
+    } finally {
+      if (connection != null) {
+        try {
+          connection.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
     }
   }
+
 
   private void clearInputFields() {
     nameField.clear();

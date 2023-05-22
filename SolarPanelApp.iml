@@ -22,7 +22,9 @@
           <root url="jar://C:/Content Art/VIA books/4th Semester/SEP4/Code/Code/postgresql-42.2.5.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ideaLibSources/postgresql-42.2.5-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" name="JavaFX" level="application" />

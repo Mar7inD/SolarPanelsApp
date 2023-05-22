@@ -57,6 +57,7 @@ public class DatabaseConnection //implements AutoCloseable
       }
       System.out.println("CONNECTION WHILE IN GETSOLARPANELS");
       System.out.println(connection);
+      closeConnection();
     }
     catch(SQLException e)
     {

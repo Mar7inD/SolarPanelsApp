@@ -11,6 +11,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import model.Maintenance;
+import model.Manufacturer;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,9 @@ public class FaultsAndMaintenanceController
   @FXML private Button registerMaintenanceButton;
   @FXML private Button registerFaultButton;
   @FXML private Button backButton;
-
+  @FXML private Button deleteButton;
+  @FXML private Button refreshMaintenanceButton;
+  @FXML private Button refreshFaultButton;
   @FXML private TableView<Fault> faultsTableView;
 
   @FXML private TableColumn<Fault, Integer> faultIdColumn;
@@ -43,6 +47,8 @@ public class FaultsAndMaintenanceController
   @FXML private TableColumn<Maintenance, String> maintenanceTypeColumn;
 
   @FXML private TableColumn<Maintenance, String> maintenanceDescriptionColumn;
+  private Fault selectedFault;
+  private Maintenance selectedMaintenance;
 
   private ViewHandler viewHandler;
 
@@ -79,6 +85,31 @@ public class FaultsAndMaintenanceController
         DatabaseConnection.closeConnection();
       }
     }
+
+    faultsTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+      if (newSelection != null) {
+        // Enable the delete button when a row is selected in faultsTable
+        deleteButton.setDisable(false);
+        selectedFault = newSelection; // Store the selected fault
+      }else {
+        // Disable the delete button when no row is selected in either table
+        deleteButton.setDisable(true);
+        selectedFault = null; // Reset the selected Fault
+      }
+    });
+
+    maintenanceTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+      if (newSelection != null) {
+        // Enable the delete button when a row is selected in faultsTable
+        deleteButton.setDisable(false);
+        selectedMaintenance = newSelection; // Store the selected fault
+      } else {
+        // Disable the delete button when no row is selected in either table
+        deleteButton.setDisable(true);
+        selectedMaintenance = null; // Reset the selected Maintenance
+      }
+    });
+
   }
 
   private List<Fault> loadFaultsData(Connection connection) throws SQLException
@@ -131,6 +162,107 @@ public class FaultsAndMaintenanceController
     return maintenances;
   }
 
+  public void refreshFaultsTableView() {
+    faultsTableView.getItems().clear(); // Clear the existing fault items
+
+    Connection connection = null;
+    try {
+      connection = DatabaseConnection.getConnection();
+      List<Fault> faults = loadFaultsData(connection);
+
+      // Populate the TableView with the retrieved data
+      faultsTableView.getItems().addAll(faults);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (connection != null) {
+        DatabaseConnection.closeConnection();
+      }
+    }
+  }
+
+  public void refreshMaintenanceTableView() {
+    maintenanceTableView.getItems().clear(); // Clear the existing maintenance items
+
+    Connection connection = null;
+    try {
+      connection = DatabaseConnection.getConnection();
+      List<Maintenance> maintenanceList = loadMaintenanceData(connection);
+
+      // Populate the TableView with the retrieved data
+      maintenanceTableView.getItems().addAll(maintenanceList);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      if (connection != null) {
+        DatabaseConnection.closeConnection();
+      }
+    }
+  }
+
+  @FXML
+  private void deleteEntry() {
+    if (selectedFault != null) {
+      deleteFault();
+    } else if (selectedMaintenance != null) {
+      deleteMaintenance();
+    }
+  }
+
+  private void deleteFault() {
+    if (selectedFault != null) {
+      // Delete the selected fault from the database
+      Connection connection = null;
+      try {
+        connection = DatabaseConnection.getConnection();
+        deleteFaultFromDatabase(connection, selectedFault);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (connection != null) {
+          DatabaseConnection.closeConnection();
+        }
+      }
+      // Refresh the table view after deletion
+      refreshFaultsTableView();
+    }
+  }
+
+  private void deleteMaintenance() {
+    if (selectedMaintenance != null) {
+      // Delete the selected maintenance from the database
+      Connection connection = null;
+      try {
+        connection = DatabaseConnection.getConnection();
+        deleteMaintenanceFromDatabase(connection, selectedMaintenance);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        if (connection != null) {
+          DatabaseConnection.closeConnection();
+        }
+      }
+      // Refresh the table view after deletion
+      refreshMaintenanceTableView();
+    }
+  }
+
+  private void deleteFaultFromDatabase(Connection connection, Fault fault) throws SQLException {
+    String deleteQuery = "DELETE FROM \"solar_panels\".\"faults\" WHERE id = ?";
+    try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+      statement.setInt(1, fault.getId());
+      statement.executeUpdate();
+    }
+  }
+
+  private void deleteMaintenanceFromDatabase(Connection connection, Maintenance maintenance) throws SQLException {
+    String deleteQuery = "DELETE FROM \"solar_panels\".\"maintenance\" WHERE id = ?";
+    try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+      statement.setInt(1, maintenance.getId());
+      statement.executeUpdate();
+    }
+  }
+
   public void onClick(ActionEvent event)
   {
     if (event.getSource() == backButton)
@@ -140,6 +272,22 @@ public class FaultsAndMaintenanceController
     if (event.getSource() == registerFaultButton)
     {
       viewHandler.changeScene(viewHandler.REGISTER_FAULTS);
+    }
+    if (event.getSource() == registerMaintenanceButton)
+    {
+      viewHandler.changeScene(viewHandler.REGISTER_MAINTENANCE);
+    }
+    if (event.getSource() == deleteButton)
+    {
+      deleteEntry();
+    }
+    if (event.getSource() == refreshMaintenanceButton)
+    {
+      refreshMaintenanceTableView();
+    }
+    if (event.getSource() == refreshFaultButton)
+    {
+      refreshFaultsTableView();
     }
   }
 }

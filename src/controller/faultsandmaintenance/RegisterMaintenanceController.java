@@ -13,16 +13,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public class RegisterFaultsController
+public class RegisterMaintenanceController
 {
   @FXML private Button backButton;
   @FXML private Button saveButton;
   @FXML
   private TextField panelSerialNumberField;
   @FXML
-  private TextField faultDateField;
+  private TextField maintenanceDateField;
   @FXML
-  private TextField faultTypeField;
+  private TextField maintenanceTypeField;
   @FXML
   private TextArea descriptionField;
   private ViewHandler viewHandler;
@@ -33,18 +33,18 @@ public class RegisterFaultsController
   }
 
   // SQL statements to insert
-  private final String insertFaultSql = "INSERT INTO \"solar_panels\".\"faults\" (panel_serial_no, fault_date, fault_type, description)" + "VALUES (?, ?, ?, ?)";
+  private final String insertMaintenanceSql = "INSERT INTO \"solar_panels\".\"maintenance\" (panel_serial_no, maintenance_date, maintenance_type, description)" + "VALUES (?, ?, ?, ?)";
 
-  private void addFaultsToDatabase() {
+  private void addMaintenanceToDatabase() {
     Connection connection = null;
     try {
       connection = DatabaseConnection.getConnection();
-      PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertFaultSql);
+      PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertMaintenanceSql);
 
       // Insert data into Manufacturer table
       insertManufacturerStmt.setInt(1, Integer.parseInt(panelSerialNumberField.getText()));
-      insertManufacturerStmt.setTimestamp(2, Timestamp.valueOf(faultDateField.getText()));
-      insertManufacturerStmt.setString(3, faultTypeField.getText());
+      insertManufacturerStmt.setTimestamp(2, Timestamp.valueOf(maintenanceDateField.getText()));
+      insertManufacturerStmt.setString(3, maintenanceTypeField.getText());
       insertManufacturerStmt.setString(4, descriptionField.getText());
       int rowsAffected = insertManufacturerStmt.executeUpdate();
 
@@ -75,8 +75,8 @@ public class RegisterFaultsController
 
   private void clearInputFields() {
     panelSerialNumberField.clear();
-    faultDateField.clear();
-    faultTypeField.clear();
+    maintenanceDateField.clear();
+    maintenanceTypeField.clear();
     descriptionField.clear();
   }
 
@@ -88,7 +88,7 @@ public class RegisterFaultsController
     }
     if (event.getSource() == saveButton)
     {
-      addFaultsToDatabase();
+      addMaintenanceToDatabase();
     }
   }
 }

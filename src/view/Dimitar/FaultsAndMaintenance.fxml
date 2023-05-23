@@ -27,9 +27,9 @@
             <TableColumn fx:id="faultDescriptionColumn" prefWidth="168.0" text="Description" />
          </columns>
       </TableView>
-      <Button fx:id="registerFaultButton" layoutX="209.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Register Fault" />
-      <Button fx:id="registerMaintenanceButton" layoutX="346.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Register Maintenance" />
-      <Button fx:id="backButton" layoutX="528.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
+      <Button fx:id="registerFaultButton" layoutX="259.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Register Fault" />
+      <Button fx:id="registerMaintenanceButton" layoutX="396.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Register Maintenance" />
+      <Button fx:id="backButton" layoutX="578.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
       <Label layoutX="317.0" layoutY="36.0" text="Registered Maintenances">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -40,5 +40,8 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
+      <Button fx:id="deleteButton" layoutX="156.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />
+      <Button fx:id="refreshFaultButton" layoutX="107.0" layoutY="324.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
+      <Button fx:id="refreshMaintenanceButton" layoutX="106.0" layoutY="49.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
    </children>
 </AnchorPane>

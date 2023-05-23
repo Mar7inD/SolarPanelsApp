@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added faultsandmaintenance folder">
-      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterFaultsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/RegisterFaults.fxml" afterDir="false" />
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added RegisterFaults.fxml and RegisterFaultsController">
+      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterMaintenanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/RegisterMaintenance.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/FaultsAndMaintenance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/InsertManufacturerPage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/ManufacturerInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterFaultsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterFaultsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Dimitar/FaultsAndMaintenance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/FaultsAndMaintenance.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -179,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684853627898</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added RegisterFaults.fxml and RegisterFaultsController">
+      <created>1684857477522</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1684857477522</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -218,7 +223,8 @@
     <MESSAGE value="Added FaultsAndMaintenance.fxml and FaultsAndMaintenanceController" />
     <MESSAGE value="Edited FaultsAndMaintenance.fxml and FaultsAndMaintenanceController" />
     <MESSAGE value="Added faultsandmaintenance folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added faultsandmaintenance folder" />
+    <MESSAGE value="Added RegisterFaults.fxml and RegisterFaultsController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added RegisterFaults.fxml and RegisterFaultsController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,6 +1,7 @@
 package controller;
 
 import controller.faultsandmaintenance.RegisterFaultsController;
+import controller.faultsandmaintenance.RegisterMaintenanceController;
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
 import controller.faultsandmaintenance.FaultsAndMaintenanceController;
@@ -25,6 +26,7 @@ public class ViewHandler
     private Scene insertManufacturerPage;
     private Scene faultsAndMaintenance;
     private Scene registerFaults;
+    private Scene registerMaintenance;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
@@ -34,6 +36,7 @@ public class ViewHandler
     private InsertManufacturerPageController insertManufacturerPageController;
     private FaultsAndMaintenanceController faultsAndMaintenanceController;
     private RegisterFaultsController registerFaultsController;
+    private RegisterMaintenanceController registerMaintenanceController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -43,6 +46,7 @@ public class ViewHandler
     public static final String INSERT_MANUFACTURER_PAGE = "INSERT_MANUFACTURER_PAGE";
     public static final String FAULTS_AND_MAINTENANCE = "FAULTS_AND_MAINTENANCE";
     public static final String REGISTER_FAULTS = "REGISTER_FAULTS";
+    public static final String REGISTER_MAINTENANCE = "REGISTER_MAINTENANCE";
 
     public ViewHandler(Stage primaryStage)
     {
@@ -170,7 +174,7 @@ public class ViewHandler
         System.out.println("Failed to load FaultsAndMaintenance.fxml");
         System.exit(1);
       }
-      // Loading FaultsAndMaintenance.fxml into faultsAndMaintenance
+      // Loading RegisterFaults.fxml into registerFaults
       loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("../view/Dimitar/RegisterFaults.fxml"));
       try
@@ -182,6 +186,20 @@ public class ViewHandler
       catch(IOException e)
       {
         System.out.println("Failed to load RegisterFaults.fxml");
+        System.exit(1);
+      }
+      // Loading RegisterMaintenance.fxml into registerMaintenance
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Dimitar/RegisterMaintenance.fxml"));
+      try
+      {
+        registerMaintenance = new Scene(loader.load());
+        registerMaintenanceController = loader.getController();
+        registerMaintenanceController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load RegisterMaintenance.fxml");
         System.exit(1);
       }
 
@@ -244,6 +262,12 @@ public class ViewHandler
         {
           primaryStage.setTitle("Register a fault in a solar panel");
           primaryStage.setScene(registerFaults);
+          primaryStage.show();
+        }
+        else if (REGISTER_MAINTENANCE.equals(sceneName))
+        {
+          primaryStage.setTitle("Register a maintenance of a solar panel");
+          primaryStage.setScene(registerMaintenance);
           primaryStage.show();
         }
       }

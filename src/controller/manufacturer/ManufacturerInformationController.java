@@ -91,16 +91,17 @@ public class ManufacturerInformationController {
         manufacturers.add(manufacturer);
       }
     }
-    DatabaseConnection.closeConnection();
+
     return manufacturers;
   }
+
 
   public void refreshTableView() {
     manufacturerTableView.getItems().clear(); // Clear the existing items
 
     Connection connection = null;
     try {
-      connection = DatabaseConnection.getConnection();
+        connection = DatabaseConnection.getConnection();
       List<Manufacturer> manufacturers = getAllManufacturers(connection);
 
       // Populate the TableView with the retrieved data
@@ -114,7 +115,7 @@ public class ManufacturerInformationController {
     }
   }
 
-  private void deleteManufacturer() {
+  @FXML private void deleteManufacturer() {
     if (selectedManufacturer != null) {
       // Delete the selected manufacturer from the database
       Connection connection = null;
@@ -128,7 +129,6 @@ public class ManufacturerInformationController {
           DatabaseConnection.closeConnection();
         }
       }
-
       // Refresh the table view after deletion
       refreshTableView();
     }

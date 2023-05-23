@@ -42,6 +42,17 @@ public class InsertManufacturerPageController
       connection = DatabaseConnection.getConnection();
       PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql);
 
+      // Validate email and phone number
+      if (!isValidEmail(emailField.getText())) {
+        showErrorDialog("Invalid Email", "Please enter a valid email address.");
+        return;
+      }
+
+      if (!isValidPhoneNumber(phoneNumberField.getText())) {
+        showErrorDialog("Invalid Phone Number", "Please enter a valid phone number.");
+        return;
+      }
+
       // Insert data into Manufacturer table
       insertManufacturerStmt.setString(1, nameField.getText());
       insertManufacturerStmt.setString(2, addressField.getText());
@@ -72,6 +83,26 @@ public class InsertManufacturerPageController
         }
       }
     }
+  }
+
+  private boolean isValidEmail(String email) {
+    // Simple email validation using regular expression
+    String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    return email.matches(emailRegex);
+  }
+
+  private boolean isValidPhoneNumber(String phoneNumber) {
+    // Simple phone number validation using regular expression
+    String phoneRegex = "^\\+[0-9]+$";
+    return phoneNumber.matches(phoneRegex);
+  }
+
+  private void showErrorDialog(String title, String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
   }
 
 

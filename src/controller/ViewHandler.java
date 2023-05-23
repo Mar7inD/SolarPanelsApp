@@ -2,7 +2,7 @@ package controller;
 
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
-import controller.solarPanels.FaultsAndMaintenanceController;
+import controller.faultsandmaintenance.FaultsAndMaintenanceController;
 import controller.solarPanels.InsertModifySolarPanelController;
 import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXMLLoader;

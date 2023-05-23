@@ -1,4 +1,4 @@
-package controller.solarPanels;
+package controller.faultsandmaintenance;
 
 import com.sun.tools.javac.Main;
 import javafx.collections.FXCollections;

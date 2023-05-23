@@ -14,6 +14,7 @@ import java.sql.Connection;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ProductionChooseParametersController implements Initializable
   @FXML private CheckBox liveData;
   @FXML private Slider period;
   @FXML private DatePicker startDate;
+  @FXML private Text daysNum;
   @FXML private ListView<String> modelList;
   @FXML private ListView<String> chosenList;
   private ViewHandler viewHandler;
@@ -36,10 +38,7 @@ public class ProductionChooseParametersController implements Initializable
   private ArrayList<String> solarPanelsId = new ArrayList<>();
   public void init(ViewHandler viewHandler) throws SQLException
   {
-
     this.viewHandler = viewHandler;
-
-
   }
 
   @Override public void initialize(URL location, ResourceBundle resources)
@@ -49,7 +48,10 @@ public class ProductionChooseParametersController implements Initializable
       period.setDisable(selected);
       startDate.setDisable(selected);
     });
-    Platform.runLater(() -> {
+    period.valueProperty().addListener((observable, oldValue, newValue) -> {
+      // Update the text of the Label with the new value
+      daysNum.setText(String.valueOf(newValue));
+    });    Platform.runLater(() -> {
       try
       {
         this.solarPanels = DatabaseConnection.getSolarPanels();

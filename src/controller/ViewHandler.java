@@ -2,6 +2,7 @@ package controller;
 
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
+import controller.solarPanels.FaultsAndMaintenanceController;
 import controller.solarPanels.InsertModifySolarPanelController;
 import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class ViewHandler
     private Scene insertModifySolarPanel;
     private Scene manufacturerInformation;
     private Scene insertManufacturerPage;
+    private Scene faultsAndMaintenance;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
@@ -28,6 +30,7 @@ public class ViewHandler
     private InsertModifySolarPanelController insertModifySolarPanelController;
     private ManufacturerInformationController manufacturerInformationController;
     private InsertManufacturerPageController insertManufacturerPageController;
+    private FaultsAndMaintenanceController faultsAndMaintenanceController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -35,7 +38,7 @@ public class ViewHandler
     public static final String INSERT_MODIFY_SOLAR_PANEL = "INSERT_MODIFY_SOLAR_PANEL";
     public static final String MANUFACTURER_INFORMATION = "MANUFACTURER_INFORMATION";
     public static final String INSERT_MANUFACTURER_PAGE = "INSERT_MANUFACTURER_PAGE";
-
+    public static final String FAULTS_AND_MAINTENANCE = "FAULTS_AND_MAINTENANCE";
 
     public ViewHandler(Stage primaryStage)
     {
@@ -120,7 +123,7 @@ public class ViewHandler
         System.exit(1);
       }
 
-      // Loading ManufacturerInformation.fxml into modifySolarPanel
+      // Loading ManufacturerInformation.fxml into manufacturerInformation
       loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("../view/Martin/ManufacturerInformation.fxml"));
       try
@@ -135,7 +138,7 @@ public class ViewHandler
         System.exit(1);
       }
 
-      //
+      // Loading InsertManufacturerPage.fxml into insertManufacturerPage
       loader = new FXMLLoader();
       loader.setLocation(getClass().getResource("../view/Martin/InsertManufacturerPage.fxml"));
       try
@@ -149,7 +152,20 @@ public class ViewHandler
         System.out.println("Failed to load InsertManufacturerPage.fxml");
         System.exit(1);
       }
-
+      // Loading FaultsAndMaintenance.fxml into faultsAndMaintenance
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Martin/FaultsAndMaintenance.fxml"));
+      try
+      {
+        faultsAndMaintenance = new Scene(loader.load());
+        faultsAndMaintenanceController = loader.getController();
+        faultsAndMaintenanceController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load FaultsAndMaintenance.fxml");
+        System.exit(1);
+      }
 
       changeScene(MAIN_SCENE);
     }
@@ -198,6 +214,12 @@ public class ViewHandler
         {
           primaryStage.setTitle("Show Manufacturer data");
           primaryStage.setScene(manufacturerInformation);
+          primaryStage.show();
+        }
+        else if (FAULTS_AND_MAINTENANCE.equals(sceneName))
+        {
+          primaryStage.setTitle("Faults And Maintenance");
+          primaryStage.setScene(faultsAndMaintenance);
           primaryStage.show();
         }
       }

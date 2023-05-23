@@ -1,30 +1,30 @@
-package controller.manufacturer;
+package controller.faultsandmaintenance;
 
 import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javafx.scene.control.Button;
+import java.sql.Timestamp;
 
-
-public class InsertManufacturerPageController
+public class RegisterFaultsController
 {
   @FXML private Button backButton;
   @FXML private Button saveButton;
   @FXML
-  private TextField nameField;
+  private TextField panelSerialNumberField;
   @FXML
-  private TextField addressField;
+  private TextField faultDateField;
   @FXML
-  private TextField emailField;
+  private TextField faultTypeField;
   @FXML
-  private TextField phoneNumberField;
-
-
+  private TextArea descriptionField;
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
@@ -32,21 +32,20 @@ public class InsertManufacturerPageController
     this.viewHandler = viewHandler;
   }
 
-
   // SQL statements to insert
-  private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number)" + "VALUES (?, ?, ?, ?)";
+  private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"faults\" (panel_serial_no, fault_date, fault_type, description)" + "VALUES (?, ?, ?, ?)";
 
-  private void addManufacturerToDatabase() {
+  private void addFaultsToDatabase() {
     Connection connection = null;
     try {
       connection = DatabaseConnection.getConnection();
       PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql);
 
       // Insert data into Manufacturer table
-      insertManufacturerStmt.setString(1, nameField.getText());
-      insertManufacturerStmt.setString(2, addressField.getText());
-      insertManufacturerStmt.setString(3, emailField.getText());
-      insertManufacturerStmt.setString(4, phoneNumberField.getText());
+      insertManufacturerStmt.setInt(1, Integer.parseInt(panelSerialNumberField.getText()));
+      insertManufacturerStmt.setTimestamp(2, Timestamp.valueOf(faultDateField.getText()));
+      insertManufacturerStmt.setString(3, faultTypeField.getText());
+      insertManufacturerStmt.setString(4, descriptionField.getText());
       int rowsAffected = insertManufacturerStmt.executeUpdate();
 
       // Clear input fields after successful insertion
@@ -74,25 +73,22 @@ public class InsertManufacturerPageController
     }
   }
 
-
   private void clearInputFields() {
-    nameField.clear();
-    addressField.clear();
-    emailField.clear();
-    phoneNumberField.clear();
+    panelSerialNumberField.clear();
+    faultDateField.clear();
+    faultTypeField.clear();
+    descriptionField.clear();
   }
 
   public void onClick(ActionEvent event)
   {
     if (event.getSource() == backButton)
     {
-      viewHandler.changeScene(viewHandler.MANUFACTURER_INFORMATION);
+      viewHandler.changeScene(viewHandler.FAULTS_AND_MAINTENANCE);
     }
     if (event.getSource() == saveButton)
     {
-      addManufacturerToDatabase();
+      addFaultsToDatabase();
     }
   }
-
 }
-

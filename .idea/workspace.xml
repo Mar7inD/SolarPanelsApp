@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added FaultsAndMaintenance.fxml and FaultsAndMaintenanceController">
-      <change afterPath="$PROJECT_DIR$/src/model/Fault.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Maintenance.java" afterDir="false" />
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Added faultsandmaintenance folder">
+      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterFaultsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/RegisterFaults.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/FaultsAndMaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/FaultsAndMaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/FaultsAndMaintenance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/InsertManufacturerPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/ManufacturerInformation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -56,6 +57,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dimit\IdeaProjects\SolarPanelsApp\src\view\Dimitar" />
       <recent name="$PROJECT_DIR$/src/controller" />
       <recent name="$PROJECT_DIR$/src/view/Martin" />
     </key>
@@ -163,7 +165,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684789960784</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Edited FaultsAndMaintenance.fxml and FaultsAndMaintenanceController">
+      <created>1684853386609</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1684853386609</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added faultsandmaintenance folder">
+      <created>1684853627898</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1684853627898</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -200,7 +216,9 @@
     <MESSAGE value="Added delete button in ManufacturerInformationController" />
     <MESSAGE value="Test push" />
     <MESSAGE value="Added FaultsAndMaintenance.fxml and FaultsAndMaintenanceController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added FaultsAndMaintenance.fxml and FaultsAndMaintenanceController" />
+    <MESSAGE value="Edited FaultsAndMaintenance.fxml and FaultsAndMaintenanceController" />
+    <MESSAGE value="Added faultsandmaintenance folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added faultsandmaintenance folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

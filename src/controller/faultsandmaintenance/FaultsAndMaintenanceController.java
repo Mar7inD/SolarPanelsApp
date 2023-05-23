@@ -1,23 +1,16 @@
 package controller.faultsandmaintenance;
 
-import com.sun.tools.javac.Main;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.Fault;
-
 import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.Maintenance;
-import model.Manufacturer;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,6 +136,10 @@ public class FaultsAndMaintenanceController
     if (event.getSource() == backButton)
     {
       viewHandler.changeScene(viewHandler.MAIN_SCENE);
+    }
+    if (event.getSource() == registerFaultButton)
+    {
+      viewHandler.changeScene(viewHandler.REGISTER_FAULTS);
     }
   }
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.faultsandmaintenance.RegisterFaultsController;
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
 import controller.faultsandmaintenance.FaultsAndMaintenanceController;
@@ -23,6 +24,7 @@ public class ViewHandler
     private Scene manufacturerInformation;
     private Scene insertManufacturerPage;
     private Scene faultsAndMaintenance;
+    private Scene registerFaults;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
@@ -31,6 +33,7 @@ public class ViewHandler
     private ManufacturerInformationController manufacturerInformationController;
     private InsertManufacturerPageController insertManufacturerPageController;
     private FaultsAndMaintenanceController faultsAndMaintenanceController;
+    private RegisterFaultsController registerFaultsController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -39,6 +42,7 @@ public class ViewHandler
     public static final String MANUFACTURER_INFORMATION = "MANUFACTURER_INFORMATION";
     public static final String INSERT_MANUFACTURER_PAGE = "INSERT_MANUFACTURER_PAGE";
     public static final String FAULTS_AND_MAINTENANCE = "FAULTS_AND_MAINTENANCE";
+    public static final String REGISTER_FAULTS = "REGISTER_FAULTS";
 
     public ViewHandler(Stage primaryStage)
     {
@@ -125,7 +129,7 @@ public class ViewHandler
 
       // Loading ManufacturerInformation.fxml into manufacturerInformation
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/ManufacturerInformation.fxml"));
+      loader.setLocation(getClass().getResource("../view/Dimitar/ManufacturerInformation.fxml"));
       try
       {
         manufacturerInformation = new Scene(loader.load());
@@ -140,7 +144,7 @@ public class ViewHandler
 
       // Loading InsertManufacturerPage.fxml into insertManufacturerPage
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/InsertManufacturerPage.fxml"));
+      loader.setLocation(getClass().getResource("../view/Dimitar/InsertManufacturerPage.fxml"));
       try
       {
         insertManufacturerPage = new Scene(loader.load());
@@ -154,7 +158,7 @@ public class ViewHandler
       }
       // Loading FaultsAndMaintenance.fxml into faultsAndMaintenance
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/FaultsAndMaintenance.fxml"));
+      loader.setLocation(getClass().getResource("../view/Dimitar/FaultsAndMaintenance.fxml"));
       try
       {
         faultsAndMaintenance = new Scene(loader.load());
@@ -164,6 +168,20 @@ public class ViewHandler
       catch(IOException e)
       {
         System.out.println("Failed to load FaultsAndMaintenance.fxml");
+        System.exit(1);
+      }
+      // Loading FaultsAndMaintenance.fxml into faultsAndMaintenance
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Dimitar/RegisterFaults.fxml"));
+      try
+      {
+        registerFaults = new Scene(loader.load());
+        registerFaultsController = loader.getController();
+        registerFaultsController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load RegisterFaults.fxml");
         System.exit(1);
       }
 
@@ -220,6 +238,12 @@ public class ViewHandler
         {
           primaryStage.setTitle("Faults And Maintenance");
           primaryStage.setScene(faultsAndMaintenance);
+          primaryStage.show();
+        }
+        else if (REGISTER_FAULTS.equals(sceneName))
+        {
+          primaryStage.setTitle("Register a fault in a solar panel");
+          primaryStage.setScene(registerFaults);
           primaryStage.show();
         }
       }

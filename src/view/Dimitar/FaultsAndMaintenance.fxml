@@ -27,8 +27,8 @@
             <TableColumn fx:id="faultDescriptionColumn" prefWidth="168.0" text="Description" />
          </columns>
       </TableView>
-      <Button fx:id="registerFaultButton" layoutX="209.0" layoutY="579.0" mnemonicParsing="false" text="Register Fault" />
-      <Button fx:id="registerMaintenanceButton" layoutX="346.0" layoutY="579.0" mnemonicParsing="false" text="Register Maintenance" />
+      <Button fx:id="registerFaultButton" layoutX="209.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Register Fault" />
+      <Button fx:id="registerMaintenanceButton" layoutX="346.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Register Maintenance" />
       <Button fx:id="backButton" layoutX="528.0" layoutY="579.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
       <Label layoutX="317.0" layoutY="36.0" text="Registered Maintenances">
          <font>

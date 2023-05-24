@@ -22,7 +22,6 @@ public class ManufacturerInformationController {
   @FXML private Button deleteButton;
   @FXML private Button refreshButton;
   @FXML private TableView<Manufacturer> manufacturerTableView;
-  @FXML private TableColumn<Manufacturer, Integer> idColumn;
   @FXML private TableColumn<Manufacturer, String> nameColumn;
   @FXML private TableColumn<Manufacturer, String> addressColumn;
   @FXML private TableColumn<Manufacturer, String> emailColumn;
@@ -35,7 +34,6 @@ public class ManufacturerInformationController {
     this.viewHandler = viewHandler;
 
     // Initialize table columns
-    idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
     nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -81,13 +79,12 @@ public class ManufacturerInformationController {
     try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"solar_panels\".\"manufacturer\" LIMIT 100");
         ResultSet resultSet = statement.executeQuery()) {
       while (resultSet.next()) {
-        int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String address = resultSet.getString("address");
         String email = resultSet.getString("email");
         String phoneNumber = resultSet.getString("phone_number");
 
-        Manufacturer manufacturer = new Manufacturer(id, name, address, email, phoneNumber);
+        Manufacturer manufacturer = new Manufacturer(name, address, email, phoneNumber);
         manufacturers.add(manufacturer);
       }
     }
@@ -135,9 +132,9 @@ public class ManufacturerInformationController {
   }
 
   private void deleteManufacturerFromDatabase(Connection connection, Manufacturer manufacturer) throws SQLException {
-    String deleteQuery = "DELETE FROM \"solar_panels\".\"manufacturer\" WHERE id = ?";
+    String deleteQuery = "DELETE FROM \"solar_panels\".\"manufacturer\" WHERE name = ?";
     try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
-      statement.setInt(1, manufacturer.getId());
+      statement.setString(1, manufacturer.getName());
       statement.executeUpdate();
     }
   }

@@ -1,15 +1,13 @@
 package model;
 
 public class Manufacturer {
-  private int id;
   private String name;
   private String address;
   private String email;
   private String phoneNumber;
 
   // Constructor
-  public Manufacturer(int id, String name, String address, String email, String phoneNumber) {
-    this.id = id;
+  public Manufacturer(String name, String address, String email, String phoneNumber) {
     this.name = name;
     this.address = address;
     this.email = email;
@@ -17,13 +15,6 @@ public class Manufacturer {
   }
 
   // Getters and setters
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;

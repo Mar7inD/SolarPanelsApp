@@ -1,20 +1,21 @@
 package controller.manufacturer;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import controller.DatabaseConnection;
 import controller.ViewHandler;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Manufacturer;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManufacturerInformationController {
   @FXML private Button backButton;
@@ -70,6 +71,8 @@ public class ManufacturerInformationController {
         selectedManufacturer = null; // Reset the selected manufacturer
       }
     });
+
+    DatabaseConnection.closeConnection();
   }
 
   // Retrieve the manufacturer data and populate the TableView accordingly

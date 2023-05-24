@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Fixed ManufacturerInformationController">
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Fixed FaultsAndMaintenanceController and tried to add a connection pool but did not work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolarPanelApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684947720180</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed FaultsAndMaintenanceController and tried to add a connection pool but did not work">
+      <created>1684952399269</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684952399269</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -167,7 +173,8 @@
     <MESSAGE value="Created packages so it the files look cleaner." />
     <MESSAGE value="Worked on the modify option." />
     <MESSAGE value="Fixed ManufacturerInformationController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed ManufacturerInformationController" />
+    <MESSAGE value="Fixed FaultsAndMaintenanceController and tried to add a connection pool but did not work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed FaultsAndMaintenanceController and tried to add a connection pool but did not work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

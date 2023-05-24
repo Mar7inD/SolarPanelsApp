@@ -162,7 +162,7 @@ public class FaultsAndMaintenanceController
     return maintenances;
   }
 
-  public void refreshFaultsTableView() {
+  private void refreshFaultsTableView() {
     faultsTableView.getItems().clear(); // Clear the existing fault items
 
     Connection connection = null;
@@ -181,7 +181,7 @@ public class FaultsAndMaintenanceController
     }
   }
 
-  public void refreshMaintenanceTableView() {
+  private void refreshMaintenanceTableView() {
     maintenanceTableView.getItems().clear(); // Clear the existing maintenance items
 
     Connection connection = null;

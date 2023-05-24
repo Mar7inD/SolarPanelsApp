@@ -65,10 +65,4 @@ public class DatabaseConnection //implements AutoCloseable
     }
     return solarPanels;
   }
-    /*@Override
-    public void close() throws SQLException {
-      if (connection != null) {
-        connection.close();
-      }
-    }*/
 }

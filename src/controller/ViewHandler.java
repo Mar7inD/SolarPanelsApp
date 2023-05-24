@@ -236,7 +236,7 @@ public class ViewHandler
         }
         else if (INSERT_MODIFY_SOLAR_PANEL.equals(sceneName))
         {
-          primaryStage.setTitle("Modify Page");
+          primaryStage.setTitle("Solar Panels");
           primaryStage.setScene(insertModifySolarPanel);
           primaryStage.show();
         }

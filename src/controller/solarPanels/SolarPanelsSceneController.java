@@ -40,7 +40,7 @@ public class SolarPanelsSceneController
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
-    for (int i = 1; i < 220; i++)
+    for (int i = 1; i < 123; i++)
         { String position = "" + i;
           this.solarPanelPosition.getItems().add(position); }
 

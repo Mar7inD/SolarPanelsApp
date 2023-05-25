@@ -1,6 +1,5 @@
 package controller.solarPanels;
 
-import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +24,6 @@ public class SolarPanelsSceneController
 {
   @FXML private Button back;
   @FXML private Button insertModifySolarPanel;
-  @FXML private Button showSolarPanels;
   private Button closeButton;
   @FXML private TableView<SolarPanel> solarPanelsTable;
   @FXML private TableColumn<SolarPanel, Integer> serialNo = new TableColumn<SolarPanel, Integer>("Serial No");
@@ -98,14 +96,15 @@ public class SolarPanelsSceneController
   {
     ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
 
-    try (Connection connection = DatabaseConnection.getConnection())
+    try
     {
-      //Connection name
-      System.out.println("Connection getSolarPanels SolarPanelsSceneController");
 
-      Statement statement = connection.createStatement();
+      Statement statement = viewHandler.getConnection().createStatement();
+
       String sqlQuery = "SELECT * FROM solar_panels.solar_panels WHERE solar_panels.roof_position = ";
+
       ResultSet resultSet = statement.executeQuery(sqlQuery + solarPanelPosition.getValue());
+
       while (resultSet.next()) {
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
             resultSet.getString("model_type"),resultSet.getString("roof_position"),resultSet.getDate("date_installed"),resultSet.getString("manufacturer"),resultSet.getBoolean("is_active")));
@@ -115,7 +114,6 @@ public class SolarPanelsSceneController
     {
       e.printStackTrace();
     }
-    DatabaseConnection.closeConnection();
     return solarPanels;
   }
 
@@ -126,7 +124,7 @@ public class SolarPanelsSceneController
     if (selectedItems != null)
     {
      viewHandler.getInsertModifySolarPanelController().setModifying(true);
-      viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
+     viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
       Stage currentStage = (Stage) closeButton.getScene().getWindow();

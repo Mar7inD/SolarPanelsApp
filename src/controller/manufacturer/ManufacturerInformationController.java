@@ -1,6 +1,6 @@
 package controller.manufacturer;
 
-import controller.DatabaseConnection;
+import DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,6 +1,5 @@
 package controller.faultsandmaintenance;
 
-import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

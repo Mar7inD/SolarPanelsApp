@@ -12,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ViewHandler
   {
+    private static Connection connection;
     private final Stage primaryStage;
     private Scene main;
     private Scene solar_panels;
@@ -48,9 +50,10 @@ public class ViewHandler
     public static final String REGISTER_FAULTS = "REGISTER_FAULTS";
     public static final String REGISTER_MAINTENANCE = "REGISTER_MAINTENANCE";
 
-    public ViewHandler(Stage primaryStage)
+    public ViewHandler(Stage primaryStage, Connection connection)
     {
       this.primaryStage = primaryStage;
+      this.connection = connection;
 
       // Loading MainScene.fxml into main
       FXMLLoader loader = new FXMLLoader();
@@ -270,6 +273,11 @@ public class ViewHandler
           primaryStage.setScene(registerMaintenance);
           primaryStage.show();
         }
+      }
+
+      public Connection getConnection()
+      {
+        return connection;
       }
 
       public InsertModifySolarPanelController getInsertModifySolarPanelController()

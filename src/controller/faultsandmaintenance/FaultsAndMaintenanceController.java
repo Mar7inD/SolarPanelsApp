@@ -3,15 +3,13 @@ package controller.faultsandmaintenance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.Fault;
-import controller.DatabaseConnection;
+
 import controller.ViewHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import model.Maintenance;
-import model.Manufacturer;
 
 import java.sql.*;
 import java.util.ArrayList;

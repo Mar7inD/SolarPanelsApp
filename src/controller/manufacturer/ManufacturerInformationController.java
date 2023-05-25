@@ -1,6 +1,5 @@
 package controller.manufacturer;
 
-import DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,19 +40,14 @@ public class ManufacturerInformationController {
     phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
     // Retrieve data from the database
-    Connection connection = null;
+    Connection connection = viewHandler.getConnection();
     try {
-      connection = DatabaseConnection.getConnection();
       List<Manufacturer> manufacturers = getAllManufacturers(connection);
 
       // Populate the TableView with the retrieved data
       manufacturerTableView.getItems().addAll(manufacturers);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        DatabaseConnection.closeConnection();
-      }
     }
 
     // Disable the delete button initially
@@ -71,8 +65,6 @@ public class ManufacturerInformationController {
         selectedManufacturer = null; // Reset the selected manufacturer
       }
     });
-
-    DatabaseConnection.closeConnection();
   }
 
   // Retrieve the manufacturer data and populate the TableView accordingly
@@ -99,39 +91,29 @@ public class ManufacturerInformationController {
   public void refreshTableView() {
     manufacturerTableView.getItems().clear(); // Clear the existing items
 
-    Connection connection = null;
+    Connection connection = viewHandler.getConnection();
     try {
-        connection = DatabaseConnection.getConnection();
       List<Manufacturer> manufacturers = getAllManufacturers(connection);
 
       // Populate the TableView with the retrieved data
       manufacturerTableView.getItems().addAll(manufacturers);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        DatabaseConnection.closeConnection();
-      }
     }
   }
 
   @FXML private void deleteManufacturer() {
     if (selectedManufacturer != null) {
       // Delete the selected manufacturer from the database
-      Connection connection = null;
+      Connection connection = viewHandler.getConnection();
       try {
-        connection = DatabaseConnection.getConnection();
         deleteManufacturerFromDatabase(connection, selectedManufacturer);
       } catch (SQLException e) {
         e.printStackTrace();
-      } finally {
-        if (connection != null) {
-          DatabaseConnection.closeConnection();
-        }
+      }
       }
       // Refresh the table view after deletion
       refreshTableView();
-    }
   }
 
   private void deleteManufacturerFromDatabase(Connection connection, Manufacturer manufacturer) throws SQLException {

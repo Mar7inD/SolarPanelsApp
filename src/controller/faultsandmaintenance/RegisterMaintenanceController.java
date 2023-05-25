@@ -1,6 +1,5 @@
 package controller.faultsandmaintenance;
 
-import DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,9 +35,8 @@ public class RegisterMaintenanceController
   private final String insertMaintenanceSql = "INSERT INTO \"solar_panels\".\"maintenance\" (panel_serial_no, maintenance_date, maintenance_type, description)" + "VALUES (?, ?, ?, ?)";
 
   private void addMaintenanceToDatabase() {
-    Connection connection = null;
+    Connection connection = viewHandler.getConnection();
     try {
-      connection = DatabaseConnection.getConnection();
       PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertMaintenanceSql);
 
       // Insert data into Manufacturer table

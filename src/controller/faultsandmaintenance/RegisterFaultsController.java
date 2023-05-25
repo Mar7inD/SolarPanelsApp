@@ -35,9 +35,8 @@ public class RegisterFaultsController
   private final String insertFaultSql = "INSERT INTO \"solar_panels\".\"faults\" (panel_serial_no, fault_date, fault_type, description)" + "VALUES (?, ?, ?, ?)";
 
   private void addFaultsToDatabase() {
-    Connection connection = null;
+    Connection connection = viewHandler.getConnection();
     try {
-      connection = DatabaseConnection.getConnection();
       PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertFaultSql);
 
       // Insert data into Manufacturer table

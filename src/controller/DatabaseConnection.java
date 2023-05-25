@@ -1,6 +1,5 @@
 package controller;
 
-import controller.solarPanels.SolarPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -36,6 +35,7 @@ public class DatabaseConnection //implements AutoCloseable
         // Close the connection
         connection.close();
         connection = null;
+        System.out.println("Database connection closed.");
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -49,7 +49,7 @@ public class DatabaseConnection //implements AutoCloseable
     try(Connection connection = getConnection())
     {
       Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT * FROM solar_panels.solarpanels";
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels";
       ResultSet resultSet = statement.executeQuery(sqlQuery);
       while (resultSet.next()) {
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
@@ -57,12 +57,12 @@ public class DatabaseConnection //implements AutoCloseable
       }
       System.out.println("CONNECTION WHILE IN GETSOLARPANELS");
       System.out.println(connection);
-      closeConnection();
     }
     catch(SQLException e)
     {
       e.printStackTrace();
     }
+    closeConnection();
     return solarPanels;
   }
 }

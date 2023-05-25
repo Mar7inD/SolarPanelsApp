@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import controller.SolarPanel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -99,8 +100,11 @@ public class SolarPanelsSceneController
 
     try (Connection connection = DatabaseConnection.getConnection())
     {
+      //Connection name
+      System.out.println("Connection getSolarPanels SolarPanelsSceneController");
+
       Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT * FROM solar_panels.solarpanels WHERE solarpanels.roof_position = ";
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels WHERE solar_panels.roof_position = ";
       ResultSet resultSet = statement.executeQuery(sqlQuery + solarPanelPosition.getValue());
       while (resultSet.next()) {
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
@@ -115,11 +119,13 @@ public class SolarPanelsSceneController
     return solarPanels;
   }
 
-  public void Modify()
+  // Class Modify for the button modify in the pop out table with the solar panels
+  public void Modify() throws IndexOutOfBoundsException
   {
     ObservableList<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
     if (selectedItems != null)
     {
+     viewHandler.getInsertModifySolarPanelController().setModifying(true);
       viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
@@ -136,4 +142,5 @@ public class SolarPanelsSceneController
       alert.showAndWait();
     }
   }
+
 }

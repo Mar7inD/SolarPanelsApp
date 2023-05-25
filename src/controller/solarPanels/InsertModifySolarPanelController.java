@@ -9,9 +9,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import javax.swing.text.ComponentView;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.HashSet;
 
 public class InsertModifySolarPanelController
 {
@@ -20,15 +21,18 @@ public class InsertModifySolarPanelController
   private final String insertSolarPanelSql = "INSERT INTO SolarPanels (serial_No, model_type, roof_position, " +
       "date_installed, manufacturer, is_active) VALUES (?, ?, ?, ?, ?, ?)";
   private ViewHandler viewHandler;
-  private String serialNo;
+  private boolean modifying;
   @FXML private TextField serialNoText = new TextField();
   @FXML private ComboBox typeCombo = new ComboBox<String>();
   @FXML private ComboBox roofCombo = new ComboBox<String>();
-  @FXML private ComboBox<String> manufacturer = new ComboBox<String>();
+  @FXML private ComboBox manufacturer = new ComboBox<String>();
   @FXML private DatePicker installationDatePicker = new DatePicker();
+  @FXML private ComboBox activity = new ComboBox<String>();
   @FXML private Button save;
   @FXML private Button back;
 
+
+  // Class init for initializing the Scene and items
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
@@ -37,22 +41,59 @@ public class InsertModifySolarPanelController
     for (int i = 1; i < 124; i++)
     { String position = "" + i;
       this.roofCombo.getItems().add(position); }
+    this.activity.getItems().addAll("Active","Deactivated");
+
+    try (Connection connection = DatabaseConnection.getConnection())
+    {
+      //Connection name
+      System.out.println("Connection init InsertModifySolarPanelController");
+
+      Statement statement = connection.createStatement();
+      String sqlQuery = "SELECT manufacturer FROM solar_panels.solar_panels";
+      ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+      HashSet manufactorHash = new HashSet<String>();
+      while (resultSet.next())
+      {
+          manufactorHash.add(resultSet.getString("manufacturer"));
+      }
+      manufacturer.getItems().addAll(manufactorHash);
+    }
+
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
+    DatabaseConnection.closeConnection();
   }
 
+  // Class setSerialNo for receiving values from the database based on given serial number
   public void setSerialNo(String serialNo)
   {
     serialNoText.setText(serialNo);
     try (Connection connection = DatabaseConnection.getConnection())
     {
+      //Connection name
+      System.out.println("Connection setSerialNo InsertModifySolarPanelController");
+
       Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT * FROM solar_panels.solarpanels WHERE solarpanels.serial_no = ";
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels WHERE solar_panels.serial_no = ";
       ResultSet resultSet = statement.executeQuery(sqlQuery + serialNo);
       while (resultSet.next()) {
+
         typeCombo.setValue(resultSet.getString("model_type"));
+
         roofCombo.setValue(resultSet.getString("roof_position"));
+
         installationDatePicker.setValue(Date.valueOf(
             resultSet.getDate("date_installed").toLocalDate()).toLocalDate());
+
         manufacturer.setValue(resultSet.getString("manufacturer"));
+
+        if(resultSet.getBoolean("is_active"))
+        {activity.setValue("Active");}
+        else
+        {activity.setValue("Deactivated");}
       }
     }
     catch(SQLException e)
@@ -61,6 +102,8 @@ public class InsertModifySolarPanelController
     }
     DatabaseConnection.closeConnection();
   }
+
+  // Class onClick for the save and back button
   public void onClick(ActionEvent event)
   {
     //Inserting information into database
@@ -68,31 +111,43 @@ public class InsertModifySolarPanelController
     {
       try (Connection connection = DatabaseConnection.getConnection())
       {
-        Statement statement = connection.createStatement();
-        String sqlQuery = "SELECT * FROM solar_panels.solarpanels WHERE solarpanels.serial_no = ";
-        ResultSet resultSet = statement.executeQuery(sqlQuery + serialNo);
+        //Connection name
+        System.out.println("Connection button save InsertModifySolarPanelController");
 
-        if (resultSet.next())
+        if(modifying)
         {
-         String updateQuery = "UPDATE solar_panels.solarpanels SET model_type = ?, roof_position = ?, date_installed = ?, manufacturer = ?";
-          PreparedStatement statementUpdate = connection.prepareStatement(updateQuery);
+          modifying = false;
+          String updateQuery = "UPDATE solar_panels.solar_panels SET model_type = ?, roof_position = ?, date_installed = ?, manufacturer = ?, is_active = ?;";
+          PreparedStatement statementUpdate = connection.prepareStatement(
+              updateQuery);
           statementUpdate.setString(1, typeCombo.getValue().toString());
-          statementUpdate.setString(2,roofCombo.getValue().toString());
-          statementUpdate.setDate(3,Date.valueOf(installationDatePicker.getValue()));
-          statementUpdate.setString(4,manufacturer.getValue());
+          statementUpdate.setInt(2, Integer.parseInt(roofCombo.getValue().toString()));
+          statementUpdate.setDate(3, Date.valueOf(installationDatePicker.getValue()));
+          statementUpdate.setString(4, manufacturer.getValue().toString());
+          if (activity.getValue().toString() == "Active")
+          {
+            statementUpdate.setBoolean(5, true);
+          }
+          else
+          {
+            statementUpdate.setBoolean(5, false);
+          }
           statementUpdate.executeUpdate();
         }
 
         else
         {
-          String insertQuery = "INSERT INTO solar_panels.solarpanels (serial_no, model_type, roof_position, date_installed, manufacturer) "
-              + "VALUES (?, ?, ?, ?, ?)";
+          String insertQuery = "INSERT INTO solar_panels.solar_panels (serial_no, model_type, roof_position, date_installed, manufacturer, is_active) VALUES (?, ?, ?, ?, ?, ?);";
           PreparedStatement statementInsert = connection.prepareStatement(insertQuery);
           statementInsert.setInt(1, Integer.parseInt(serialNoText.getText()));
           statementInsert.setString(2, typeCombo.getValue().toString());
-          statementInsert.setString(3,roofCombo.getValue().toString());
+          statementInsert.setInt(3,Integer.parseInt(roofCombo.getValue().toString()));
           statementInsert.setDate(4,Date.valueOf(installationDatePicker.getValue()));
-          statementInsert.setString(5,manufacturer.getValue());
+          statementInsert.setString(5,manufacturer.getValue().toString());
+          if(activity.getValue().toString() == "Active")
+          {statementInsert.setBoolean(6,true);}
+          else
+          {statementInsert.setBoolean(6,false);}
           statementInsert.executeUpdate();
           System.out.println("Insert success");
         }
@@ -112,12 +167,19 @@ public class InsertModifySolarPanelController
     }
   }
 
+  // Class resetFields for resetting fields when starting to insert new solar panel
   public void resetFields()
   {
     serialNoText.setText("");
-    typeCombo.setValue("1");
-    roofCombo.setValue("1");
+    typeCombo.setValue("");
+    roofCombo.setValue("");
     installationDatePicker.setValue(LocalDate.now());
     manufacturer.setValue("");
+  }
+
+  //Class to determine if we are modifying or inserting the solar panel
+  public void setModifying(boolean modifying)
+  {
+    this.modifying = modifying;
   }
 }

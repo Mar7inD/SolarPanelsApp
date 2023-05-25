@@ -1,7 +1,7 @@
-import controller.DatabaseConnection;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import controller.ViewHandler;
+
 
 public class Main extends Application
 {

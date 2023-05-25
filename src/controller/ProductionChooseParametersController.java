@@ -1,19 +1,14 @@
 package controller;
-import controller.solarPanels.SolarPanel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import controller.DatabaseConnection;
-import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXML;
 
 import java.net.URL;
-import java.sql.Connection;
 
 import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.sql.SQLException;

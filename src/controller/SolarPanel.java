@@ -1,4 +1,4 @@
-package controller.solarPanels;
+package controller;
 
 import java.util.Date;
 

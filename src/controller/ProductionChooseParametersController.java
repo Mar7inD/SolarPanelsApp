@@ -14,8 +14,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -72,7 +75,7 @@ public class ProductionChooseParametersController implements Initializable
     Platform.runLater(() -> {
       try
       {
-        this.solarPanels = DatabaseConnection.getSolarPanels();
+        this.solarPanels = getSolarPanels();
       }
       catch (SQLException e)
       {
@@ -113,9 +116,10 @@ public class ProductionChooseParametersController implements Initializable
     else if (event.getSource() == removeButton)
     {
       String chosenItem = chosenList.getSelectionModel().getSelectedItem();
-      if (chosenItem != null) {
-      chosenList.getItems().remove(chosenItem);
-      modelList.getItems().add(chosenItem);
+      if (chosenItem != null)
+      {
+        chosenList.getItems().remove(chosenItem);
+        modelList.getItems().add(chosenItem);
       }
     }
     else if (event.getSource() == refreshButton)
@@ -125,7 +129,7 @@ public class ProductionChooseParametersController implements Initializable
 
       try
       {
-        this.solarPanels = DatabaseConnection.getSolarPanels();
+        this.solarPanels = getSolarPanels();
       }
       catch (SQLException e)
       {
@@ -158,6 +162,30 @@ public class ProductionChooseParametersController implements Initializable
         showDataController.setLiveParams(selectedValues);
         viewHandler.changeScene(viewHandler.SHOW_DATA);
       }
+  }
+  public ObservableList<SolarPanel> getSolarPanels()
+      throws SQLException
+  {
+    ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
+    try
+    {
+      Connection connection = viewHandler.getConnection();
+      Statement statement = connection.createStatement();
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels";
+      ResultSet resultSet = statement.executeQuery(sqlQuery);
+      while (resultSet.next()) {
+        solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
+            resultSet.getString("model_type"),resultSet.getString("roof_position"),resultSet.getDate("date_installed"),resultSet.getString("manufacturer"),resultSet.getBoolean("is_active")));
+      }
+      System.out.println("CONNECTION WHILE IN GETSOLARPANELS");
+      System.out.println(connection);
+    }
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
+    return solarPanels;
+  }
 
       else if (!chosenList.getItems().isEmpty() &&
           startDate.getValue() != null)

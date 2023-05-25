@@ -68,9 +68,8 @@ public class FaultsAndMaintenanceController
     maintenanceDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
     // Retrieve data from the database
-    Connection connection = null;
+    Connection connection = viewHandler.getConnection();
     try {
-      connection = DatabaseConnection.getConnection();
       List<Fault> faults = loadFaultsData(connection);
       List<Maintenance> maintenances = loadMaintenanceData(connection);
       // Populate the TableView with the retrieved data
@@ -78,10 +77,6 @@ public class FaultsAndMaintenanceController
       maintenanceTableView.getItems().addAll(maintenances);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        DatabaseConnection.closeConnection();
-      }
     }
 
     faultsTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -163,20 +158,15 @@ public class FaultsAndMaintenanceController
   private void refreshFaultsTableView() {
     faultsTableView.getItems().clear(); // Clear the existing fault items
 
-    Connection connection = null;
     try {
-      connection = DatabaseConnection.getConnection();
-      List<Fault> faults = loadFaultsData(connection);
+      List<Fault> faults = loadFaultsData(viewHandler.getConnection());
 
       // Populate the TableView with the retrieved data
       faultsTableView.getItems().addAll(faults);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        DatabaseConnection.closeConnection();
-      }
     }
+
   }
 
   private void refreshMaintenanceTableView() {
@@ -184,17 +174,13 @@ public class FaultsAndMaintenanceController
 
     Connection connection = null;
     try {
-      connection = DatabaseConnection.getConnection();
-      List<Maintenance> maintenanceList = loadMaintenanceData(connection);
+      List<Maintenance> maintenanceList = loadMaintenanceData(
+          viewHandler.getConnection());
 
       // Populate the TableView with the retrieved data
       maintenanceTableView.getItems().addAll(maintenanceList);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        DatabaseConnection.closeConnection();
-      }
     }
   }
 
@@ -209,17 +195,10 @@ public class FaultsAndMaintenanceController
 
   private void deleteFault() {
     if (selectedFault != null) {
-      // Delete the selected fault from the database
-      Connection connection = null;
       try {
-        connection = DatabaseConnection.getConnection();
-        deleteFaultFromDatabase(connection, selectedFault);
+        deleteFaultFromDatabase(viewHandler.getConnection(), selectedFault);
       } catch (SQLException e) {
         e.printStackTrace();
-      } finally {
-        if (connection != null) {
-          DatabaseConnection.closeConnection();
-        }
       }
       // Refresh the table view after deletion
       refreshFaultsTableView();
@@ -231,14 +210,9 @@ public class FaultsAndMaintenanceController
       // Delete the selected maintenance from the database
       Connection connection = null;
       try {
-        connection = DatabaseConnection.getConnection();
-        deleteMaintenanceFromDatabase(connection, selectedMaintenance);
+        deleteMaintenanceFromDatabase(viewHandler.getConnection(), selectedMaintenance);
       } catch (SQLException e) {
         e.printStackTrace();
-      } finally {
-        if (connection != null) {
-          DatabaseConnection.closeConnection();
-        }
       }
       // Refresh the table view after deletion
       refreshMaintenanceTableView();

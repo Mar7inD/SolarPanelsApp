@@ -1,6 +1,5 @@
 package controller.manufacturer;
 
-import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,9 +36,8 @@ public class InsertManufacturerPageController
   private final String insertManufacturerSql = "INSERT INTO \"solar_panels\".\"manufacturer\" (name, address, email, phone_number)" + "VALUES (?, ?, ?, ?)";
 
   private void addManufacturerToDatabase() {
-    Connection connection = null;
     try {
-      connection = DatabaseConnection.getConnection();
+      Connection connection = viewHandler.getConnection();
       PreparedStatement insertManufacturerStmt = connection.prepareStatement(insertManufacturerSql);
 
       // Validate email and phone number
@@ -74,14 +72,6 @@ public class InsertManufacturerPageController
       // Failed data insert
       System.err.println("Failed to insert data into the database: " + e.getMessage());
       e.printStackTrace();
-    } finally {
-      if (connection != null) {
-        try {
-          connection.close();
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
-      }
     }
   }
 

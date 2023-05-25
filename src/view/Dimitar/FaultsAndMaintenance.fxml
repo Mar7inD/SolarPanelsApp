@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="648.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.faultsandmaintenance.FaultsAndMaintenanceController">
+   <children>
+      <TableView fx:id="maintenanceTableView" layoutX="106.0" layoutY="81.0" prefHeight="200.0" prefWidth="612.0">
+        <columns>
+          <TableColumn fx:id="maintenanceIdColumn" prefWidth="30.0" text="ID" />
+          <TableColumn fx:id="panelSerialNumberMaintenanceColumn" prefWidth="132.0" text="Panel Serial Number" />
+            <TableColumn fx:id="maintenanceDateColumn" prefWidth="150.0" text="Maintenance Date" />
+            <TableColumn fx:id="maintenanceTypeColumn" prefWidth="130.0" text="Maintenance Type" />
+            <TableColumn fx:id="maintenanceDescriptionColumn" prefWidth="168.0" text="Description" />
+        </columns>
+      </TableView>
+      <TableView fx:id="faultsTableView" layoutX="107.0" layoutY="357.0" prefHeight="200.0" prefWidth="612.0">
+         <columns>
+            <TableColumn fx:id="faultIdColumn" prefWidth="30.0" text="ID" />
+            <TableColumn fx:id="panelSerialNumberFaultColumn" prefWidth="132.0" text="Panel Serial Number" />
+            <TableColumn fx:id="faultDateColumn" prefWidth="150.0" text="Fault Date" />
+            <TableColumn fx:id="faultTypeColumn" prefWidth="130.0" text="Fault Type" />
+            <TableColumn fx:id="faultDescriptionColumn" prefWidth="168.0" text="Description" />
+         </columns>
+      </TableView>
+      <Button fx:id="registerFaultButton" layoutX="259.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Register Fault" />
+      <Button fx:id="registerMaintenanceButton" layoutX="396.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Register Maintenance" />
+      <Button fx:id="backButton" layoutX="578.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
+      <Label layoutX="317.0" layoutY="36.0" text="Registered Maintenances">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="348.0" layoutY="311.0" text="Registered Faults">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteButton" layoutX="156.0" layoutY="580.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />
+      <Button fx:id="refreshFaultButton" layoutX="107.0" layoutY="324.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
+      <Button fx:id="refreshMaintenanceButton" layoutX="106.0" layoutY="49.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
+   </children>
+</AnchorPane>

@@ -1,8 +1,6 @@
-package controller;
-
-import controller.solarPanels.SolarPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.SolarPanel;
 import model.SolarPanelProduction;
 
 import java.sql.*;
@@ -37,6 +35,7 @@ public class DatabaseConnection //implements AutoCloseable
         // Close the connection
         connection.close();
         connection = null;
+        System.out.println("Database connection closed.");
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -56,7 +55,8 @@ public class DatabaseConnection //implements AutoCloseable
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
             resultSet.getString("model_type"),resultSet.getString("roof_position"),resultSet.getDate("date_installed"),resultSet.getString("manufacturer"),resultSet.getBoolean("is_active")));
       }
-      closeConnection();
+      System.out.println("CONNECTION WHILE IN GETSOLARPANELS");
+      System.out.println(connection);
     }
     catch(SQLException e)
     {

@@ -16,6 +16,7 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
+import model.SolarPanel;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

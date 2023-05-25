@@ -1,7 +1,10 @@
 package controller;
 
+import controller.faultsandmaintenance.RegisterFaultsController;
+import controller.faultsandmaintenance.RegisterMaintenanceController;
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
+import controller.faultsandmaintenance.FaultsAndMaintenanceController;
 import controller.solarPanels.InsertModifySolarPanelController;
 import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ViewHandler
   {
+    private static Connection connection;
     private final Stage primaryStage;
     private Scene main;
     private Scene solar_panels;
@@ -21,6 +26,9 @@ public class ViewHandler
     private Scene insertModifySolarPanel;
     private Scene manufacturerInformation;
     private Scene insertManufacturerPage;
+    private Scene faultsAndMaintenance;
+    private Scene registerFaults;
+    private Scene registerMaintenance;
     private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
     private ProductionChooseParametersController productionChooseParametersController;
@@ -28,6 +36,9 @@ public class ViewHandler
     private InsertModifySolarPanelController insertModifySolarPanelController;
     private ManufacturerInformationController manufacturerInformationController;
     private InsertManufacturerPageController insertManufacturerPageController;
+    private FaultsAndMaintenanceController faultsAndMaintenanceController;
+    private RegisterFaultsController registerFaultsController;
+    private RegisterMaintenanceController registerMaintenanceController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -35,11 +46,14 @@ public class ViewHandler
     public static final String INSERT_MODIFY_SOLAR_PANEL = "INSERT_MODIFY_SOLAR_PANEL";
     public static final String MANUFACTURER_INFORMATION = "MANUFACTURER_INFORMATION";
     public static final String INSERT_MANUFACTURER_PAGE = "INSERT_MANUFACTURER_PAGE";
+    public static final String FAULTS_AND_MAINTENANCE = "FAULTS_AND_MAINTENANCE";
+    public static final String REGISTER_FAULTS = "REGISTER_FAULTS";
+    public static final String REGISTER_MAINTENANCE = "REGISTER_MAINTENANCE";
 
-
-    public ViewHandler(Stage primaryStage)
+    public ViewHandler(Stage primaryStage, Connection connection)
     {
       this.primaryStage = primaryStage;
+      this.connection = connection;
 
       // Loading MainScene.fxml into main
       FXMLLoader loader = new FXMLLoader();
@@ -120,9 +134,9 @@ public class ViewHandler
         System.exit(1);
       }
 
-      // Loading ManufacturerInformation.fxml into modifySolarPanel
+      // Loading ManufacturerInformation.fxml into manufacturerInformation
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/ManufacturerInformation.fxml"));
+      loader.setLocation(getClass().getResource("../view/Dimitar/ManufacturerInformation.fxml"));
       try
       {
         manufacturerInformation = new Scene(loader.load());
@@ -135,9 +149,9 @@ public class ViewHandler
         System.exit(1);
       }
 
-      //
+      // Loading InsertManufacturerPage.fxml into insertManufacturerPage
       loader = new FXMLLoader();
-      loader.setLocation(getClass().getResource("../view/Martin/InsertManufacturerPage.fxml"));
+      loader.setLocation(getClass().getResource("../view/Dimitar/InsertManufacturerPage.fxml"));
       try
       {
         insertManufacturerPage = new Scene(loader.load());
@@ -149,7 +163,48 @@ public class ViewHandler
         System.out.println("Failed to load InsertManufacturerPage.fxml");
         System.exit(1);
       }
-
+      // Loading FaultsAndMaintenance.fxml into faultsAndMaintenance
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Dimitar/FaultsAndMaintenance.fxml"));
+      try
+      {
+        faultsAndMaintenance = new Scene(loader.load());
+        faultsAndMaintenanceController = loader.getController();
+        faultsAndMaintenanceController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load FaultsAndMaintenance.fxml");
+        System.exit(1);
+      }
+      // Loading RegisterFaults.fxml into registerFaults
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Dimitar/RegisterFaults.fxml"));
+      try
+      {
+        registerFaults = new Scene(loader.load());
+        registerFaultsController = loader.getController();
+        registerFaultsController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load RegisterFaults.fxml");
+        System.exit(1);
+      }
+      // Loading RegisterMaintenance.fxml into registerMaintenance
+      loader = new FXMLLoader();
+      loader.setLocation(getClass().getResource("../view/Dimitar/RegisterMaintenance.fxml"));
+      try
+      {
+        registerMaintenance = new Scene(loader.load());
+        registerMaintenanceController = loader.getController();
+        registerMaintenanceController.init(this);
+      }
+      catch(IOException e)
+      {
+        System.out.println("Failed to load RegisterMaintenance.fxml");
+        System.exit(1);
+      }
 
       changeScene(MAIN_SCENE);
     }
@@ -184,7 +239,7 @@ public class ViewHandler
         }
         else if (INSERT_MODIFY_SOLAR_PANEL.equals(sceneName))
         {
-          primaryStage.setTitle("Modify Page");
+          primaryStage.setTitle("Solar Panels");
           primaryStage.setScene(insertModifySolarPanel);
           primaryStage.show();
         }
@@ -200,6 +255,29 @@ public class ViewHandler
           primaryStage.setScene(manufacturerInformation);
           primaryStage.show();
         }
+        else if (FAULTS_AND_MAINTENANCE.equals(sceneName))
+        {
+          primaryStage.setTitle("Faults And Maintenance");
+          primaryStage.setScene(faultsAndMaintenance);
+          primaryStage.show();
+        }
+        else if (REGISTER_FAULTS.equals(sceneName))
+        {
+          primaryStage.setTitle("Register a fault in a solar panel");
+          primaryStage.setScene(registerFaults);
+          primaryStage.show();
+        }
+        else if (REGISTER_MAINTENANCE.equals(sceneName))
+        {
+          primaryStage.setTitle("Register a maintenance of a solar panel");
+          primaryStage.setScene(registerMaintenance);
+          primaryStage.show();
+        }
+      }
+
+      public Connection getConnection()
+      {
+        return connection;
       }
 
       public InsertModifySolarPanelController getInsertModifySolarPanelController()

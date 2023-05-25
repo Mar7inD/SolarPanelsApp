@@ -4,19 +4,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manufacturer.InsertManufacturerPageController">
    <children>
       <Button fx:id="saveButton" layoutX="201.0" layoutY="285.0" mnemonicParsing="false" onAction="#onClick" text="Save" />
       <Button fx:id="backButton" layoutX="361.0" layoutY="285.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
-      <Label layoutX="201.0" layoutY="33.0" text="Manufacturer" />
+      <Label layoutX="180.0" layoutY="35.0" text="Insert a Manufacturer Company">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
       <Label layoutX="199.0" layoutY="81.0" text="Name" />
       <Label layoutX="199.0" layoutY="126.0" text="Address" />
       <Label layoutX="200.0" layoutY="175.0" text="Email" />
-      <TextField fx:id="nameField" layoutX="252.0" layoutY="77.0" />
-      <TextField fx:id="addressField" layoutX="252.0" layoutY="122.0" />
-      <TextField fx:id="phoneNumberField" layoutX="252.0" layoutY="221.0" />
+      <TextField fx:id="nameField" layoutX="252.0" layoutY="77.0" promptText="Company Name" />
+      <TextField fx:id="addressField" layoutX="252.0" layoutY="122.0" promptText="Address" />
+      <TextField fx:id="phoneNumberField" layoutX="252.0" layoutY="221.0" promptText="+123456789" />
       <Label contentDisplay="RIGHT" layoutX="199.0" layoutY="214.0" prefHeight="41.0" prefWidth="45.0" text="Phone number" wrapText="true" />
-      <TextField fx:id="emailField" layoutX="252.0" layoutY="171.0" />
+      <TextField fx:id="emailField" layoutX="252.0" layoutY="171.0" promptText="email@example.com" />
    </children>
 </AnchorPane>

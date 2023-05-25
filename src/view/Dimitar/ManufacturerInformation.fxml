@@ -18,9 +18,9 @@
                <TableColumn fx:id="phoneNumberColumn" prefWidth="130.0" text="Phone number" />
            </columns>
        </TableView>
-      <Label layoutX="240.0" layoutY="72.0" text="Manufacturer Information">
+      <Label layoutX="268.0" layoutY="51.0" text="Manufacturer Information">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="16.0" />
          </font></Label>
       <Button fx:id="insertButton" layoutX="261.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Insert" />
       <Button fx:id="deleteButton" layoutX="339.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />

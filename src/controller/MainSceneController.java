@@ -9,7 +9,7 @@ public class MainSceneController
 {
   private ViewHandler viewHandler;
   @FXML private Button solarPanel;
-
+  @FXML private Button faultsAndMaintenance;
   @FXML private Button productionScene;
   @FXML private Button manufacturersInformation;
   @FXML private Button productionChooseParameters;
@@ -38,6 +38,10 @@ public class MainSceneController
     else if(event.getSource() == manufacturersInformation)
     {
       viewHandler.changeScene(ViewHandler.MANUFACTURER_INFORMATION);
+    }
+    else if(event.getSource() == faultsAndMaintenance)
+    {
+      viewHandler.changeScene(ViewHandler.FAULTS_AND_MAINTENANCE);
     }
     else if(event.getSource() == exit)
     {

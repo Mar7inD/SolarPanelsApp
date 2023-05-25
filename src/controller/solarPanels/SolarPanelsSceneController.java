@@ -1,6 +1,5 @@
 package controller.solarPanels;
 
-import controller.DatabaseConnection;
 import controller.ViewHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.SolarPanel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,7 +24,6 @@ public class SolarPanelsSceneController
 {
   @FXML private Button back;
   @FXML private Button insertModifySolarPanel;
-  @FXML private Button showSolarPanels;
   private Button closeButton;
   @FXML private TableView<SolarPanel> solarPanelsTable;
   @FXML private TableColumn<SolarPanel, Integer> serialNo = new TableColumn<SolarPanel, Integer>("Serial No");
@@ -40,7 +39,7 @@ public class SolarPanelsSceneController
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
-    for (int i = 1; i < 220; i++)
+    for (int i = 1; i < 123; i++)
         { String position = "" + i;
           this.solarPanelPosition.getItems().add(position); }
 
@@ -97,11 +96,15 @@ public class SolarPanelsSceneController
   {
     ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
 
-    try (Connection connection = DatabaseConnection.getConnection())
+    try
     {
-      Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT * FROM solar_panels.solarpanels WHERE solarpanels.roof_position = ";
+
+      Statement statement = viewHandler.getConnection().createStatement();
+
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels WHERE solar_panels.roof_position = ";
+
       ResultSet resultSet = statement.executeQuery(sqlQuery + solarPanelPosition.getValue());
+
       while (resultSet.next()) {
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
             resultSet.getString("model_type"),resultSet.getString("roof_position"),resultSet.getDate("date_installed"),resultSet.getString("manufacturer"),resultSet.getBoolean("is_active")));
@@ -111,16 +114,17 @@ public class SolarPanelsSceneController
     {
       e.printStackTrace();
     }
-    DatabaseConnection.closeConnection();
     return solarPanels;
   }
 
-  public void Modify()
+  // Class Modify for the button modify in the pop out table with the solar panels
+  public void Modify() throws IndexOutOfBoundsException
   {
     ObservableList<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
     if (selectedItems != null)
     {
-      viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
+     viewHandler.getInsertModifySolarPanelController().setModifying(true);
+     viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
       Stage currentStage = (Stage) closeButton.getScene().getWindow();
@@ -136,4 +140,5 @@ public class SolarPanelsSceneController
       alert.showAndWait();
     }
   }
+
 }

@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Test push">
-      <change afterPath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" afterDir="false" />
+    <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
+      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/FaultsAndMaintenanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterFaultsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/faultsandmaintenance/RegisterMaintenanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Fault.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Maintenance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/FaultsAndMaintenance.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/RegisterFaults.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/Dimitar/RegisterMaintenance.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolarPanelApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SolarPanelApp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/DatabaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MainSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MainSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductionChooseParametersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/InsertManufacturerPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/manufacturer/ManufacturerInformationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/FaultsAndMaintenanceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Manufacturer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Manufacturer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SolarPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SolarPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/FaultsAndMaintenance.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertManufacturerPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/InsertManufacturerPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/ManufacturerInformation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -52,11 +78,38 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dimit\IdeaProjects\SolarPanelsApp\src\view\Dimitar" />
       <recent name="$PROJECT_DIR$/src/controller" />
       <recent name="$PROJECT_DIR$/src/view/Martin" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="ConnectionLogger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.ConnectionLogger" />
+      <module name="SolarPanelApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectionViewer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.ConnectionViewer" />
+      <module name="SolarPanelApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SolarPanelApp" />
@@ -65,6 +118,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ConnectionLogger" />
+        <item itemvalue="Application.ConnectionViewer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -124,33 +183,33 @@
       <option name="project" value="LOCAL" />
       <updated>1684664740876</updated>
     </task>
-    <task id="LOCAL-00008" summary="Edited the ManufacturerInformationController">
-      <created>1684683393458</created>
+    <task id="LOCAL-00008" summary="Insert and modify page working">
+      <created>1684914254118</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1684683393458</updated>
+      <updated>1684914254118</updated>
     </task>
-    <task id="LOCAL-00009" summary="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml">
-      <created>1684690299610</created>
+    <task id="LOCAL-00009" summary="Worked on the insert solar panels.">
+      <created>1685018287757</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1684690299610</updated>
+      <updated>1685018287757</updated>
     </task>
-    <task id="LOCAL-00010" summary="Added delete button in ManufacturerInformationController">
-      <created>1684778533306</created>
+    <task id="LOCAL-00010" summary="Worked on the insert solar panels.">
+      <created>1685018534964</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1684778533306</updated>
+      <updated>1685018534964</updated>
     </task>
-    <task id="LOCAL-00011" summary="Test push">
-      <created>1684779989835</created>
+    <task id="LOCAL-00011" summary="Worked on the insert solar panels.">
+      <created>1685021040175</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1684779989835</updated>
+      <updated>1685021040175</updated>
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
@@ -184,20 +243,8 @@
     <MESSAGE value="Worked on InsertManufacturerPageController" />
     <MESSAGE value="Created packages so it the files look cleaner." />
     <MESSAGE value="Worked on the modify option." />
-    <MESSAGE value="Edited the ManufacturerInformationController" />
-    <MESSAGE value="Edited the InsertManufacturerPageController and ManufacturerInformation.fxml" />
-    <MESSAGE value="Added delete button in ManufacturerInformationController" />
-    <MESSAGE value="Test push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test push" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="org.postgresql.util.PSQLException" package="org.postgresql.util" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Insert and modify page working" />
+    <MESSAGE value="Worked on the insert solar panels." />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on the insert solar panels." />
   </component>
 </project>

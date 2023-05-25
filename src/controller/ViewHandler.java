@@ -206,5 +206,13 @@ public class ViewHandler
       {
         return insertModifySolarPanelController;
       }
+      public ShowDataController getShowDataController()
+      {
+        return showDataController;
+      }
+      public Stage getStage()
+      {
+        return primaryStage;
+      }
     }
 

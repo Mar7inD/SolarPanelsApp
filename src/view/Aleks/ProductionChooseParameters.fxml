@@ -47,6 +47,11 @@
       <Button fx:id="removeButton" layoutX="259.0" layoutY="185.0" mnemonicParsing="false" onAction="#onClick" text="&lt;- Remove" />
       <CheckBox fx:id="liveData" layoutX="364.0" layoutY="259.0" mnemonicParsing="false" text="Live data" />
       <Button fx:id="refreshButton" layoutX="284.0" layoutY="109.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
-      <Text fx:id="daysNum" layoutX="281.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="daysNum" layoutX="523.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="errorText" disable="true" fill="RED" layoutX="220.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

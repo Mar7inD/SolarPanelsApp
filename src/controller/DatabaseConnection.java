@@ -2,6 +2,7 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.SolarPanel;
 
 import java.sql.*;
 import java.util.Properties;

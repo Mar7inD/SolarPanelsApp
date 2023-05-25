@@ -13,7 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import controller.SolarPanel;
+import model.SolarPanel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

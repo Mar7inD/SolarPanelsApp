@@ -10,6 +10,7 @@ import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
+import model.SolarPanel;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -3,17 +3,19 @@ package controller.faultsandmaintenance;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import model.Fault;
-
 import controller.ViewHandler;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import model.Maintenance;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class FaultsAndMaintenanceController
 {
@@ -34,6 +36,7 @@ public class FaultsAndMaintenanceController
   @FXML private TableColumn<Fault, String> faultTypeColumn;
 
   @FXML private TableColumn<Fault, String> faultDescriptionColumn;
+
   @FXML private TableView<Maintenance> maintenanceTableView;
 
   @FXML private TableColumn<Maintenance, Integer> maintenanceIdColumn;
@@ -68,16 +71,18 @@ public class FaultsAndMaintenanceController
     maintenanceDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
     // Retrieve data from the database
-    Connection connection = viewHandler.getConnection();
     try {
+      Connection connection = viewHandler.getConnection();
       List<Fault> faults = loadFaultsData(connection);
       List<Maintenance> maintenances = loadMaintenanceData(connection);
+
       // Populate the TableView with the retrieved data
       faultsTableView.getItems().addAll(faults);
       maintenanceTableView.getItems().addAll(maintenances);
     } catch (SQLException e) {
       e.printStackTrace();
     }
+
 
     faultsTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
       if (newSelection != null) {
@@ -105,24 +110,19 @@ public class FaultsAndMaintenanceController
 
   }
 
-  private List<Fault> loadFaultsData(Connection connection) throws SQLException
-  {
+  private List<Fault> loadFaultsData(Connection connection) throws SQLException {
     List<Fault> faults = new ArrayList<>();
 
-    try (PreparedStatement statement = connection.prepareStatement(
-        "SELECT * FROM \"solar_panels\".\"faults\" LIMIT 100");
-        ResultSet resultSet = statement.executeQuery())
-    {
-      while (resultSet.next())
-      {
+    try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM solar_panels.faults");
+        ResultSet resultSet = statement.executeQuery()) {
+      while (resultSet.next()) {
         int id = resultSet.getInt("id");
         int panelSerialNumber = resultSet.getInt("panel_serial_no");
         Timestamp faultDate = resultSet.getTimestamp("fault_date");
         String faultType = resultSet.getString("fault_type");
         String description = resultSet.getString("description");
 
-        Fault fault = new Fault(id, panelSerialNumber, faultDate, faultType,
-            description);
+        Fault fault = new Fault(id, panelSerialNumber, faultDate, faultType, description);
         faults.add(fault);
       }
     }
@@ -130,24 +130,19 @@ public class FaultsAndMaintenanceController
     return faults;
   }
 
-  private List<Maintenance> loadMaintenanceData(Connection connection) throws SQLException
-  {
+  private List<Maintenance> loadMaintenanceData(Connection connection) throws SQLException {
     List<Maintenance> maintenances = new ArrayList<>();
 
-    try (PreparedStatement statement = connection.prepareStatement(
-        "SELECT * FROM \"solar_panels\".\"maintenance\" LIMIT 100");
-        ResultSet resultSet = statement.executeQuery())
-    {
-      while (resultSet.next())
-      {
+    try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM solar_panels.maintenance");
+        ResultSet resultSet = statement.executeQuery()) {
+      while (resultSet.next()) {
         int id = resultSet.getInt("id");
         int panelSerialNumber = resultSet.getInt("panel_serial_no");
         Timestamp maintenanceDate = resultSet.getTimestamp("maintenance_date");
         String maintenanceType = resultSet.getString("maintenance_type");
         String description = resultSet.getString("description");
 
-        Maintenance maintenance = new Maintenance(id, panelSerialNumber, maintenanceDate, maintenanceType,
-            description);
+        Maintenance maintenance = new Maintenance(id, panelSerialNumber, maintenanceDate, maintenanceType, description);
         maintenances.add(maintenance);
       }
     }
@@ -157,7 +152,6 @@ public class FaultsAndMaintenanceController
 
   private void refreshFaultsTableView() {
     faultsTableView.getItems().clear(); // Clear the existing fault items
-
     try {
       List<Fault> faults = loadFaultsData(viewHandler.getConnection());
 
@@ -171,11 +165,8 @@ public class FaultsAndMaintenanceController
 
   private void refreshMaintenanceTableView() {
     maintenanceTableView.getItems().clear(); // Clear the existing maintenance items
-
-    Connection connection = null;
     try {
-      List<Maintenance> maintenanceList = loadMaintenanceData(
-          viewHandler.getConnection());
+      List<Maintenance> maintenanceList = loadMaintenanceData(viewHandler.getConnection());
 
       // Populate the TableView with the retrieved data
       maintenanceTableView.getItems().addAll(maintenanceList);
@@ -208,7 +199,6 @@ public class FaultsAndMaintenanceController
   private void deleteMaintenance() {
     if (selectedMaintenance != null) {
       // Delete the selected maintenance from the database
-      Connection connection = null;
       try {
         deleteMaintenanceFromDatabase(viewHandler.getConnection(), selectedMaintenance);
       } catch (SQLException e) {
@@ -220,7 +210,7 @@ public class FaultsAndMaintenanceController
   }
 
   private void deleteFaultFromDatabase(Connection connection, Fault fault) throws SQLException {
-    String deleteQuery = "DELETE FROM \"solar_panels\".\"faults\" WHERE id = ?";
+    String deleteQuery = "DELETE FROM solar_panels.faults WHERE id = ?";
     try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
       statement.setInt(1, fault.getId());
       statement.executeUpdate();
@@ -228,7 +218,7 @@ public class FaultsAndMaintenanceController
   }
 
   private void deleteMaintenanceFromDatabase(Connection connection, Maintenance maintenance) throws SQLException {
-    String deleteQuery = "DELETE FROM \"solar_panels\".\"maintenance\" WHERE id = ?";
+    String deleteQuery = "DELETE FROM solar_panels.maintenance WHERE id = ?";
     try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
       statement.setInt(1, maintenance.getId());
       statement.executeUpdate();

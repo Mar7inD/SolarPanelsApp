@@ -77,14 +77,14 @@ public class InsertManufacturerPageController
 
   private boolean isValidEmail(String email) {
     // Simple email validation using regular expression
-    String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-    return email.matches(emailRegex);
+    String emailValid = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    return email.matches(emailValid);
   }
 
   private boolean isValidPhoneNumber(String phoneNumber) {
     // Simple phone number validation using regular expression
-    String phoneRegex = "^\\+[0-9]+$";
-    return phoneNumber.matches(phoneRegex);
+    String phoneValid = "^\\+[0-9]+$";
+    return phoneNumber.matches(phoneValid);
   }
 
   private void showErrorDialog(String title, String message) {

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Manufacturer;
 import model.SolarPanel;
 
 import java.sql.*;
@@ -19,13 +20,14 @@ public class SolarPanelsSceneController
   @FXML private Button back;
   @FXML private Button insertModifySolarPanel;
   @FXML private Button modify;
-  @FXML private TableView solarPanelsTable = new TableView<SolarPanel>();
-  @FXML private TableColumn serialNo = new TableColumn<SolarPanel, Integer>("Serial No");
-  @FXML private TableColumn panelType = new TableColumn<SolarPanel, String>("Type");
-  @FXML private TableColumn roofPosition = new TableColumn<SolarPanel, String>("Roof Position");
-  @FXML private TableColumn installationDate = new TableColumn<SolarPanel, Date>("Installation Date");
-  @FXML private TableColumn manufacturer = new TableColumn<SolarPanel, String>("Manufacturer");
-  @FXML private TableColumn activity = new TableColumn<SolarPanel, String>("Activity");
+  @FXML private TableView<SolarPanel> solarPanelsTable;
+  @FXML private TableColumn<SolarPanel, Integer> serialNo;
+  @FXML private TableColumn<SolarPanel, String> panelType;
+  @FXML private TableColumn<SolarPanel, String> roofPosition;
+  @FXML private TableColumn<SolarPanel, Date> installationDate;
+  @FXML private TableColumn<SolarPanel, String> manufacturer;
+  @FXML private TableColumn<SolarPanel, String> activity;
+
 
   private SolarPanel selectedSolarPanel;
   private ViewHandler viewHandler;
@@ -42,12 +44,7 @@ public class SolarPanelsSceneController
     manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
     activity.setCellValueFactory(new PropertyValueFactory<>("activity"));
 
-    List<SolarPanel> solarPanels = getSolarPanels();
-
-
-      // Populate the TableView with the retrieved data
-    solarPanelsTable.getColumns().addAll(serialNo,panelType,roofPosition,installationDate,manufacturer,activity);
-    solarPanelsTable.getItems().addAll(solarPanels);
+    refreshTableView();
 
     // Disable the delete button initially
     modify.setDisable(true);
@@ -103,25 +100,24 @@ public class SolarPanelsSceneController
     return solarPanels;
   }
 
+  public void refreshTableView() {
+    solarPanelsTable.getItems().clear(); // Clear the existing items
+
+      List<SolarPanel> solarPanels = getSolarPanels();
+
+      // Populate the TableView with the retrieved data
+      solarPanelsTable.getItems().addAll(solarPanels);
+  }
+
   // Class Modify for the button modify in the pop out table with the solar panels
   public void onModify()
   {
     List<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
-    if (selectedItems != null)
     {
      viewHandler.getInsertModifySolarPanelController().setModifying(true);
      viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
-    }
-    else
-    {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Alert");
-      alert.setHeaderText("This is an alert message");
-      alert.setContentText("Hello, world!");
-
-      alert.showAndWait();
     }
   }
 

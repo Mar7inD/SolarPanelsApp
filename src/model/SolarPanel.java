@@ -79,7 +79,11 @@ public class SolarPanel
     this.manufacturer = manufacturer;
   }
 
-  public void setActive(boolean active)
+  public String getActivity()
+  {
+    return activity;
+  }
+  public void setActivity(boolean active)
   {
     if (active)
     {

@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="The app is starting again and everything is rewriten.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/SolarPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/SolarPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685026994354</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="The app is starting again and everything is rewriten.">
+      <created>1685033709017</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1685033709017</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

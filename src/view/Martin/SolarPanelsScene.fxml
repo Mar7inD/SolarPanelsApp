@@ -10,7 +10,7 @@
       <Button fx:id="back" layoutX="428.0" layoutY="335.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
       <Button fx:id="insertModifySolarPanel" layoutX="257.0" layoutY="335.0" mnemonicParsing="false" onAction="#onClick" text="Insert Solar Panel" />
       <Button fx:id="modify" layoutX="118.0" layoutY="335.0" mnemonicParsing="false" onAction="#onModify" text="Modify" />
-      <TableView fx:id="solalrPanelstable" layoutX="48.0" layoutY="45.0" prefHeight="253.0" prefWidth="530.0">
+      <TableView fx:id="solarPanelsTable" layoutX="48.0" layoutY="45.0" prefHeight="253.0" prefWidth="530.0">
         <columns>
           <TableColumn fx:id="serialNo" prefWidth="94.0" text="Serial Number" />
           <TableColumn fx:id="panelType" prefWidth="56.0" text="Type" />

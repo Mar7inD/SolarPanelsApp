@@ -19,7 +19,7 @@
       <DatePicker fx:id="installationDatePicker" layoutX="259.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" />
       <Label layoutX="144.0" layoutY="207.0" text="Date installed" />
       <Label layoutX="143.0" layoutY="62.0" text="Serial number" />
-      <TextField fx:id="serialNoText" layoutX="259.0" layoutY="58.0" />
+      <TextField fx:id="serialNoText" layoutX="259.0" layoutY="58.0" promptText="Ex: 342251" />
       <ComboBox fx:id="manufacturer" layoutX="259.0" layoutY="245.0" prefWidth="150.0" visibleRowCount="2" />
       <ComboBox fx:id="roofCombo" layoutX="259.0" layoutY="154.0" prefWidth="150.0" />
       <Label layoutX="151.0" layoutY="290.0" text="Activity" />

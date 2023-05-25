@@ -284,5 +284,9 @@ public class ViewHandler
       {
         return insertModifySolarPanelController;
       }
+    public SolarPanelsSceneController getSolarPanelsSceneController()
+    {
+      return solarPanelsSceneController;
+    }
     }
 

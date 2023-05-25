@@ -3,14 +3,12 @@ package controller.solarPanels;
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class InsertModifySolarPanelController
 {
@@ -28,6 +26,7 @@ public class InsertModifySolarPanelController
   @FXML private ComboBox activity = new ComboBox<String>();
   @FXML private Button save;
   @FXML private Button back;
+  private String firstValue;
 
 
   // Class init for initializing the Scene and items
@@ -55,6 +54,14 @@ public class InsertModifySolarPanelController
       {
           manufactorHash.add(resultSet.getString("manufacturer"));
       }
+
+      Iterator<String> iterator = manufactorHash.iterator();
+      if (iterator.hasNext())
+      {
+        firstValue = iterator.next();
+        System.out.println(firstValue);
+      }
+
       manufacturer.getItems().addAll(manufactorHash);
     }
 
@@ -62,6 +69,8 @@ public class InsertModifySolarPanelController
     {
       e.printStackTrace();
     }
+
+    resetFields();
   }
 
   // Class setSerialNo for receiving values from the database based on given serial number
@@ -104,11 +113,12 @@ public class InsertModifySolarPanelController
     if(event.getSource() == save)
     {
       try
-      {
+      { checkSerialNumber(serialNoText.getText());
+        checkDuplicatesActivity(Integer.parseInt(roofCombo.getValue().toString()),activity.getValue().toString());
         if(modifying)
         {
           modifying = false;
-          String updateQuery = "UPDATE solar_panels.solar_panels SET model_type = ?, roof_position = ?, date_installed = ?, manufacturer = ?, is_active = ?;";
+          String updateQuery = "UPDATE solar_panels.solar_panels SET model_type = ?, roof_position = ?, date_installed = ?, manufacturer = ?, is_active = ? WHERE serial_no = ?;";
           PreparedStatement statementUpdate = viewHandler.getConnection().prepareStatement(
               updateQuery);
           statementUpdate.setString(1, typeCombo.getValue().toString());
@@ -123,6 +133,7 @@ public class InsertModifySolarPanelController
           {
             statementUpdate.setBoolean(5, false);
           }
+          statementUpdate.setInt(6, Integer.parseInt(serialNoText.getText()));
           statementUpdate.executeUpdate();
         }
 
@@ -156,6 +167,7 @@ public class InsertModifySolarPanelController
       {
         e.printStackTrace();
       }
+      viewHandler.getSolarPanelsSceneController().refreshTableView();
       viewHandler.changeScene(viewHandler.SOLAR_PANELS);
     }
     // Getting back to solar panels
@@ -170,15 +182,49 @@ public class InsertModifySolarPanelController
   public void resetFields()
   {
     serialNoText.setText("");
-    typeCombo.setValue("");
-    roofCombo.setValue("");
+    typeCombo.setValue("PV");
+    roofCombo.setValue("1");
     installationDatePicker.setValue(LocalDate.now());
-    manufacturer.setValue("");
+    manufacturer.setValue(firstValue);
+    activity.setValue("Active");
   }
 
   //Class to determine if we are modifying or inserting the solar panel
   public void setModifying(boolean modifying)
   {
     this.modifying = modifying;
+  }
+
+  public void checkSerialNumber(String serialNo)
+  {
+    if(serialNo.length() != 6)
+    {
+      // Creating and configuring the alert
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Input Error");
+      alert.setHeaderText("Incorrect Value");
+      alert.setContentText("The input value cannot be negative.");
+
+      // Display the alert
+      alert.showAndWait();
+    }
+  }
+  public void checkDuplicatesActivity(int roofPosition, String activity)
+  {
+    Connection connection = viewHandler.getConnection();
+    try
+    {
+      if(activity == "Active")
+      {
+        String Query = "UPDATE solar_panels.solar_panels SET is_active = FALSE WHERE roof_position = ?;";
+        PreparedStatement statement = connection.prepareStatement(Query);
+        statement.setInt(1, roofPosition);
+        statement.executeUpdate();
+      }
+    }
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
   }
 }

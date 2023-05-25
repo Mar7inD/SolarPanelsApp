@@ -29,10 +29,29 @@ public class Main extends Application
         // Start application
         Application.launch(Main.class);
 
-      } catch (SQLException e) {
+        //Hooking the database close on exiting the program
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+          public void run()
+          {
+            // Close the database connection
+            try
+            {
+              connection.close();
+            }
+            catch (SQLException e)
+            {
+              throw new RuntimeException(e);
+            }
+          }
+        });
+      }
+      catch (SQLException e) {
         System.err.println("Failed to connect to the database: " + e.getMessage());
 
         e.printStackTrace();
       }
+
+
   }
 }

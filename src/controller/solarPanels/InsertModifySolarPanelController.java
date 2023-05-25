@@ -1,6 +1,5 @@
 package controller.solarPanels;
 
-
 import controller.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -43,10 +43,10 @@ public class SolarPanelsSceneController
 
     refreshTableView();
 
-    // Disable the delete button initially
+    // Disable the modify button initially
     modify.setDisable(true);
 
-    // Add a listener to track row selection in the TableView
+    // Add a listeners to track row selection in the TableView
     solarPanelsTable.getSelectionModel().selectedItemProperty().addListener
         ((obs, oldSelection, newSelection) -> modify.setDisable(newSelection == null));
   }

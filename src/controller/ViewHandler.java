@@ -213,13 +213,13 @@ public class ViewHandler
       {
         if (MAIN_SCENE.equals(sceneName))
         {
-          primaryStage.setTitle("Main page");
+          primaryStage.setTitle("Main Menu");
           primaryStage.setScene(main);
           primaryStage.show();
         }
         else if (SOLAR_PANELS.equals(sceneName))
         {
-          primaryStage.setTitle("Solar Panels");
+          primaryStage.setTitle("Solar Panels Information");
           primaryStage.setScene(solar_panels);
           primaryStage.show();
         }
@@ -245,13 +245,13 @@ public class ViewHandler
         }
         else if (INSERT_MANUFACTURER_PAGE.equals(sceneName))
         {
-          primaryStage.setTitle("Insert Manufacturer data");
+          primaryStage.setTitle("Insert Manufacturer Information");
           primaryStage.setScene(insertManufacturerPage);
           primaryStage.show();
         }
         else if (MANUFACTURER_INFORMATION.equals(sceneName))
         {
-          primaryStage.setTitle("Show Manufacturer data");
+          primaryStage.setTitle("Manufacturer Information");
           primaryStage.setScene(manufacturerInformation);
           primaryStage.show();
         }
@@ -263,13 +263,13 @@ public class ViewHandler
         }
         else if (REGISTER_FAULTS.equals(sceneName))
         {
-          primaryStage.setTitle("Register a fault in a solar panel");
+          primaryStage.setTitle("Register Fault");
           primaryStage.setScene(registerFaults);
           primaryStage.show();
         }
         else if (REGISTER_MAINTENANCE.equals(sceneName))
         {
-          primaryStage.setTitle("Register a maintenance of a solar panel");
+          primaryStage.setTitle("Register Maintenance");
           primaryStage.setScene(registerMaintenance);
           primaryStage.show();
         }

@@ -30,21 +30,17 @@ public class Main extends Application
         Application.launch(Main.class);
 
         //Hooking the database close on exiting the program
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-          public void run()
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+          // Close the database connection
+          try
           {
-            // Close the database connection
-            try
-            {
-              connection.close();
-            }
-            catch (SQLException e)
-            {
-              throw new RuntimeException(e);
-            }
+            connection.close();
           }
-        });
+          catch (SQLException e)
+          {
+            throw new RuntimeException(e);
+          }
+        }));
       }
       catch (SQLException e) {
         System.err.println("Failed to connect to the database: " + e.getMessage());

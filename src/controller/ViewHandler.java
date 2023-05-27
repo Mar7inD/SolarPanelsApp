@@ -29,16 +29,8 @@ public class ViewHandler
     private Scene faultsAndMaintenance;
     private Scene registerFaults;
     private Scene registerMaintenance;
-    private MainSceneController mainSceneController;
     private SolarPanelsSceneController solarPanelsSceneController;
-    private ProductionChooseParametersController productionChooseParametersController;
-    private ShowDataController showDataController;
     private InsertModifySolarPanelController insertModifySolarPanelController;
-    private ManufacturerInformationController manufacturerInformationController;
-    private InsertManufacturerPageController insertManufacturerPageController;
-    private FaultsAndMaintenanceController faultsAndMaintenanceController;
-    private RegisterFaultsController registerFaultsController;
-    private RegisterMaintenanceController registerMaintenanceController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -53,7 +45,7 @@ public class ViewHandler
     public ViewHandler(Stage primaryStage, Connection connection)
     {
       this.primaryStage = primaryStage;
-      this.connection = connection;
+      ViewHandler.connection = connection;
 
       // Loading MainScene.fxml into main
       FXMLLoader loader = new FXMLLoader();
@@ -61,7 +53,7 @@ public class ViewHandler
       try
       {
         main = new Scene(loader.load());
-        mainSceneController = loader.getController();
+        MainSceneController mainSceneController = loader.getController();
         mainSceneController.init(this);
       }
       catch (IOException e)
@@ -91,13 +83,12 @@ public class ViewHandler
       try
       {
         chooseProductionParameters = new Scene(loader.load());
-        productionChooseParametersController = loader.getController();
+        ProductionChooseParametersController productionChooseParametersController = loader.getController();
         productionChooseParametersController.init(this);
       }
       catch(IOException e)
       {
-        System.out.println(e);
-        // System.out.println("Failed to load ProductionChooseParameters.fxml");
+        System.out.println("Failed to load ProductionChooseParameters.fxml");
         System.exit(1);
       }
       catch (SQLException e)
@@ -110,7 +101,7 @@ public class ViewHandler
       try
       {
         showData = new Scene(loader.load());
-        showDataController = loader.getController();
+        ShowDataController showDataController = loader.getController();
         showDataController.init(this);
       }
       catch(IOException e)
@@ -140,7 +131,7 @@ public class ViewHandler
       try
       {
         manufacturerInformation = new Scene(loader.load());
-        manufacturerInformationController = loader.getController();
+        ManufacturerInformationController manufacturerInformationController = loader.getController();
         manufacturerInformationController.init(this);
       }
       catch(IOException e)
@@ -155,7 +146,7 @@ public class ViewHandler
       try
       {
         insertManufacturerPage = new Scene(loader.load());
-        insertManufacturerPageController = loader.getController();
+        InsertManufacturerPageController insertManufacturerPageController = loader.getController();
         insertManufacturerPageController.init(this);
       }
       catch(IOException e)
@@ -169,7 +160,7 @@ public class ViewHandler
       try
       {
         faultsAndMaintenance = new Scene(loader.load());
-        faultsAndMaintenanceController = loader.getController();
+        FaultsAndMaintenanceController faultsAndMaintenanceController = loader.getController();
         faultsAndMaintenanceController.init(this);
       }
       catch(IOException e)
@@ -183,7 +174,7 @@ public class ViewHandler
       try
       {
         registerFaults = new Scene(loader.load());
-        registerFaultsController = loader.getController();
+        RegisterFaultsController registerFaultsController = loader.getController();
         registerFaultsController.init(this);
       }
       catch(IOException e)
@@ -197,7 +188,7 @@ public class ViewHandler
       try
       {
         registerMaintenance = new Scene(loader.load());
-        registerMaintenanceController = loader.getController();
+        RegisterMaintenanceController registerMaintenanceController = loader.getController();
         registerMaintenanceController.init(this);
       }
       catch(IOException e)

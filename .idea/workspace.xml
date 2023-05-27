@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Fixed some connection bugs and added error windows to RegisterFaultsController and RegisterMaintenanceController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Aleks/ProductionChooseParameters.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Dimitar/ManufacturerInformation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Dimitar/ManufacturerInformation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/MainScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/InsertModifySolarPanelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/solarPanels/SolarPanelsSceneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

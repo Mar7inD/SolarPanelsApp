@@ -8,9 +8,8 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.solarPanels.SolarPanelsSceneController">
-   <children>
       <Button fx:id="back" layoutX="441.0" layoutY="411.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
-      <Button fx:id="insertModifySolarPanel" layoutX="270.0" layoutY="411.0" mnemonicParsing="false" onAction="#onClick" text="Insert Solar Panel" />
+      <Button fx:id="insertSolarPanel" layoutX="270.0" layoutY="411.0" mnemonicParsing="false" onAction="#onClick" text="Insert Solar Panel" />
       <Button fx:id="modify" layoutX="131.0" layoutY="411.0" mnemonicParsing="false" onAction="#onModify" text="Modify" />
       <TableView fx:id="solarPanelsTable" layoutX="37.0" layoutY="117.0" prefHeight="254.0" prefWidth="586.0">
         <columns>
@@ -24,8 +23,7 @@
       </TableView>
       <Label layoutX="237.0" layoutY="58.0" text="Solar Panels Information">
          <font>
-            <Font name="System Bold" size="16.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-   </children>
 </AnchorPane>

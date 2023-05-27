@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Manufacturer;
 import model.SolarPanel;
 
 import java.sql.*;
@@ -18,7 +17,7 @@ import java.util.List;
 public class SolarPanelsSceneController
 {
   @FXML private Button back;
-  @FXML private Button insertModifySolarPanel;
+  @FXML private Button insertSolarPanel;
   @FXML private Button modify;
   @FXML private TableView<SolarPanel> solarPanelsTable;
   @FXML private TableColumn<SolarPanel, Integer> serialNo;
@@ -28,8 +27,6 @@ public class SolarPanelsSceneController
   @FXML private TableColumn<SolarPanel, String> manufacturer;
   @FXML private TableColumn<SolarPanel, String> activity;
 
-
-  private SolarPanel selectedSolarPanel;
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
@@ -50,25 +47,17 @@ public class SolarPanelsSceneController
     modify.setDisable(true);
 
     // Add a listener to track row selection in the TableView
-    solarPanelsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-      if (newSelection != null) {
-        // Enable the delete button when a row is selected
-        modify.setDisable(false);
-        selectedSolarPanel = (SolarPanel) newSelection; // Store the selected manufacturer
-      } else {
-        // Disable the delete button when no row is selected
-        modify.setDisable(true);
-        selectedSolarPanel = null; // Reset the selected manufacturer
-      }
-    });
+    solarPanelsTable.getSelectionModel().selectedItemProperty().addListener
+        ((obs, oldSelection, newSelection) -> modify.setDisable(newSelection == null));
   }
 
 
   public void onClick(ActionEvent event)
   {
-    if (event.getSource() == insertModifySolarPanel)
+    if (event.getSource() == insertSolarPanel)
     {
       viewHandler.changeScene(ViewHandler.INSERT_MODIFY_SOLAR_PANEL);
+      viewHandler.getInsertModifySolarPanelController().resetFields();
     }
     else if (event.getSource() == back)
     {
@@ -78,7 +67,7 @@ public class SolarPanelsSceneController
 
   public List<SolarPanel> getSolarPanels()
   {
-    List<SolarPanel> solarPanels = new ArrayList<SolarPanel>();
+    List<SolarPanel> solarPanels = new ArrayList<>();
 
     try
     {
@@ -115,7 +104,8 @@ public class SolarPanelsSceneController
     List<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
     {
      viewHandler.getInsertModifySolarPanelController().setModifying(true);
-     viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
+     viewHandler.getInsertModifySolarPanelController().resetFields();
+     viewHandler.changeScene(ViewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
     }

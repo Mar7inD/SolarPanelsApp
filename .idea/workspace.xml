@@ -4,8 +4,6 @@
     <list default="true" id="a5563696-d40e-4400-973f-3c82d91218a4" name="Changes" comment="Cosmetic fixes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ViewHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ViewHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/InsertModifySolarPanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Martin/SolarPanelsScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685218313780</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Cosmetic fixes.">
+      <created>1685264897932</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1685264897932</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

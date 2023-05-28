@@ -1,19 +1,24 @@
 package model;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class SolarPanelProduction
 {
-  private Date measurementDate;
+  private Timestamp measurementDate;
   private float productionValue;
+  private String panelType;
 
-  public SolarPanelProduction(Date measurementDate, float productionValue)
+  public SolarPanelProduction(Timestamp measurementDate, String model_type, float productionValue)
   {
     this.measurementDate = measurementDate;
+    this.panelType = model_type;
     this.productionValue = productionValue;
   }
 
-  public Date getMeasurementDate()
+  public Timestamp getMeasurementDate()
   {
     return measurementDate;
   }
@@ -22,5 +27,5 @@ public class SolarPanelProduction
   {
     return productionValue;
   }
-
+  public String getPanelType() {return panelType;}
 }

@@ -1,6 +1,9 @@
 package controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,17 +18,19 @@ import model.SolarPanelProduction;
 import javafx.animation.FadeTransition;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.time.LocalTime;
+import java.sql.Statement;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
-public class ShowDataController implements Initializable
+public class ShowDataController
 {
   List<String> selectedModels;
   LocalDate startDate;
+  LocalTime currentTime;
   double selectedPeriod;
 
   private ViewHandler viewHandler;
@@ -33,75 +38,33 @@ public class ShowDataController implements Initializable
   @FXML Label liveLabel;
   @FXML private Button backButton;
   @FXML private LineChart<String, Number> lineChart;
+  private XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
+  private XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
+  private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+  private static final int REFRESH_INTERVAL_SECONDS = 10;
+  private static final int NUMBER_OF_SAMPLES = 10;
+  private int lowerBoundry;
+  private int upperBoundry;
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
   }
 
-  public void setLiveParams(List<String> selectedValues)
+    public void setLiveParams(List<String> selectedValues)
   {
+    displayLiveAnimation();
+    lineChart.getData().clear();
     this.selectedModels = selectedValues;
-    //addChartData();
+    getLiveProductionData();
   }
 
   public void setParams(List<String> selectedValues, LocalDate selectedDate, double selectedPeriod)
   {
+    lineChart.getData().clear();
     this.selectedModels = selectedValues;
     this.startDate = selectedDate;
     this.selectedPeriod = selectedPeriod;
-    //addChartData();
-  }
-
-  public void getProductionData()
-  {
-    // for pv
-    ArrayList<Integer> positions = extractPositions("PV");
-    XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
-    try
-    {
-      ObservableList<SolarPanelProduction> solarPanelProductionPV =  DatabaseConnection.getProductionCapacity(positions, "pv_measurements");
-      seriesPv.setName("PV");
-      for (SolarPanelProduction spp : solarPanelProductionPV)
-      {
-        seriesPv.getData().add(new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
-      }
-    }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(e);
-    }
-    // for tc
-    positions = extractPositions("TC");
-    XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
-    try
-    {
-      ObservableList<SolarPanelProduction> solarPanelProductionTC =  DatabaseConnection.getProductionCapacity(positions, "tc_measurements");
-      seriesTc.setName("TC");
-      for (SolarPanelProduction spp : solarPanelProductionTC)
-      {
-        seriesTc.getData().add(new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
-      }
-    }
-    catch (SQLException e)
-    {
-      throw new RuntimeException(e);
-    }
-    lineChart.getData().add(seriesPv);
-    lineChart.getData().add(seriesTc);
-  }
-
-  public ArrayList<Integer> extractPositions(String type)
-  {
-    ArrayList<Integer> positions = new ArrayList<>();
-    for (String model : selectedModels)
-    {
-      String[] arrOfStr = model.split("_");
-      if (arrOfStr[0] == type)
-      {
-        positions.add(Integer.parseInt(arrOfStr[1]));
-      }
-    }
-    return positions;
+    getProductionData();
   }
 
   public void displayLiveAnimation()
@@ -117,28 +80,58 @@ public class ShowDataController implements Initializable
     fadeTransition.play();
   }
 
+  public XYChart.Series<String, Number> updateChart(XYChart.Series<String, Number> series, String type)
+  {
+    LocalDateTime currentTime = LocalDateTime.now();
+    if (type == "pv")
+    {
+      this.lowerBoundry = 75;
+      this.upperBoundry = 85;
+    }
+    else if (type == "tc")
+    {
+      this.lowerBoundry = 80;
+      this.upperBoundry = 90;
+    }
+
+    Random random = new Random();
+    if (series.getData().isEmpty())
+    {
+
+      for (int i = 0; i < NUMBER_OF_SAMPLES; i++)
+      {
+        int randomValue = random.nextInt(this.upperBoundry - this.lowerBoundry + 1) + lowerBoundry;
+        LocalDateTime newTime = currentTime.minusSeconds(REFRESH_INTERVAL_SECONDS * (NUMBER_OF_SAMPLES - i));
+        String formattedNewTime = newTime.format(timeFormatter);
+        series.getData().add(new XYChart.Data<>(formattedNewTime, randomValue));
+      }
+
+    } else {
+      int randomValue = random.nextInt(this.upperBoundry - this.lowerBoundry + 1) + lowerBoundry;
+      String formattedCurrentTime = currentTime.format(timeFormatter);
+
+      series.getData().remove(0);
+      series.getData().add(series.getData().size(), new XYChart.Data<>(formattedCurrentTime, randomValue));
+    }
+    series.setName(type);
+    return series;
+
+  }
   public void getLiveProductionData()
   {
-
+    this.seriesPv = updateChart(seriesPv, "pv");
+    this.seriesTc = updateChart(seriesTc, "tc");
+    this.lineChart.getData().clear();
+    this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(REFRESH_INTERVAL_SECONDS), event -> {
+      this.seriesPv = updateChart(seriesPv, "pv");
+      this.seriesTc = updateChart(seriesTc, "tc");
+      this.lineChart.getData().clear();
+      this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
+    }));
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
   }
-
-  @Override public void initialize(URL location, ResourceBundle resources)
-  {
-    Platform.runLater(() -> {
-      if (this.startDate == null)
-      {
-        System.out.println("IN STARTDATE NULL");
-        displayLiveAnimation();
-        getLiveProductionData();
-      }
-      else
-      {
-        System.out.println("IN STARTDATE DEFINED");
-        getProductionData();
-      }
-    });
-  }
-
 
   public void onClick(ActionEvent event)
   {
@@ -146,5 +139,103 @@ public class ShowDataController implements Initializable
     {
       viewHandler.changeScene(viewHandler.CHOOSE_PRODUCTION_PARAMETERS);
     }
+  }
+
+
+  public void getProductionData()
+  {
+    // for pv
+    XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
+    XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
+    try
+    {
+      ObservableList<SolarPanelProduction> solarPanelProduction =  getProductionCapacity();
+      seriesPv.setName("PV");
+      seriesTc.setName("TC");
+      for (SolarPanelProduction spp : solarPanelProduction)
+      {
+        String type = spp.getPanelType();
+        if (type.equals("TC"))
+        {
+          seriesTc.getData().add(
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
+        } else if (type.equals("PV")) {
+          seriesPv.getData().add(
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
+        }
+      }
+    }
+    catch (SQLException e)
+    {
+      throw new RuntimeException(e);
+    }
+
+    lineChart.getData().add(seriesPv);
+    lineChart.getData().add(seriesTc);
+    lineChart.setCreateSymbols(false); //hide dots
+  }
+
+
+  public ArrayList<Integer> extractSerialNo()
+  {
+    ArrayList<Integer> serialNumbers = new ArrayList<>();
+    for (String model : selectedModels)
+    {
+      String[] arrOfStr = model.split("_");
+      serialNumbers.add(Integer.parseInt(arrOfStr[2]));
+
+    }
+    return serialNumbers;
+  }
+
+  public ObservableList<SolarPanelProduction> getProductionCapacity()
+      throws SQLException
+  {
+    ArrayList<Integer> serialNo = extractSerialNo();
+    ObservableList<SolarPanelProduction> prod = FXCollections.observableArrayList();
+    if (serialNo.isEmpty())
+    {
+      return prod;
+    }
+    try
+    {
+      Connection connection = viewHandler.getConnection();
+      Statement statement = connection.createStatement();
+      String sqlQuery = "SELECT measurement_date, sp.model_type, AVG(value) as average_values FROM solar_panels.production p left join"
+          + " solar_panels.solar_panels sp on p.model_serial_no = sp.serial_no"
+          + " WHERE p.model_serial_no in (";
+      sqlQuery = buildSQLQuery(serialNo, sqlQuery);
+      sqlQuery = sqlQuery + "and measurement_date BETWEEN '"+ startDate.toString() + "' and '"
+          + (startDate.plusDays((int) Math.floor(selectedPeriod))).toString()
+          + "' GROUP BY sp.model_type, measurement_date"
+          + " ORDER BY measurement_date ASC;";
+      ResultSet resultSet = statement.executeQuery(sqlQuery);
+      while (resultSet.next()) {
+        prod.add(new SolarPanelProduction(resultSet.getTimestamp("measurement_date"),
+            resultSet.getString("model_type"), resultSet.getFloat("average_values")));
+      }
+    }
+    catch(SQLException e)
+    {
+      e.printStackTrace();
+    }
+    return prod;
+  }
+
+  public static String buildSQLQuery(ArrayList<Integer> positions, String sqlQuery)
+  {
+    StringBuilder sb = new StringBuilder();
+    sb.append(sqlQuery);
+
+    for (int i = 0; i < positions.size(); i++) {
+      sb.append(positions.get(i));
+      if (i != positions.size() - 1) {
+        sb.append(",");
+      }
+    }
+
+    sb.append(")");
+
+    return sb.toString();
   }
 }

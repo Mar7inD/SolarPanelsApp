@@ -13,12 +13,14 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
+import model.SolarPanelProduction;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.sql.Statement;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,7 +39,7 @@ public class ProductionChooseParametersController implements Initializable
   @FXML private Text errorText;
   @FXML private ListView<String> modelList;
   @FXML private ListView<String> chosenList;
-  private ViewHandler viewHandler;
+  private static ViewHandler viewHandler;
   private Scene showData;
   private ShowDataController showDataController;
   private ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
@@ -87,6 +89,7 @@ public class ProductionChooseParametersController implements Initializable
     });
   }
 
+
   public ArrayList<String> identifySolarPanels()
   {
     ArrayList<String> solarPanelsIds = new ArrayList<>();
@@ -94,10 +97,13 @@ public class ProductionChooseParametersController implements Initializable
     {
       String panelType = sp.getPanelType();
       String position = sp.getRoofPosition();
-      solarPanelsIds.add(panelType + '_' + position);
+      String serial_no = sp.getSerialNo();
+      String active = sp.getActive();
+      solarPanelsIds.add(panelType + '_' + position + '_' + serial_no + '_' + active);
     }
     return solarPanelsIds;
   }
+
   public void onClick(ActionEvent event)
   {
     if (event.getSource() == backButton)
@@ -153,16 +159,40 @@ public class ProductionChooseParametersController implements Initializable
     }
     else if (event.getSource() == showButton)
     {
-      if (liveData.isSelected() &&
-          !chosenList.getItems().isEmpty())
+      if (!chosenList.getItems().isEmpty())
       {
-        // LIVE DATA
-        List<String> selectedValues = chosenList.getItems();
-        showDataController = viewHandler.getShowDataController();
-        showDataController.setLiveParams(selectedValues);
-        viewHandler.changeScene(viewHandler.SHOW_DATA);
+        if (liveData.isSelected())
+        {
+          // LIVE DATA
+          List<String> selectedValues = chosenList.getItems();
+          showDataController = viewHandler.getShowDataController();
+          showDataController.setLiveParams(selectedValues);
+          viewHandler.changeScene(viewHandler.SHOW_DATA);
+        }
+
+        else if (startDate.getValue() != null)
+        {
+          // TIME SET
+          List<String> selectedValues = chosenList.getItems();
+          LocalDate selectedDate = startDate.getValue();
+          double selectedPeriod = period.getValue();
+          showDataController = viewHandler.getShowDataController();
+          showDataController.setParams(selectedValues, selectedDate,
+              selectedPeriod);
+          viewHandler.changeScene(viewHandler.SHOW_DATA);
+        }
+        else
+        {
+          errorText.setText("Choose the parameters!");
+        }
       }
+      else
+      {
+        errorText.setText("Choose the parameters!");
+      }
+    }
   }
+
   public ObservableList<SolarPanel> getSolarPanels()
       throws SQLException
   {
@@ -177,8 +207,6 @@ public class ProductionChooseParametersController implements Initializable
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
             resultSet.getString("model_type"),resultSet.getString("roof_position"),resultSet.getDate("date_installed"),resultSet.getString("manufacturer"),resultSet.getBoolean("is_active")));
       }
-      System.out.println("CONNECTION WHILE IN GETSOLARPANELS");
-      System.out.println(connection);
     }
     catch(SQLException e)
     {
@@ -187,21 +215,4 @@ public class ProductionChooseParametersController implements Initializable
     return solarPanels;
   }
 
-      else if (!chosenList.getItems().isEmpty() &&
-          startDate.getValue() != null)
-      {
-        // TIME SET
-        List<String> selectedValues = chosenList.getItems();
-        LocalDate selectedDate = startDate.getValue();
-        double selectedPeriod = period.getValue();
-        showDataController = viewHandler.getShowDataController();
-        showDataController.setParams(selectedValues, selectedDate, selectedPeriod);
-        viewHandler.changeScene(viewHandler.SHOW_DATA);
-      }
-      else
-      {
-        errorText.setText("Choose the parameters!");
-      }
-    }
-  }
 }

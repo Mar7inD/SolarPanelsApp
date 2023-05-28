@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowDataController">
    <children>
       <Button fx:id="backButton" layoutX="21.0" layoutY="358.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
-      <LineChart fx:id="lineChart" layoutX="13.0" layoutY="14.0" prefHeight="336.0" prefWidth="569.0" title="Production">
+      <LineChart fx:id="lineChart" animated="false" layoutX="13.0" layoutY="14.0" prefHeight="336.0" prefWidth="569.0" title="Production">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

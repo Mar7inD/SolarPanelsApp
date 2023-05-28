@@ -41,6 +41,7 @@ public class ShowDataController
   private XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
   private XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
   private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+  private Timeline timeline;
   private static final int REFRESH_INTERVAL_SECONDS = 10;
   private static final int NUMBER_OF_SAMPLES = 10;
   private int lowerBoundry;
@@ -52,6 +53,7 @@ public class ShowDataController
 
     public void setLiveParams(List<String> selectedValues)
   {
+    lineChart.getData().clear();
     displayLiveAnimation();
     lineChart.getData().clear();
     this.selectedModels = selectedValues;
@@ -60,6 +62,12 @@ public class ShowDataController
 
   public void setParams(List<String> selectedValues, LocalDate selectedDate, double selectedPeriod)
   {
+    if (timeline!=null)
+    {
+      timeline.stop();
+    }
+    liveLabel.setVisible(false);
+    liveCircle.setVisible(false);
     lineChart.getData().clear();
     this.selectedModels = selectedValues;
     this.startDate = selectedDate;
@@ -123,7 +131,7 @@ public class ShowDataController
     this.seriesTc = updateChart(seriesTc, "tc");
     this.lineChart.getData().clear();
     this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(REFRESH_INTERVAL_SECONDS), event -> {
+    timeline = new Timeline(new KeyFrame(Duration.seconds(REFRESH_INTERVAL_SECONDS), event -> {
       this.seriesPv = updateChart(seriesPv, "pv");
       this.seriesTc = updateChart(seriesTc, "tc");
       this.lineChart.getData().clear();

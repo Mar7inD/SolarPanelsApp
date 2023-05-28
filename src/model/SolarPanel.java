@@ -9,17 +9,8 @@ public class SolarPanel
   private String roofPosition;
   private Date installationDate;
   private String manufacturer;
-  private String active;
+  private String activity;
 
-  public SolarPanel()
-  {
-    this.serialNo = "";
-    this.panelType = "";
-    this.roofPosition = "";
-    this.installationDate = new Date();
-    this.manufacturer = "";
-    this.active = "";
-  }
 
   public SolarPanel(String serialNo, String panelType, String roofPosition, Date installationDate, String manufacturer, boolean active)
   {
@@ -30,11 +21,11 @@ public class SolarPanel
     this.manufacturer = manufacturer;
     if (active)
     {
-      this.active = "Active";
+      this.activity = "Active";
     }
     else
     {
-      this.active = "Deactivated";
+      this.activity = "Deactivated";
     }
   }
 
@@ -88,20 +79,19 @@ public class SolarPanel
     this.manufacturer = manufacturer;
   }
 
-  public String getActive()
+  public String getActivity()
   {
-    return active;
+    return activity;
   }
-
-  public void setActive(boolean active)
+  public void setActivity(boolean active)
   {
     if (active)
     {
-      this.active = "Active";
+      this.activity = "Active";
     }
     else
     {
-      this.active = "Deactivated";
+      this.activity = "Deactivated";
     }
   }
 }

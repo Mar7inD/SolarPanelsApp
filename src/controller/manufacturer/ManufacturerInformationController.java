@@ -40,9 +40,8 @@ public class ManufacturerInformationController {
     phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 
     // Retrieve data from the database
-    Connection connection = viewHandler.getConnection();
     try {
-      List<Manufacturer> manufacturers = getAllManufacturers(connection);
+      List<Manufacturer> manufacturers = getAllManufacturers(viewHandler.getConnection());
 
       // Populate the TableView with the retrieved data
       manufacturerTableView.getItems().addAll(manufacturers);
@@ -71,7 +70,7 @@ public class ManufacturerInformationController {
   private List<Manufacturer> getAllManufacturers(Connection connection) throws SQLException {
     List<Manufacturer> manufacturers = new ArrayList<>();
 
-    try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"solar_panels\".\"manufacturer\" LIMIT 100");
+    try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM solar_panels.manufacturer");
         ResultSet resultSet = statement.executeQuery()) {
       while (resultSet.next()) {
         String name = resultSet.getString("name");
@@ -90,10 +89,8 @@ public class ManufacturerInformationController {
 
   public void refreshTableView() {
     manufacturerTableView.getItems().clear(); // Clear the existing items
-
-    Connection connection = viewHandler.getConnection();
     try {
-      List<Manufacturer> manufacturers = getAllManufacturers(connection);
+      List<Manufacturer> manufacturers = getAllManufacturers(viewHandler.getConnection());
 
       // Populate the TableView with the retrieved data
       manufacturerTableView.getItems().addAll(manufacturers);

@@ -6,23 +6,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.solarPanels.InsertModifySolarPanelController">
-   <children>
+      <TextField fx:id="serialNoText" layoutX="259.0" layoutY="58.0" promptText="Ex: 342251" />
+      <ComboBox fx:id="typeCombo" layoutX="259.0" layoutY="104.0" prefWidth="150.0" visibleRowCount="2" />
+      <ComboBox fx:id="roofCombo" layoutX="259.0" layoutY="154.0" prefWidth="150.0" />
+      <DatePicker fx:id="installationDatePicker" layoutX="259.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" />
+      <ComboBox fx:id="manufacturer" layoutX="259.0" layoutY="246.0" prefWidth="150.0" />
+      <ComboBox fx:id="activity" layoutX="259.0" layoutY="286.0" prefWidth="150.0" visibleRowCount="2" />
       <Button fx:id="save" layoutX="163.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Save" />
       <Button fx:id="back" layoutX="349.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <Label layoutX="143.0" layoutY="108.0" text="Type" />
-      <ComboBox fx:id="typeCombo" layoutX="259.0" layoutY="104.0" prefWidth="150.0" visibleRowCount="2" />
       <Label layoutX="145.0" layoutY="158.0" text="Roof position" />
-      <Label layoutX="155.0" layoutY="14.0" text="Solar panel" />
+      <Label layoutX="102.0" layoutY="14.0" text="Data implementation and modification of solar panels">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
       <Label layoutX="144.0" layoutY="250.0" text="Manufacturer" />
-      <DatePicker fx:id="installationDatePicker" layoutX="259.0" layoutY="202.0" prefHeight="26.0" prefWidth="172.0" />
       <Label layoutX="144.0" layoutY="207.0" text="Date installed" />
       <Label layoutX="143.0" layoutY="62.0" text="Serial number" />
-      <TextField fx:id="serialNoText" layoutX="259.0" layoutY="58.0" />
-      <ComboBox fx:id="manufacturer" layoutX="259.0" layoutY="245.0" prefWidth="150.0" visibleRowCount="2" />
-      <ComboBox fx:id="roofCombo" layoutX="259.0" layoutY="154.0" prefWidth="150.0" />
       <Label layoutX="151.0" layoutY="290.0" text="Activity" />
-      <ComboBox fx:id="activity" layoutX="259.0" layoutY="286.0" prefWidth="150.0" visibleRowCount="2" />
-   </children>
 </AnchorPane>

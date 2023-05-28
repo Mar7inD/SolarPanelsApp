@@ -1,90 +1,63 @@
 package controller.solarPanels;
 
 import controller.ViewHandler;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.SolarPanel;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SolarPanelsSceneController
 {
   @FXML private Button back;
-  @FXML private Button insertModifySolarPanel;
-  private Button closeButton;
+  @FXML private Button insertSolarPanel;
+  @FXML private Button modify;
   @FXML private TableView<SolarPanel> solarPanelsTable;
-  @FXML private TableColumn<SolarPanel, Integer> serialNo = new TableColumn<SolarPanel, Integer>("Serial No");
-  @FXML private TableColumn<SolarPanel, String> panelType = new TableColumn<SolarPanel, String>("Type");
-  @FXML private TableColumn<SolarPanel, String> roofPosition = new TableColumn<SolarPanel, String>("Roof Position");
-  @FXML private TableColumn installationDate = new TableColumn<SolarPanel, Date>("Installation Date");
-  @FXML private TableColumn manufacturer = new TableColumn<SolarPanel, String>("Manufacturer");
-  @FXML private TableColumn activity = new TableColumn<SolarPanel, String>("Activity");
-  @FXML private ComboBox<String> solarPanelPosition;
+  @FXML private TableColumn<SolarPanel, Integer> serialNo;
+  @FXML private TableColumn<SolarPanel, String> panelType;
+  @FXML private TableColumn<SolarPanel, String> roofPosition;
+  @FXML private TableColumn<SolarPanel, Date> installationDate;
+  @FXML private TableColumn<SolarPanel, String> manufacturer;
+  @FXML private TableColumn<SolarPanel, String> activity;
 
   private ViewHandler viewHandler;
 
   public void init(ViewHandler viewHandler)
   {
     this.viewHandler = viewHandler;
-    for (int i = 1; i < 123; i++)
-        { String position = "" + i;
-          this.solarPanelPosition.getItems().add(position); }
 
+    // Initialize table columns
     serialNo.setCellValueFactory(new PropertyValueFactory<>("serialNo"));
     panelType.setCellValueFactory(new PropertyValueFactory<>("panelType"));
     roofPosition.setCellValueFactory(new PropertyValueFactory<>("roofPosition"));
     installationDate.setCellValueFactory(new PropertyValueFactory<>("installationDate"));
     manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-    activity.setCellValueFactory(new PropertyValueFactory<>("active"));
+    activity.setCellValueFactory(new PropertyValueFactory<>("activity"));
+
+    refreshTableView();
+
+    // Disable the modify button initially
+    modify.setDisable(true);
+
+    // Add a listeners to track row selection in the TableView
+    solarPanelsTable.getSelectionModel().selectedItemProperty().addListener
+        ((obs, oldSelection, newSelection) -> modify.setDisable(newSelection == null));
   }
 
-  public void onShow(ActionEvent event)
-  {
-    Stage tableView = new Stage();
-    solarPanelsTable = new TableView<>();
-    solarPanelsTable.setItems(getSolarPanels());
-    solarPanelsTable.getColumns().addAll(serialNo,panelType,roofPosition,installationDate,manufacturer,activity);
-
-    Button modifyButton = new Button("Modify");
-    modifyButton.setOnAction(eventModify -> {
-      Modify();
-    });
-
-    closeButton = new Button("Close");
-
-    closeButton.setOnAction(eventClose -> {
-      Stage currentStage = (Stage) closeButton.getScene().getWindow();
-      currentStage.close();
-    });
-
-    VBox layout= new VBox(10);
-    layout.getChildren().addAll(solarPanelsTable,modifyButton,closeButton);
-
-    Scene table = new Scene(layout, 600, 250);
-
-    tableView.setScene(table);
-
-    tableView.showAndWait();
-  }
 
   public void onClick(ActionEvent event)
   {
-    if (event.getSource() == insertModifySolarPanel)
+    if (event.getSource() == insertSolarPanel)
     {
       viewHandler.changeScene(ViewHandler.INSERT_MODIFY_SOLAR_PANEL);
+      viewHandler.getInsertModifySolarPanelController().resetFields();
     }
     else if (event.getSource() == back)
     {
@@ -92,18 +65,17 @@ public class SolarPanelsSceneController
     }
   }
 
-  public ObservableList<SolarPanel> getSolarPanels()
+  public List<SolarPanel> getSolarPanels()
   {
-    ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
+    List<SolarPanel> solarPanels = new ArrayList<>();
 
     try
     {
-
       Statement statement = viewHandler.getConnection().createStatement();
 
-      String sqlQuery = "SELECT * FROM solar_panels.solar_panels WHERE solar_panels.roof_position = ";
+      String sqlQuery = "SELECT * FROM solar_panels.solar_panels";
 
-      ResultSet resultSet = statement.executeQuery(sqlQuery + solarPanelPosition.getValue());
+      ResultSet resultSet = statement.executeQuery(sqlQuery);
 
       while (resultSet.next()) {
         solarPanels.add(new SolarPanel(resultSet.getString("serial_no"),
@@ -117,27 +89,25 @@ public class SolarPanelsSceneController
     return solarPanels;
   }
 
+  public void refreshTableView() {
+    solarPanelsTable.getItems().clear(); // Clear the existing items
+
+      List<SolarPanel> solarPanels = getSolarPanels();
+
+      // Populate the TableView with the retrieved data
+      solarPanelsTable.getItems().addAll(solarPanels);
+  }
+
   // Class Modify for the button modify in the pop out table with the solar panels
-  public void Modify() throws IndexOutOfBoundsException
+  public void onModify()
   {
-    ObservableList<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
-    if (selectedItems != null)
+    List<SolarPanel> selectedItems = solarPanelsTable.getSelectionModel().getSelectedItems();
     {
      viewHandler.getInsertModifySolarPanelController().setModifying(true);
-     viewHandler.changeScene(viewHandler.INSERT_MODIFY_SOLAR_PANEL);
+     viewHandler.getInsertModifySolarPanelController().resetFields();
+     viewHandler.changeScene(ViewHandler.INSERT_MODIFY_SOLAR_PANEL);
 
       viewHandler.getInsertModifySolarPanelController().setSerialNo(selectedItems.get(0).getSerialNo());
-      Stage currentStage = (Stage) closeButton.getScene().getWindow();
-      currentStage.close();
-    }
-    else
-    {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setTitle("Alert");
-      alert.setHeaderText("This is an alert message");
-      alert.setContentText("Hello, world!");
-
-      alert.showAndWait();
     }
   }
 

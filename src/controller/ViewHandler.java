@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class ViewHandler
   {
     private static Connection connection;
-    private final Stage primaryStage;
+    private final Stage PRIMARY_STAGE;
     private Scene main;
     private Scene solar_panels;
     private Scene chooseProductionParameters;
@@ -29,16 +29,9 @@ public class ViewHandler
     private Scene faultsAndMaintenance;
     private Scene registerFaults;
     private Scene registerMaintenance;
-    private MainSceneController mainSceneController;
-    private SolarPanelsSceneController solarPanelsSceneController;
-    private ProductionChooseParametersController productionChooseParametersController;
     private ShowDataController showDataController;
+    private SolarPanelsSceneController solarPanelsSceneController;
     private InsertModifySolarPanelController insertModifySolarPanelController;
-    private ManufacturerInformationController manufacturerInformationController;
-    private InsertManufacturerPageController insertManufacturerPageController;
-    private FaultsAndMaintenanceController faultsAndMaintenanceController;
-    private RegisterFaultsController registerFaultsController;
-    private RegisterMaintenanceController registerMaintenanceController;
     public static final String MAIN_SCENE = "MAIN_SCENE";
     public static final String SOLAR_PANELS = "SOLAR_PANELS";
     public static final String CHOOSE_PRODUCTION_PARAMETERS = "CHOOSE_PRODUCTION_PARAMETERS";
@@ -52,8 +45,8 @@ public class ViewHandler
 
     public ViewHandler(Stage primaryStage, Connection connection)
     {
-      this.primaryStage = primaryStage;
-      this.connection = connection;
+      this.PRIMARY_STAGE = primaryStage;
+      ViewHandler.connection = connection;
 
       // Loading MainScene.fxml into main
       FXMLLoader loader = new FXMLLoader();
@@ -61,7 +54,7 @@ public class ViewHandler
       try
       {
         main = new Scene(loader.load());
-        mainSceneController = loader.getController();
+        MainSceneController mainSceneController = loader.getController();
         mainSceneController.init(this);
       }
       catch (IOException e)
@@ -91,13 +84,12 @@ public class ViewHandler
       try
       {
         chooseProductionParameters = new Scene(loader.load());
-        productionChooseParametersController = loader.getController();
+        ProductionChooseParametersController productionChooseParametersController = loader.getController();
         productionChooseParametersController.init(this);
       }
       catch(IOException e)
       {
-        System.out.println(e);
-        // System.out.println("Failed to load ProductionChooseParameters.fxml");
+        System.out.println("Failed to load ProductionChooseParameters.fxml");
         System.exit(1);
       }
       catch (SQLException e)
@@ -140,7 +132,7 @@ public class ViewHandler
       try
       {
         manufacturerInformation = new Scene(loader.load());
-        manufacturerInformationController = loader.getController();
+        ManufacturerInformationController manufacturerInformationController = loader.getController();
         manufacturerInformationController.init(this);
       }
       catch(IOException e)
@@ -155,7 +147,7 @@ public class ViewHandler
       try
       {
         insertManufacturerPage = new Scene(loader.load());
-        insertManufacturerPageController = loader.getController();
+        InsertManufacturerPageController insertManufacturerPageController = loader.getController();
         insertManufacturerPageController.init(this);
       }
       catch(IOException e)
@@ -169,7 +161,7 @@ public class ViewHandler
       try
       {
         faultsAndMaintenance = new Scene(loader.load());
-        faultsAndMaintenanceController = loader.getController();
+        FaultsAndMaintenanceController faultsAndMaintenanceController = loader.getController();
         faultsAndMaintenanceController.init(this);
       }
       catch(IOException e)
@@ -183,7 +175,7 @@ public class ViewHandler
       try
       {
         registerFaults = new Scene(loader.load());
-        registerFaultsController = loader.getController();
+        RegisterFaultsController registerFaultsController = loader.getController();
         registerFaultsController.init(this);
       }
       catch(IOException e)
@@ -197,7 +189,7 @@ public class ViewHandler
       try
       {
         registerMaintenance = new Scene(loader.load());
-        registerMaintenanceController = loader.getController();
+        RegisterMaintenanceController registerMaintenanceController = loader.getController();
         registerMaintenanceController.init(this);
       }
       catch(IOException e)
@@ -213,65 +205,65 @@ public class ViewHandler
       {
         if (MAIN_SCENE.equals(sceneName))
         {
-          primaryStage.setTitle("Main page");
-          primaryStage.setScene(main);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Main Menu");
+          PRIMARY_STAGE.setScene(main);
+          PRIMARY_STAGE.show();
         }
         else if (SOLAR_PANELS.equals(sceneName))
         {
-          primaryStage.setTitle("Solar Panels");
-          primaryStage.setScene(solar_panels);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Solar Panels Page");
+          PRIMARY_STAGE.setScene(solar_panels);
+          PRIMARY_STAGE.show();
         }
 
         // PRODUCTION CAPACITY SCENES
         else if (CHOOSE_PRODUCTION_PARAMETERS.equals(sceneName))
         {
-          primaryStage.setTitle("Choose Parameters");
-          primaryStage.setScene(chooseProductionParameters);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Choose Parameters");
+          PRIMARY_STAGE.setScene(chooseProductionParameters);
+          PRIMARY_STAGE.show();
         }
         else if (SHOW_DATA.equals(sceneName))
         {
-          primaryStage.setTitle("Data");
-          primaryStage.setScene(showData);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Data");
+          PRIMARY_STAGE.setScene(showData);
+          PRIMARY_STAGE.show();
         }
         else if (INSERT_MODIFY_SOLAR_PANEL.equals(sceneName))
         {
-          primaryStage.setTitle("Solar Panels");
-          primaryStage.setScene(insertModifySolarPanel);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Solar Panels Page");
+          PRIMARY_STAGE.setScene(insertModifySolarPanel);
+          PRIMARY_STAGE.show();
         }
         else if (INSERT_MANUFACTURER_PAGE.equals(sceneName))
         {
-          primaryStage.setTitle("Insert Manufacturer data");
-          primaryStage.setScene(insertManufacturerPage);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Insert Manufacturer Information");
+          PRIMARY_STAGE.setScene(insertManufacturerPage);
+          PRIMARY_STAGE.show();
         }
         else if (MANUFACTURER_INFORMATION.equals(sceneName))
         {
-          primaryStage.setTitle("Show Manufacturer data");
-          primaryStage.setScene(manufacturerInformation);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Manufacturer Information");
+          PRIMARY_STAGE.setScene(manufacturerInformation);
+          PRIMARY_STAGE.show();
         }
         else if (FAULTS_AND_MAINTENANCE.equals(sceneName))
         {
-          primaryStage.setTitle("Faults And Maintenance");
-          primaryStage.setScene(faultsAndMaintenance);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Faults And Maintenance");
+          PRIMARY_STAGE.setScene(faultsAndMaintenance);
+          PRIMARY_STAGE.show();
         }
         else if (REGISTER_FAULTS.equals(sceneName))
         {
-          primaryStage.setTitle("Register a fault in a solar panel");
-          primaryStage.setScene(registerFaults);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Register Fault");
+          PRIMARY_STAGE.setScene(registerFaults);
+          PRIMARY_STAGE.show();
         }
         else if (REGISTER_MAINTENANCE.equals(sceneName))
         {
-          primaryStage.setTitle("Register a maintenance of a solar panel");
-          primaryStage.setScene(registerMaintenance);
-          primaryStage.show();
+          PRIMARY_STAGE.setTitle("Register Maintenance");
+          PRIMARY_STAGE.setScene(registerMaintenance);
+          PRIMARY_STAGE.show();
         }
       }
 
@@ -284,13 +276,17 @@ public class ViewHandler
       {
         return insertModifySolarPanelController;
       }
+    public SolarPanelsSceneController getSolarPanelsSceneController()
+    {
+      return solarPanelsSceneController;
+    }
       public ShowDataController getShowDataController()
       {
         return showDataController;
       }
       public Stage getStage()
       {
-        return primaryStage;
+        return PRIMARY_STAGE;
       }
     }
 

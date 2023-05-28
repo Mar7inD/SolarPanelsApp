@@ -3,7 +3,6 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 public class MainSceneController
 {
@@ -12,7 +11,6 @@ public class MainSceneController
   @FXML private Button faultsAndMaintenance;
   @FXML private Button productionScene;
   @FXML private Button manufacturersInformation;
-  @FXML private Button productionChooseParameters;
 
   @FXML  private Button exit;
 
@@ -28,10 +26,6 @@ public class MainSceneController
       viewHandler.changeScene(ViewHandler.SOLAR_PANELS);
     }
     else if(event.getSource() == productionScene)
-    {
-      viewHandler.changeScene(ViewHandler.CHOOSE_PRODUCTION_PARAMETERS);
-    }
-    else if(event.getSource() == productionChooseParameters)
     {
       viewHandler.changeScene(ViewHandler.CHOOSE_PRODUCTION_PARAMETERS);
     }

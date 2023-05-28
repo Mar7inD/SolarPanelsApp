@@ -21,9 +21,9 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
-      <Button fx:id="insertButton" layoutX="261.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Insert" />
-      <Button fx:id="deleteButton" layoutX="339.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />
-      <Button fx:id="backButton" layoutX="423.0" layoutY="350.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
+      <Button fx:id="insertButton" layoutX="202.0" layoutY="364.0" mnemonicParsing="false" onAction="#onClick" text="Insert Manufacturer" />
+      <Button fx:id="deleteButton" layoutX="358.0" layoutY="364.0" mnemonicParsing="false" onAction="#onClick" text="Delete" />
+      <Button fx:id="backButton" layoutX="442.0" layoutY="364.0" mnemonicParsing="false" onAction="#onClick" text="Back to Menu" />
       <Button fx:id="refreshButton" layoutX="23.0" layoutY="88.0" mnemonicParsing="false" onAction="#onClick" text="🔄" />
    </children>
 </AnchorPane>

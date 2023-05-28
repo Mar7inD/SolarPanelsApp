@@ -30,7 +30,7 @@ public class InsertModifySolarPanelController
     serialNoText.setText("");
 
     this.typeCombo.getItems().addAll("PV", "TC");
-    for (int i = 1; i < 124; i++)
+    for (int i = 1; i < 176; i++)
     { String position = "" + i;
       this.roofCombo.getItems().add(position); }
 

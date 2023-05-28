@@ -98,7 +98,7 @@ public class ProductionChooseParametersController implements Initializable
       String panelType = sp.getPanelType();
       String position = sp.getRoofPosition();
       String serial_no = sp.getSerialNo();
-      String active = sp.getActive();
+      String active = sp.getActivity();
       solarPanelsIds.add(panelType + '_' + position + '_' + serial_no + '_' + active);
     }
     return solarPanelsIds;

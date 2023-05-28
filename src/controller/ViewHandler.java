@@ -5,6 +5,8 @@ import controller.faultsandmaintenance.RegisterMaintenanceController;
 import controller.manufacturer.InsertManufacturerPageController;
 import controller.manufacturer.ManufacturerInformationController;
 import controller.faultsandmaintenance.FaultsAndMaintenanceController;
+import controller.production.ProductionChooseParametersController;
+import controller.production.ShowDataController;
 import controller.solarPanels.InsertModifySolarPanelController;
 import controller.solarPanels.SolarPanelsSceneController;
 import javafx.fxml.FXMLLoader;

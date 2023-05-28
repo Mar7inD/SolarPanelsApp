@@ -39,7 +39,6 @@ public class ProductionChooseParametersController implements Initializable
   @FXML private ListView<String> modelList;
   @FXML private ListView<String> chosenList;
   private static ViewHandler viewHandler;
-  private Scene showData;
   private ShowDataController showDataController;
   private ObservableList<SolarPanel> solarPanels = FXCollections.observableArrayList();
   private ArrayList<String> solarPanelsId = new ArrayList<>();

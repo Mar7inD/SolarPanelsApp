@@ -31,12 +31,11 @@ public class ShowDataController
 {
   List<String> selectedModels;
   LocalDate startDate;
-  LocalTime currentTime;
   double selectedPeriod;
 
   private ViewHandler viewHandler;
-  @FXML Circle liveCircle;
-  @FXML Label liveLabel;
+  @FXML private Circle liveCircle;
+  @FXML private Label liveLabel;
   @FXML private Button backButton;
   @FXML private LineChart<String, Number> lineChart;
   private XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();

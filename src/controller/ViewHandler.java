@@ -210,7 +210,7 @@ public class ViewHandler
         }
         else if (SOLAR_PANELS.equals(sceneName))
         {
-          primaryStage.setTitle("Solar Panels Information");
+          primaryStage.setTitle("Solar Panels Page");
           primaryStage.setScene(solar_panels);
           primaryStage.show();
         }
@@ -230,7 +230,7 @@ public class ViewHandler
         }
         else if (INSERT_MODIFY_SOLAR_PANEL.equals(sceneName))
         {
-          primaryStage.setTitle("Solar Panels");
+          primaryStage.setTitle("Solar Panels Page");
           primaryStage.setScene(insertModifySolarPanel);
           primaryStage.show();
         }

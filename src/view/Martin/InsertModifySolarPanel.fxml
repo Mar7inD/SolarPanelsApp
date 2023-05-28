@@ -19,7 +19,7 @@
       <Button fx:id="back" layoutX="349.0" layoutY="339.0" mnemonicParsing="false" onAction="#onClick" text="Back" />
       <Label layoutX="143.0" layoutY="108.0" text="Type" />
       <Label layoutX="145.0" layoutY="158.0" text="Roof position" />
-      <Label layoutX="102.0" layoutY="14.0" text="Data implementation and update of solar panels">
+      <Label layoutX="102.0" layoutY="14.0" text="Data implementation and modification of solar panels">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>

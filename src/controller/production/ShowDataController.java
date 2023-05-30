@@ -42,6 +42,8 @@ public class ShowDataController
   @FXML private LineChart<String, Number> lineChart;
   private XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
   private XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
+  private XYChart.Series<String, Number> seriesLiveTc = new XYChart.Series<>();
+  private XYChart.Series<String, Number> seriesLivePv = new XYChart.Series<>();
   private XYChart.Series<String, Number> seriesWTc = new XYChart.Series<>();
   private XYChart.Series<String, Number> seriesWPv = new XYChart.Series<>();
   private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -57,6 +59,7 @@ public class ShowDataController
 
     public void setLiveParams(List<String> selectedValues)
   {
+    this.lineChart.setTitle("Production Efficiency %");
     radioButton.setVisible(false);
     lineChart.getData().clear();
     displayLiveAnimation();
@@ -71,6 +74,7 @@ public class ShowDataController
     {
       timeline.stop();
     }
+    this.lineChart.setTitle("Production Efficiency %");
     radioButton.setSelected(false);
     radioButton.setVisible(true);
     liveLabel.setVisible(false);
@@ -134,15 +138,15 @@ public class ShowDataController
   }
   public void getLiveProductionData()
   {
-    this.seriesPv = updateChart(seriesPv, "pv");
-    this.seriesTc = updateChart(seriesTc, "tc");
+    this.seriesLivePv = updateChart(seriesLivePv, "pv");
+    this.seriesLiveTc = updateChart(seriesLiveTc, "tc");
     this.lineChart.getData().clear();
-    this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
+    this.lineChart.getData().addAll(this.seriesLivePv, this.seriesLiveTc);
     timeline = new Timeline(new KeyFrame(Duration.seconds(REFRESH_INTERVAL_SECONDS), event -> {
-      this.seriesPv = updateChart(seriesPv, "pv");
-      this.seriesTc = updateChart(seriesTc, "tc");
+      this.seriesLivePv = updateChart(seriesLivePv, "pv");
+      this.seriesLiveTc = updateChart(seriesLiveTc, "tc");
       this.lineChart.getData().clear();
-      this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
+      this.lineChart.getData().addAll(this.seriesLivePv, this.seriesLiveTc);
     }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
@@ -158,10 +162,12 @@ public class ShowDataController
     {
       if (radioButton.isSelected())
       {
+        this.lineChart.setTitle("Production in W/kW");
         this.lineChart.getData().clear();
         this.lineChart.getData().addAll(this.seriesWPv, this.seriesWTc);
         this.lineChart.setCreateSymbols(false); //hide dots
       } else {
+        this.lineChart.setTitle("Production Efficiency %");
         this.lineChart.getData().clear();
         this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
         this.lineChart.setCreateSymbols(false); //hide dots

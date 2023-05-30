@@ -13,6 +13,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import model.SolarPanelProduction;
@@ -37,9 +38,12 @@ public class ShowDataController
   @FXML private Circle liveCircle;
   @FXML private Label liveLabel;
   @FXML private Button backButton;
+  @FXML private RadioButton radioButton;
   @FXML private LineChart<String, Number> lineChart;
   private XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
   private XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
+  private XYChart.Series<String, Number> seriesWTc = new XYChart.Series<>();
+  private XYChart.Series<String, Number> seriesWPv = new XYChart.Series<>();
   private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
   private Timeline timeline;
   private static final int REFRESH_INTERVAL_SECONDS = 10;
@@ -53,6 +57,7 @@ public class ShowDataController
 
     public void setLiveParams(List<String> selectedValues)
   {
+    radioButton.setVisible(false);
     lineChart.getData().clear();
     displayLiveAnimation();
     lineChart.getData().clear();
@@ -66,6 +71,8 @@ public class ShowDataController
     {
       timeline.stop();
     }
+    radioButton.setSelected(false);
+    radioButton.setVisible(true);
     liveLabel.setVisible(false);
     liveCircle.setVisible(false);
     lineChart.getData().clear();
@@ -147,29 +154,53 @@ public class ShowDataController
     {
       viewHandler.changeScene(viewHandler.CHOOSE_PRODUCTION_PARAMETERS);
     }
+    if (event.getSource() == radioButton)
+    {
+      if (radioButton.isSelected())
+      {
+        this.lineChart.getData().clear();
+        this.lineChart.getData().addAll(this.seriesWPv, this.seriesWTc);
+        this.lineChart.setCreateSymbols(false); //hide dots
+      } else {
+        this.lineChart.getData().clear();
+        this.lineChart.getData().addAll(this.seriesPv, this.seriesTc);
+        this.lineChart.setCreateSymbols(false); //hide dots
+      }
+
+    }
   }
 
 
   public void getProductionData()
   {
-    // for pv
-    XYChart.Series<String, Number> seriesPv = new XYChart.Series<>();
-    XYChart.Series<String, Number> seriesTc = new XYChart.Series<>();
+    this.seriesPv = new XYChart.Series<>();
+    this.seriesTc = new XYChart.Series<>();
+
+    this.seriesWPv = new XYChart.Series<>();
+    this.seriesWTc = new XYChart.Series<>();
+
     try
     {
       ObservableList<SolarPanelProduction> solarPanelProduction =  getProductionCapacity();
-      seriesPv.setName("PV");
-      seriesTc.setName("TC");
+      seriesPv.setName("PV [eff %]");
+      seriesTc.setName("TC [eff %]");
+      seriesWPv.setName("PV [W]");
+      seriesWTc.setName("TC [kW]");
+
       for (SolarPanelProduction spp : solarPanelProduction)
       {
         String type = spp.getPanelType();
         if (type.equals("TC"))
         {
           seriesTc.getData().add(
-              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValuePerc()));
+          seriesWTc.getData().add(
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValueWatt()));
         } else if (type.equals("PV")) {
           seriesPv.getData().add(
-              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValue()));
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValuePerc()));
+          seriesWPv.getData().add(
+              new XYChart.Data<>(spp.getMeasurementDate().toString(), spp.getProductionValueWatt()));
         }
       }
     }
@@ -209,7 +240,8 @@ public class ShowDataController
     {
       Connection connection = viewHandler.getConnection();
       Statement statement = connection.createStatement();
-      String sqlQuery = "SELECT measurement_date, sp.model_type, AVG(value) as average_values FROM solar_panels.production p left join"
+      String sqlQuery = "SELECT measurement_date, sp.model_type, AVG(efficiency_perc) as average_eff, SUM(production_w_kw) as sum_watt"
+          + " FROM solar_panels.production p left join"
           + " solar_panels.solar_panels sp on p.model_serial_no = sp.serial_no"
           + " WHERE p.model_serial_no in (";
       sqlQuery = buildSQLQuery(serialNo, sqlQuery);
@@ -220,7 +252,7 @@ public class ShowDataController
       ResultSet resultSet = statement.executeQuery(sqlQuery);
       while (resultSet.next()) {
         prod.add(new SolarPanelProduction(resultSet.getTimestamp("measurement_date"),
-            resultSet.getString("model_type"), resultSet.getFloat("average_values")));
+            resultSet.getString("model_type"), resultSet.getInt("average_eff"), resultSet.getFloat("sum_watt")));
       }
     }
     catch(SQLException e)

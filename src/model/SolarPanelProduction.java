@@ -8,14 +8,16 @@ import java.util.Date;
 public class SolarPanelProduction
 {
   private Timestamp measurementDate;
-  private float productionValue;
+  private int productionValuePerc;
+  private float productionValueWatt;
   private String panelType;
 
-  public SolarPanelProduction(Timestamp measurementDate, String model_type, float productionValue)
+  public SolarPanelProduction(Timestamp measurementDate, String model_type, int productionValuePerc, float productionValueWatt)
   {
     this.measurementDate = measurementDate;
     this.panelType = model_type;
-    this.productionValue = productionValue;
+    this.productionValuePerc = productionValuePerc;
+    this.productionValueWatt = productionValueWatt;
   }
 
   public Timestamp getMeasurementDate()
@@ -23,9 +25,11 @@ public class SolarPanelProduction
     return measurementDate;
   }
 
-  public float getProductionValue()
+  public int getProductionValuePerc()
   {
-    return productionValue;
+    return productionValuePerc;
   }
+
+  public float getProductionValueWatt() { return productionValueWatt; }
   public String getPanelType() {return panelType;}
 }

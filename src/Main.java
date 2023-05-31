@@ -34,7 +34,7 @@ public class Main extends Application
           // Close the database connection
           try
           {
-            System.out.println("Connection closed");
+            System.out.println("Connection closed.");
             connection.close();
           }
           catch (SQLException e)

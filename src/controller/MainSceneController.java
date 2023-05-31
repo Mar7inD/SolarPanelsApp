@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+import java.sql.SQLException;
+
 public class MainSceneController
 {
   private ViewHandler viewHandler;
@@ -19,7 +21,7 @@ public class MainSceneController
     this.viewHandler = viewHandler;
   }
 
-  public void onClick(ActionEvent event)
+  public void onClick(ActionEvent event) throws SQLException
   {
     if(event.getSource() == solarPanel)
     {
@@ -39,6 +41,8 @@ public class MainSceneController
     }
     else if(event.getSource() == exit)
     {
+      viewHandler.getConnection().close();
+      System.out.println("Connection closed.");
       System.exit(1);
     }
 
